@@ -1,25 +1,77 @@
-.search-bar {
+/* ============================= */
+/* 검색 영역 */
+/* ============================= */
+
+.search-wrapper {
+  position: relative;
   width: 500px;
-  display: flex;
-  border: 2px solid #2d6cdf;
-  border-radius: 40px;
-  overflow: hidden;
-  background: #fff;
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
 }
 
+/* 검색바 */
+.search-bar {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  background: #fff;
+  border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+/* input */
 .search-bar input {
   flex: 1;
   border: none;
-  padding: 14px 20px;
   outline: none;
-  font-size: 14px;
+  padding: 0 22px;
+  font-size: 16px;
+  background: transparent;
 }
 
+/* 버튼 */
 .search-bar button {
-  background: #2d6cdf;
-  color: white;
   border: none;
-  padding: 0 25px;
+  background: #2d6cdf;
+  color: #fff;
+  padding: 0 30px;
+  height: 100%;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: 500;
+}
+
+/* hover 제거 (아무 효과 없음) */
+.search-bar button:hover {
+  background: #2d6cdf;
+}
+
+
+/* ============================= */
+/* 드롭다운 */
+/* ============================= */
+
+.search-dropdown {
+  position: absolute;
+  top: calc(100% + 10px); /* 🔥 살짝 띄움 */
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  padding: 10px 0;
+  z-index: 1000;
+}
+
+/* 드롭 아이템 */
+.suggest-item {
+  padding: 14px 22px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.suggest-item:hover {
+  background: #f4f6ff;
 }

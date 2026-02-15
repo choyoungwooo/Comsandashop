@@ -3,7 +3,9 @@ import Layout from "./component/Layout";
 
 import Landing from "./page/Landing";
 import Home from "./page/builder";
-
+import Result from "./page/Result";
+import Terms from "./page/Terms";
+import Privacy from "./page/Privacy";
 
 function App() {
   return (
@@ -15,6 +17,10 @@ function App() {
       {/* ✅ 나머지 페이지는 Layout 적용 */}
       <Route element={<Layout />}>
         <Route path="/builder" element={<Home />} />
+        <Route path="/result" element={<Result />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
+        
       </Route>
 
     </Routes>

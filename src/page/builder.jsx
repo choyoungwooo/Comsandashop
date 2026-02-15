@@ -1,69 +1,333 @@
-import { useState } from "react";
+import { useMemo, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
+import { products } from "../data/Products";
+
+
 import "../css/home.css";
 
-function Builder({ category }) {
-  const [activeTab, setActiveTab] = useState("전체");
-  const [sort, setSort] = useState("low");
+function Builder() {
+  const navigate = useNavigate();
 
-  const categoryOptions = {
-    gpu: ["rtx", "gtx"],
-    cpu: ["intel", "amd", "ryzen"],
-    notebook: ["게이밍", "사무용", "울트라북"],
-    monitor: ["24inch", "27inch", "32inch"],
-    ram: ["8gb", "16gb", "32gb"],
-    ssd: ["sata", "nvme"],
-    psu: ["600w", "700w", "800w"],
-    case: ["미들타워", "빅타워"],
-    cooler: ["공랭", "수랭"]
+
+  const categories = [
+    { label: "전체", key: "all" },
+    { label: "그래픽카드", key: "gpu" },
+    { label: "메인보드", key: "mainboard" },
+    { label: "노트북", key: "notebook" },
+    { label: "모니터", key: "monitor" },
+    { label: "램카드", key: "ram" },
+    { label: "SSD", key: "ssd" },
+    { label: "파워", key: "psu" },
+    { label: "케이스", key: "case" },
+    { label: "쿨러", key: "cooler" },
+  ];
+
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [sortType, setSortType] = useState("low");
+  const [subFilter, setSubFilter] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9;
+  const multiQuantityTypes = ["ram", "ssd", "cooler"];
+  const { searchKeyword } = useOutletContext();
+  const normalize = (text) =>
+  text.toLowerCase().replace(/\s+/g, "");
+  
+
+  const flexibleMatch = (name, keyword) => {
+  const nName = normalize(name);
+  const nKeyword = normalize(keyword);
+
+  // 1️⃣ 완전 포함
+  if (nName.includes(nKeyword)) return true;
+
+  // 2️⃣ 순서 포함 (t → x 처럼 떨어져 있어도 허용)
+  let i = 0;
+  for (let char of nName) {
+    if (char === nKeyword[i]) {
+      i++;
+    }
+    if (i === nKeyword.length) return true;
+  }
+
+  return false;
+};
+
+
+
+  // 🔥 객체 구조로 변경
+  const [selectedItems, setSelectedItems] = useState(() => {
+    const saved = localStorage.getItem("pc-builder");
+    return saved ? JSON.parse(saved) : {};
+  });
+
+  // 🔥 선택 (카테고리별 1개만)
+  const handleSelect = (product) => {
+  setSelectedItems((prev) => {
+    const existing = prev[product.type];
+
+    // 🔥 수량 허용 카테고리
+    if (multiQuantityTypes.includes(product.type)) {
+      if (existing) {
+        return {
+          ...prev,
+          [product.type]: {
+            ...existing,
+            quantity: existing.quantity + 1,
+          },
+        };
+      }
+
+      return {
+        ...prev,
+        [product.type]: {
+          product,
+          quantity: 1,
+        },
+      };
+    }
+
+    // 🔥 1개만 허용 카테고리
+    return {
+      ...prev,
+      [product.type]: {
+        product,
+        quantity: 1,
+      },
+    };
+  });
+};
+const handleIncrease = (type) => {
+  setSelectedItems((prev) => ({
+    ...prev,
+    [type]: {
+      ...prev[type],
+      quantity: prev[type].quantity + 1,
+    },
+  }));
+};
+
+const handleDecrease = (type) => {
+  setSelectedItems((prev) => {
+    const current = prev[type];
+
+    if (!current) return prev;
+
+    // 🔒 1 이하로 안 내려가게
+    if (current.quantity <= 1) {
+      return prev;
+    }
+
+    return {
+      ...prev,
+      [type]: {
+        ...current,
+        quantity: current.quantity - 1,
+      },
+    };
+  });
+};
+
+
+
+
+  const handleRemove = (type) => {
+    setSelectedItems((prev) => {
+      const updated = { ...prev };
+      delete updated[type];
+      return updated;
+    });
   };
 
-  const subOptions = categoryOptions[category] || [];
+  const filteredProducts = useMemo(() => {
+  let filtered = products;
+    if (searchKeyword.trim() !== "") {
+  filtered = filtered.filter((p) =>
+    flexibleMatch(p.name, searchKeyword)
+  );
+}
+
+  if (activeCategory !== "all") {
+    filtered = filtered.filter((p) => p.type === activeCategory);
+  }
+
+  if (subFilter !== "all") {
+    filtered = filtered.filter((p) => p.brand === subFilter);
+  }
+
+  // 🔥 검색 추가
+
+  if (sortType === "low") {
+    filtered = [...filtered].sort((a, b) => a.price - b.price);
+  } else {
+    filtered = [...filtered].sort((a, b) => b.price - a.price);
+  }
+
+  return filtered;
+}, [activeCategory, subFilter, sortType, searchKeyword]);
+
+
+  const paginatedProducts = useMemo(() => {
+  const start = (currentPage - 1) * itemsPerPage;
+  return filteredProducts.slice(start, start + itemsPerPage);
+}, [filteredProducts, currentPage]);
+
+
+  const totalPrice = useMemo(() => {
+  return Object.values(selectedItems).reduce((sum, item) => {
+    if (!item.product) return sum; // 예전 데이터 방어
+
+    return sum + item.product.price * item.quantity;
+  }, 0);
+}, [selectedItems]);
+
+
+
+  const handleViewResult = () => {
+    if (Object.keys(selectedItems).length === 0) {
+      alert("제품을 선택해주세요.");
+      return;
+    }
+
+    navigate("/result", {
+      state: { items: selectedItems, total: totalPrice },
+    });
+  };
+
+  const handleCategoryChange = (key) => {
+    setActiveCategory(key);
+    setSubFilter("all");
+  };
+
+  useEffect(() => {
+    localStorage.setItem("pc-builder", JSON.stringify(selectedItems));
+  }, [selectedItems]);
 
   return (
-    <div className="builder-section">
+    <div className="builder-page">
 
-      <h2 className="builder-title">
-        {category?.toUpperCase()}
-      </h2>
-
-      {/* 🔥 서브탭 */}
-      <div className="sub-tab">
-        <button
-          className={activeTab === "전체" ? "active" : ""}
-          onClick={() => setActiveTab("전체")}
-        >
-          전체
-        </button>
-
-        {subOptions.map((option, index) => (
+      <div className="category-nav">
+        {categories.map((cat) => (
           <button
-            key={index}
-            className={activeTab === option ? "active" : ""}
-            onClick={() => setActiveTab(option)}
+            key={cat.key}
+            className={activeCategory === cat.key ? "active" : ""}
+            onClick={() => handleCategoryChange(cat.key)}
           >
-            {option.toUpperCase()}
+            {cat.label}
           </button>
         ))}
       </div>
 
-      {/* 🔥 정렬 */}
-      <div className="sort-box">
-        <select
-          value={sort}
-          onChange={(e) => setSort(e.target.value)}
-        >
-          <option value="low">낮은 가격순</option>
-          <option value="high">높은 가격순</option>
-        </select>
-      </div>
+      <div className="builder-layout">
 
-      {/* 🔥 상품 영역 자리 */}
-      <div className="product-area">
-        <p>
-          선택: {activeTab} / 정렬: {sort}
-        </p>
-      </div>
+        {/* 왼쪽 */}
+        <div className="product-wrapper">
 
+         <div className="product-area">
+  {paginatedProducts.length === 0 ? (
+    <div className="empty-state">
+      <div className="empty-icon">🔍</div>
+      <h3>검색 결과가 없습니다</h3>
+      <p>
+        <span>"{searchKeyword}"</span> 와 일치하는 상품이 없어요.
+      </p>
+    </div>
+  ) : (
+    paginatedProducts.map((product) => (
+      <div key={product.id} className="product-card">
+        <h4>{product.name}</h4>
+        <p>{product.price.toLocaleString()}원</p>
+        <button onClick={() => handleSelect(product)}>
+          선택하기
+        </button>
+      </div>
+    ))
+  )}
+</div>
+
+
+          <div className="pagination">
+  {Array.from(
+    { length: Math.ceil(filteredProducts.length / itemsPerPage) },
+    (_, i) => (
+      <button
+        key={i}
+        className={currentPage === i + 1 ? "active" : ""}
+        onClick={() => setCurrentPage(i + 1)}
+      >
+        {i + 1}
+      </button>
+    )
+  )}
+</div>
+
+
+        </div>
+
+        {/* 오른쪽 견적 */}
+        <div className="estimate-wrapper">
+  <div className="estimate-box">
+    <h3>내 견적서</h3>
+
+    {categories
+      .filter((cat) => cat.key !== "all")
+      .map((cat) => {
+        const item = selectedItems[cat.key];
+
+        return (
+          <div key={cat.key} className="estimate-slot">
+            <div className="slot-left">
+              <span className="slot-label">{cat.label}</span>
+            </div>
+
+            <div className="slot-right">
+             {item && item.product ? (
+
+  <>
+    <span className="slot-name">
+      {item.product.name}
+    </span>
+
+    {/* 🔥 수량 허용 타입만 + - 표시 */}
+    {multiQuantityTypes.includes(cat.key) && (
+      <div className="quantity-box">
+        <button onClick={() => handleDecrease(cat.key)}>-</button>
+        <span>{item.quantity}</span>
+        <button onClick={() => handleIncrease(cat.key)}>+</button>
+      </div>
+    )}
+
+    <span className="slot-price">
+      {(item.product.price * item.quantity).toLocaleString()}원
+    </span>
+
+    <button
+      className="remove-btn"
+      onClick={() => handleRemove(cat.key)}
+    >
+      ✕
+    </button>
+  </>
+              ) : (
+                <span className="slot-empty">선택하기</span>
+              )}
+            </div>
+          </div>
+        );
+      })}
+
+    <div className="total-price">
+      총 예상 금액: {totalPrice.toLocaleString()}원
+    </div>
+
+    <button className="estimate-btn" onClick={handleViewResult}>
+      🛒 구매처 한번에 보기
+    </button>
+  </div>
+</div>
+
+
+      </div>
     </div>
   );
 }

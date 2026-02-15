@@ -1,13 +1,12 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
+import { useState } from "react";
 import SearchBar from "./SearchBar";
+import Footer from "./Footer";
+import { products } from "../data/Products";
 import "../css/layout.css";
-import { Link } from "react-router-dom";
-
 
 function Layout() {
-  const location = useLocation();
-
-  const isHome = location.pathname === "/";
+  const [searchKeyword, setSearchKeyword] = useState("");
 
   return (
     <>
@@ -15,20 +14,20 @@ function Layout() {
         <div className="layout-inner">
           <div className="logo-search">
             <h1 className="logo">
-            <Link to="/builder">컴산다샵</Link>
+              <Link to="/">컴산다샵</Link>
             </h1>
-            <SearchBar />
-          </div>
 
-          {isHome && (
-            <div className="category-menu">
-              {/* 카테고리 아이템들 */}
-            </div>
-          )}
+            {/* 🔥 여기 안에서 products 전달 */}
+            <SearchBar
+              onSearch={setSearchKeyword}
+              products={products}
+            />
+          </div>
         </div>
       </header>
 
-      <Outlet />
+      <Outlet context={{ searchKeyword }} />
+      <Footer />
     </>
   );
 }
