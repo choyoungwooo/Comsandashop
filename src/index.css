@@ -35,3 +35,59 @@ body {
 .header nav a:hover {
   color: #2563eb;
 }
+/* ========================= */
+/* 📱 Mobile First 구조 */
+/* ========================= */
+
+/* 기본 = 모바일 (1열) */
+.product-area {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.builder-content,
+.builder-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.estimate-box {
+  width: 100%;
+  position: static;
+}
+
+/* ========================= */
+/* 💻 768px 이상 (태블릿 이상) */
+/* ========================= */
+@media (min-width: 768px) {
+
+  .product-area {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+/* ========================= */
+/* 🖥 1200px 이상 (PC) */
+/* ========================= */
+@media (min-width: 1200px) {
+
+  .product-area {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .builder-content,
+  .builder-body {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .estimate-box {
+    width: 350px;
+    position: sticky;
+    top: 100px;
+  }
+
+}
