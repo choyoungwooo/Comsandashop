@@ -1,0 +1,280 @@
+/* ===================================== */
+/* 기본 전체 */
+/* ===================================== */
+
+.home {
+  padding: 50px 0;
+}
+
+/* ===================================== */
+/* 상단 카테고리 */
+/* ===================================== */
+
+.category-row {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.category-wrapper {
+  position: relative;
+}
+
+.category-item {
+  width: 90px;
+  text-align: center;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 12px;
+  transition: 0.2s;
+}
+
+.category-item:hover {
+  background-color: #f3f4f6;
+}
+
+.category-icon {
+  font-size: 26px;
+  margin-bottom: 6px;
+}
+
+/* 드롭다운 */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 10px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+  padding: 8px 0;
+  min-width: 120px;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.2s ease;
+}
+
+.category-wrapper:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.dropdown-item {
+  padding: 10px 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #4f46e5;
+  color: white;
+}
+
+/* ===================================== */
+/* 추천 섹션 */
+/* ===================================== */
+
+.recommend-section {
+  max-width: 1100px;
+  margin: 100px auto;
+  padding: 0 20px;
+}
+
+.recommend-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.recommend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.recommend-card {
+  padding: 28px;
+  border-radius: 18px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  transition: 0.25s ease;
+  cursor: pointer;
+}
+
+.recommend-card:hover {
+  transform: translateY(-6px);
+  border-color: #4f46e5;
+  box-shadow: 0 12px 30px rgba(79, 70, 229, 0.12);
+}
+
+.recommend-card h3 {
+  font-size: 17px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.recommend-card p {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.recommend-card span {
+  font-size: 12px;
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+/* ===================================== */
+/* 🔥 빌더 영역 (도각 스타일) */
+/* ===================================== */
+
+.builder-section {
+  max-width: 1300px;
+  margin: 80px auto;
+  display: flex;
+  gap: 40px;
+  padding: 0 20px;
+}
+
+/* 좌측 상품 영역 */
+.builder-left {
+  flex: 3;
+}
+
+/* 우측 패널 */
+.builder-right {
+  flex: 1;
+  position: sticky;
+  top: 120px;
+}
+
+/* 제목 */
+.builder-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* ===================================== */
+/* 서브탭 */
+/* ===================================== */
+
+.sub-tab {
+  display: flex;
+  gap: 15px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.sub-tab button {
+  background: none;
+  border: none;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 6px 4px;
+  cursor: pointer;
+  position: relative;
+  color: #666;
+}
+
+.sub-tab button.active {
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+.sub-tab button.active::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #4f46e5;
+  border-radius: 3px;
+}
+
+/* ===================================== */
+/* 정렬 */
+/* ===================================== */
+
+.sort-box {
+  margin-bottom: 25px;
+}
+
+.sort-box select {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  background: white;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* ===================================== */
+/* 상품 카드 그리드 */
+/* ===================================== */
+
+.product-area {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.product-card {
+  background: white;
+  border-radius: 18px;
+  padding: 18px;
+  border: 1px solid #eee;
+  transition: 0.25s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  border-color: #4f46e5;
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.08);
+  transform: translateY(-4px);
+}
+
+/* ===================================== */
+/* 우측 견적 패널 */
+/* ===================================== */
+
+.builder-panel {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.builder-panel h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.total-price {
+  font-size: 22px;
+  font-weight: 700;
+  color: #4f46e5;
+  margin-top: 20px;
+}
+
+.buy-button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  background: #4f46e5;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.buy-button:hover {
+  background: #4338ca;
+}

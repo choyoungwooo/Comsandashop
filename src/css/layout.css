@@ -1,0 +1,27 @@
+.layout-header {
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  padding-top: 70px;
+}
+
+.layout-inner {
+  width: 1100px;
+  margin: 0 auto;
+}
+
+/* 🔵 로고 + 검색바를 하나의 묶음처럼 */
+.logo-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* ⭐ 이게 핵심 */
+  gap: 25px;                 /* 로고랑 검색바 간격 */
+}
+
+/* 로고 */
+.logo {
+  font-size: 30px;
+  font-weight: 700;
+  color: #2d6cdf;
+  cursor: pointer;
+}
