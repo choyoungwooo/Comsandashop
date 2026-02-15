@@ -6,21 +6,23 @@
 /* ================= HERO ================= */
 
 .hero {
-  padding: 140px 0 100px;
+  padding: 100px 20px;
   background: linear-gradient(to bottom, #f8faff, #ffffff);
 }
 
 .hero-inner {
   max-width: 1200px;
   margin: 0 auto;
+
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 80px;
+  text-align: center;
+  gap: 40px;
 }
 
 .hero-left h1 {
-  font-size: 44px;
+  font-size: 36px;
   font-weight: 700;
   line-height: 1.4;
   margin-bottom: 20px;
@@ -35,7 +37,7 @@
 
 .hero-buttons {
   display: flex;
-  gap: 16px;
+  justify-content: center;
 }
 
 .primary-btn {
@@ -55,13 +57,14 @@
 }
 
 .hero-right img {
-  width: 480px;
+  width: 100%;
+  max-width: 450px;
 }
 
 /* ================= RECOMMEND ================= */
 
 .recommend {
-  padding: 100px 0 140px;
+  padding: 100px 20px;
 }
 
 .recommend-inner {
@@ -72,13 +75,13 @@
 .recommend h2 {
   font-size: 24px;
   font-weight: 600;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .recommend-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
+  grid-template-columns: 1fr;
+  gap: 24px;
 }
 
 .recommend-card {
@@ -112,27 +115,11 @@
   color: #5b8cff;
   font-weight: 500;
 }
-.hero {
-  padding: 80px 20px;
-}
 
-.hero-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-  text-align: center;
-}
+/* ================= PC ================= */
 
-.hero-right img {
-  width: 100%;
-  max-width: 450px;
-}
-
-/* PC에서 좌우 배치 */
 @media (min-width: 1024px) {
+
   .hero-inner {
     flex-direction: row;
     justify-content: space-between;
@@ -147,5 +134,13 @@
     flex: 1;
     display: flex;
     justify-content: center;
+  }
+
+  .hero-left h1 {
+    font-size: 44px;
+  }
+
+  .recommend-grid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }

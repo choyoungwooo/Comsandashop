@@ -9,13 +9,15 @@ import Privacy from "./page/Privacy";
 
 function App() {
   return (
+    
     <Routes>
 
       {/* ✅ 랜딩은 Layout 없이 */}
-      <Route path="/" element={<Landing />} />
-
+      
+<Route element={<Layout />}>
       {/* ✅ 나머지 페이지는 Layout 적용 */}
-      <Route element={<Layout />}>
+      
+        <Route path="/" element={<Landing />} />
         <Route path="/builder" element={<Home />} />
         <Route path="/result" element={<Result />} />
         <Route path="/terms" element={<Terms />} />

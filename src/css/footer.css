@@ -41,3 +41,39 @@
 .footer-right a:hover {
   color: #5b6bff;
 }
+/* ============================== */
+/* 📱 Footer 모바일 대응 */
+/* ============================== */
+
+@media (max-width: 768px) {
+
+  .footer {
+    margin-top: 80px;   /* 여백 조금 줄이기 */
+    padding: 30px 0;
+  }
+
+  .footer-inner {
+    flex-direction: column;   /* 🔥 세로 정렬 */
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .footer-left h3 {
+    font-size: 14px;
+  }
+
+  .footer-left p {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .footer-right {
+    flex-wrap: wrap;   /* 🔥 줄바꿈 허용 */
+    gap: 14px;
+  }
+
+  .footer-right a {
+    font-size: 13px;
+  }
+
+}

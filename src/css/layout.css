@@ -2,9 +2,8 @@
   width: 100%;
   background: #fff;
   border-bottom: 1px solid #eee;
-  padding-top: 70px;
+  padding: 40px 0;  /* 🔥 70px 제거 */
 }
-
 .layout-inner {
   width: 1100px;
   margin: 0 auto;
@@ -28,4 +27,29 @@
 .logo a {
   text-decoration: none;   /* 🔥 밑줄 제거 */
   color: inherit;          /* 🔥 부모 색상 유지 */
+}
+/* ============================== */
+/* 📱 Header 모바일 대응 */
+/* ============================== */
+
+@media (max-width: 768px) {
+
+  .layout-header {
+    padding-top: 40px;   /* 모바일에서는 위 여백 줄이기 */
+  }
+
+  .layout-inner {
+    width: 100%;         /* 🔥 고정폭 제거 */
+    padding: 0 16px;     /* 좌우 여백 */
+  }
+
+  .logo-search {
+    flex-direction: column;   /* 로고 + 검색 세로 */
+    gap: 12px;
+  }
+
+  .logo {
+    font-size: 24px;     /* 모바일에서는 작게 */
+    text-align: center;
+  }
 }

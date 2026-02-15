@@ -52,3 +52,40 @@
 .policy-logo:hover {
   color: #5b6bff;
 }
+/* ============================== */
+/* 📱 Policy 모바일 대응 */
+/* ============================== */
+
+@media (max-width: 768px) {
+
+  .policy-header {
+    height: 56px;
+    padding: 0 20px;
+  }
+
+  .policy-logo {
+    font-size: 14px;
+  }
+
+  .policy-container {
+    max-width: 100%;
+    margin: 90px auto 60px;  /* header 높이에 맞게 조정 */
+    padding: 0 16px;
+  }
+
+  .policy-container h1 {
+    font-size: 22px;
+  }
+
+  .policy-container h2 {
+    font-size: 16px;
+  }
+
+  .policy-container p {
+    font-size: 14px;
+  }
+
+  .policy-container .date {
+    font-size: 12px;
+  }
+}

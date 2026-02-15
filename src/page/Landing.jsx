@@ -88,26 +88,6 @@ function Landing() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="footer">
-        <div className="footer-inner">
-
-          <div className="footer-brand">
-            <h3>컴산다샵</h3>
-            <p>© 2026 Comsanda. All rights reserved.</p>
-          </div>
-
-          <div className="footer-info">
-            <span>이메일: jovis000@naver.com</span>
-          </div>
-
-          <div className="footer-links">
-            <a href="/terms">이용약관</a>
-            <a href="/privacy">개인정보처리방침</a>
-          </div>
-
-        </div>
-      </footer>
 
     </div>
   );

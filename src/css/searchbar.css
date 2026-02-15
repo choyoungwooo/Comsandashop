@@ -4,7 +4,8 @@
 
 .search-wrapper {
   position: relative;
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
 }
 

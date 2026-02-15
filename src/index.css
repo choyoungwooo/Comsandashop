@@ -71,23 +71,7 @@ html, body {
   position: static;
 }
 
-/* ========================= */
-/* 태블릿 (768px 이상) */
-/* ========================= */
-@media (min-width: 768px) {
 
-  .product-area {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .header {
-    padding: 20px 40px;
-  }
-
-  .logo {
-    font-size: 24px;
-  }
-}
 
 /* ========================= */
 /* PC (1200px 이상) */
