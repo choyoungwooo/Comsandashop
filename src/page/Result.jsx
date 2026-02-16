@@ -108,6 +108,28 @@ const handleSaveImage = async () => {
     <div className="summary-left">
       <p className="item-name">{item.name}</p>
       <span className="item-type">{item.type.toUpperCase()}</span>
+
+      {/* 🔥 모바일 전용 버튼 */}
+      <div className="mobile-buy-buttons">
+        <a
+          href={`https://www.aliexpress.com/wholesale?SearchText=${encodeURIComponent(item.name)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ali-btn"
+        >
+          알리
+        </a>
+
+        <a
+          href={`https://www.coupang.com/np/search?q=${encodeURIComponent(item.name)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="coupang-btn"
+        >
+          쿠팡
+        </a>
+      </div>
+
     </div>
 
     <div className="summary-price">

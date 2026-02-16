@@ -272,6 +272,11 @@
   transform: translateY(-3px);
 }
 
+.mobile-buy-buttons {
+  display: none;
+}
+
+
 
 /* ================================================= */
 /* MOBILE */
@@ -284,38 +289,86 @@
     gap: 35px;
   }
 
+  /* PC용 우측 구매박스 숨김 */
   .buy-box {
     display: none;
   }
 
-.summary-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  /* ========================= */
+  /* SUMMARY ITEM 정렬 */
+  /* ========================= */
 
-  padding: 22px 0;    
-  border-bottom: 1px solid #f3f3f3;
-}
-
-  .buy-buttons {
-    margin-top: 4px;
+  .summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 0;
+    border-bottom: 1px solid #f3f3f3;
   }
 
-  .buy-buttons a {
-    font-size: 12px;
-    padding: 7px 14px;
-  }
-
-  .result-bottom {
-    gap: 10px;
-    padding: 20px;
-  }
-
-  .result-bottom button {
+  .summary-left {
     flex: 1;
-    min-width: 0;
-    height: 44px;
-    border-radius: 14px;
-    font-size: 13px;
   }
+
+  .item-name {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .item-type {
+    font-size: 10px;
+  }
+
+  .summary-price {
+    font-size: 15px;
+    font-weight: 700;
+    min-width: 80px;
+    text-align: right;
+  }
+
+  /* ========================= */
+  /* 🔥 모바일 전용 구매버튼 */
+  /* ========================= */
+
+  .mobile-buy-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .mobile-buy-buttons a {
+    flex: 1;
+    font-size: 12px;
+    padding: 8px 0;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  /* ========================= */
+  /* TOTAL PRICE 영역 */
+  /* ========================= */
+
+  .summary-top {
+    align-items: flex-start;
+  }
+
+  .summary-price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .price-label {
+    font-size: 11px;
+    color: #888;
+  }
+
+  .summary-top span {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--main-blue);
+  }
+
 }
+
