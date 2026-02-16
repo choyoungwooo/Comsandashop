@@ -283,7 +283,11 @@
 /* ================================================= */
 
 @media (max-width: 768px) {
-
+  .mobile-buy-buttons {
+    display: flex;          /* 🔥 이거 추가 */
+    gap: 8px;
+    margin-top: 6px;
+  }
   .result-content {
     flex-direction: column;
     gap: 35px;
