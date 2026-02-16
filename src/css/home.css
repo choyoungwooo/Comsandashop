@@ -242,9 +242,10 @@ button {
   width: 24px;
   height: 24px;
   border-radius: 6px;
-  background: var(--main-blue);
-  color: white;
+  background-color: white;;
+  color: black;
   font-size: 14px;
+  font-weight: bold;
 }
 
 /* 제거 버튼 */

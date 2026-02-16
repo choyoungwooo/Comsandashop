@@ -99,8 +99,8 @@ const handleSaveImage = async () => {
           <div className="summary-top">
             <h3>선택한 제품</h3>
               <div className="summary-price">
-    TOTAL PRICE
-    <span>{total.toLocaleString()}원</span>
+     <p className="price-label">TOTAL PRICE</p>
+    <span>{total.toLocaleString()} 원</span>
   </div>
           </div>
           {items.map((item) => (
@@ -133,40 +133,32 @@ const handleSaveImage = async () => {
           <h3>제품 구매 링크</h3>
 
           {items.map((item) => (
-  <div key={item.type} className="summary-item">
-    <div className="summary-left">
-      <p className="item-name">{item.name}</p>
-      <span className="item-type">{item.type.toUpperCase()}</span>
+ <div key={item.type} className="summary-item">
 
-      {/* 🔥 모바일 전용 구매 버튼 */}
-      <div className="mobile-buy-buttons">
+  <div className="summary-left">
+    <p className="item-name">{item.name}</p>
+    <span className="item-type">{item.type.toUpperCase()}</span>
 
-  <a
-    href={`https://www.coupang.com/np/search?q=${encodeURIComponent(item.name)}`}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="mobile-buy-coupang"
-  >
-    🔵 쿠팡
-  </a>
+    <div className="buy-buttons">
+      <a
+        href={`https://www.aliexpress.com/wholesale?SearchText=${encodeURIComponent(item.name)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="ali-btn"
+      >
+        알리익스프레스
+      </a>
 
-  <a
-    href={`https://www.aliexpress.com/wholesale?SearchText=${encodeURIComponent(item.name)}`}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="mobile-buy-ali"
-  >
-    🟢 알리
-  </a>
-
+      <a
+        href={`https://www.coupang.com/np/search?q=${encodeURIComponent(item.name)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="coupang-btn"
+      >
+        쿠팡
+      </a>
 </div>
-
-
-    </div>
-
-    <div className="summary-price">
-      {item.price.toLocaleString()}원
-    </div>
+</div>
   </div>
 ))}
     
