@@ -298,32 +298,54 @@
   /* ========================= */
 
   .summary-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
     padding: 20px 0;
     border-bottom: 1px solid #f3f3f3;
   }
 
+  /* 🔥 핵심: grid로 2줄 레이아웃 강제 */
   .summary-left {
-    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "name price"
+      "type buttons";
+    gap: 4px 10px;
+    width: 100%;
   }
 
   .item-name {
+    grid-area: name;
     font-size: 14px;
     font-weight: 600;
   }
 
   .item-type {
+    grid-area: type;
     font-size: 10px;
+    color: #888;
   }
 
-  /* 🔥 아이템 가격 */
-  .summary-item .summary-price {
+  /* 🔥 가격 오른쪽 */
+  .summary-price {
+    grid-area: price;
+    text-align: right;
     font-size: 15px;
     font-weight: 700;
-    min-width: 80px;
-    text-align: right;
+  }
+
+  /* 🔥 가격 아래에 버튼 */
+  .buy-buttons {
+    grid-area: buttons;
+    display: flex;
+    gap: 6px;
+    justify-content: flex-end;
+  }
+
+  .buy-buttons a {
+    font-size: 11px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    text-decoration: none;
   }
 
   /* ========================= */
@@ -352,26 +374,7 @@
   }
 
   /* ========================= */
-  /* 모바일 구매버튼 */
-  /* ========================= */
-
-  .mobile-buy-buttons {
-    display: flex;
-    gap: 8px;
-    margin-top: 10px;
-  }
-
-  .mobile-buy-buttons a {
-    flex: 1;
-    font-size: 12px;
-    padding: 8px 0;
-    border-radius: 10px;
-    text-align: center;
-    text-decoration: none;
-  }
-
-  /* ========================= */
-  /* 하단 버튼 (가로 2개 유지) */
+  /* 하단 버튼 */
   /* ========================= */
 
   .result-bottom {
