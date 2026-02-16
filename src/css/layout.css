@@ -1,20 +1,26 @@
+/* ============================== */
+/* 🖥 Header 기본 */
+/* ============================== */
+
 .layout-header {
   width: 100%;
   background: #fff;
   border-bottom: 1px solid #eee;
-  padding: 40px 0;  /* 🔥 70px 제거 */
-}
-.layout-inner {
-  width: 1100px;
-  margin: 0 auto;
+  padding: 40px 0;
 }
 
-/* 🔵 로고 + 검색바를 하나의 묶음처럼 */
+.layout-inner {
+  max-width: 1100px;   /* width → max-width 로 변경 (더 안정적) */
+  margin: 0 auto;
+  padding: 0 20px;     /* 좌우 기본 여백 추가 */
+}
+
+/* 로고 + 검색 묶음 */
 .logo-search {
   display: flex;
   align-items: center;
-  justify-content: center;   /* ⭐ 이게 핵심 */
-  gap: 25px;                 /* 로고랑 검색바 간격 */
+  justify-content: center;
+  gap: 30px;
 }
 
 /* 로고 */
@@ -22,34 +28,38 @@
   font-size: 30px;
   font-weight: 700;
   color: #2d6cdf;
-  cursor: pointer; 
+  cursor: pointer;
+  white-space: nowrap;   /* 줄바꿈 방지 */
 }
+
 .logo a {
-  text-decoration: none;   /* 🔥 밑줄 제거 */
-  color: inherit;          /* 🔥 부모 색상 유지 */
+  text-decoration: none;
+  color: inherit;
 }
+
 /* ============================== */
-/* 📱 Header 모바일 대응 */
+/* 📱 모바일 */
 /* ============================== */
 
 @media (max-width: 768px) {
 
   .layout-header {
-    padding-top: 40px;   /* 모바일에서는 위 여백 줄이기 */
-  }
-
-  .layout-inner {
-    width: 100%;         /* 🔥 고정폭 제거 */
-    padding: 0 16px;     /* 좌우 여백 */
+    padding: 20px 0;
   }
 
   .logo-search {
-    flex-direction: column;   /* 로고 + 검색 세로 */
-    gap: 12px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
   }
 
   .logo {
-    font-size: 24px;     /* 모바일에서는 작게 */
+    font-size: 22px;
     text-align: center;
   }
+
+  .logo-search > * {
+    width: 100%;
+  }
+
 }

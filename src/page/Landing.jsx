@@ -1,9 +1,35 @@
 import { useNavigate } from "react-router-dom";
 import "../css/landing.css";
-import pcImage from "../assets/pc.png";
 
 function Landing() {
   const navigate = useNavigate();
+
+  const categories = [
+    {
+      icon: "🎮",
+      title: "게이밍 PC",
+      desc: "RTX 기반 고성능 세팅",
+      link: "/computer?type=gaming"
+    },
+    {
+      icon: "💼",
+      title: "사무 · 업무용",
+      desc: "가성비 + 안정성 중심",
+      link: "/computer?type=office"
+    },
+    {
+      icon: "🎬",
+      title: "영상 · 디자인",
+      desc: "GPU 가속 · 고해상도 작업",
+      link: "/computer?type=creator"
+    },
+    {
+      icon: "💰",
+      title: "가성비 추천",
+      desc: "입문자 · 학생 추천",
+      link: "/computer?type=recommend"
+    }
+  ];
 
   return (
     <div className="landing">
@@ -11,83 +37,52 @@ function Landing() {
       {/* HERO */}
       <section className="hero">
         <div className="hero-inner">
+          <h1>나에게 맞는 컴퓨터를 빠르게 찾으세요</h1>
+          <p>
+            사용 목적에 맞는 PC를 추천하고  
+            실시간 가격 비교까지 한 번에 제공합니다.
+          </p>
+          <button
+            className="primary-btn"
+            onClick={() => navigate("/builder")}
+          >
+            맞춤 PC 만들기 →
+          </button>
+        </div>
+      </section>
 
-          {/* 왼쪽 텍스트 */}
-          <div className="hero-left">
-            <h1>
-              나에게 맞는 컴퓨터,<br />
-              쉽고 빠르게 선택하세요.
-            </h1>
-            <p>
-              복잡한 부품 고민 없이<br />
-              상황에 맞는 추천 구성을 확인하세요.
-            </p>
+      {/* CATEGORY DASHBOARD */}
+      <section className="dashboard">
+        <div className="dashboard-inner">
 
-            <div className="hero-buttons">
-              <button
-                className="primary-btn"
-                onClick={() => navigate("/builder")}
+          <h2>🔥 추천 카테고리</h2>
+
+          <div className="category-grid">
+            {categories.map((item, index) => (
+              <div
+                key={index}
+                className="category-card"
+                onClick={() => navigate(item.link)}
               >
-                제품 보러가기 →
-              </button>
-            </div>
-          </div>
+                <div className="category-icon">{item.icon}</div>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+            ))}
 
-          {/* 오른쪽 이미지 추가 🔥 */}
-          <div className="hero-right">
-            <img src={pcImage} alt="PC 이미지" />
-          </div>
-
-        </div>
-      </section>
-
-      {/* 추천 */}
-      <section className="recommend">
-        <div className="recommend-inner">
-          <h2>🔥 완성 PC 추천</h2>
-
-          <div className="recommend-grid">
-
+            {/* 외부 링크 카드 */}
             <div
-              className="recommend-card"
-              onClick={() => navigate("/computer?type=gaming")}
-            >
-              <h3>고사양 게이밍 PC</h3>
-              <p>RTX 기반 퍼포먼스 세팅</p>
-              <span>배그 · 스팀 · AAA 게임</span>
-            </div>
-
-            <div
-              className="recommend-card"
-              onClick={() => navigate("/computer?type=office")}
-            >
-              <h3>문서·사무용 PC</h3>
-              <p>가성비 + 안정성 중심</p>
-              <span>문서 · 인강 · 업무용</span>
-            </div>
-
-            <div
-              className="recommend-card"
-              onClick={() => navigate("/computer?type=creator")}
-            >
-              <h3>영상편집·디자인용</h3>
-              <p>고해상도 + GPU 가속</p>
-              <span>프리미어 · 포토샵 · 3D</span>
-            </div>
-
-            <div
-              className="recommend-card"
-              onClick={() => navigate("/computer?type=recommend")}
-            >
-              <h3>가성비 추천 PC</h3>
-              <p>가격 대비 최고의 구성</p>
-              <span>입문자 · 학생 추천</span>
+  className="category-card external danawa-card"
+  onClick={() => window.open("https://shop.danawa.com/pc/")}
+>
+              <div className="category-icon">🛠</div>
+              <h3>다나와 견적 요청 게시판</h3>
+              <p>실시간 PC 견적 문의 확인</p>
             </div>
 
           </div>
         </div>
       </section>
-
 
     </div>
   );

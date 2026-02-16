@@ -21,15 +21,41 @@ function Builder() {
     { label: "파워", key: "psu" },
     { label: "케이스", key: "case" },
     { label: "쿨러", key: "cooler" },
+    { label: "마우스", key: "mouse" },
+    { label: "키보드", key: "keyboard" },
+    { label: "헤드셋", key: "headset" },
+    { label: "마이크", key: "mic" },
+    { label: "웹캠", key: "webcam" },
+    { label: "스피커", key: "speaker" },
   ];
+
+  const brandOptions = {
+  gpu: ["rtx", "gtx", "amd"],
+  mainboard: ["intel", "amd"],
+  cpu: ["intel", "amd"],
+  mouse: ["logitech", "razer"],
+  keyboard: ["logitech", "abko"],
+  headset: ["corsair"],
+  mic: ["blue"],
+  webcam: ["logitech"],
+  speaker: ["britz"],
+};
+
 
   const [activeCategory, setActiveCategory] = useState("all");
   const [sortType, setSortType] = useState("low");
   const [subFilter, setSubFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 9;
+  const itemsPerPage = 20;
   const multiQuantityTypes = ["ram", "ssd", "cooler"];
   const { searchKeyword } = useOutletContext();
+  const [isEstimateOpen, setIsEstimateOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleSort = () => {
+  setSortType((prev) => (prev === "low" ? "high" : "low"));
+};
+
   const normalize = (text) =>
   text.toLowerCase().replace(/\s+/g, "");
   
@@ -206,23 +232,55 @@ const handleDecrease = (type) => {
   return (
     <div className="builder-page">
 
-      <div className="category-nav">
-        {categories.map((cat) => (
-          <button
-            key={cat.key}
-            className={activeCategory === cat.key ? "active" : ""}
-            onClick={() => handleCategoryChange(cat.key)}
-          >
-            {cat.label}
-          </button>
-        ))}
-      </div>
+     <div className="category-nav">
+  <div className="category-nav-inner">
+    {categories.map((cat) => (
+      <button
+        key={cat.key}
+        className={
+          activeCategory !== "all" && activeCategory === cat.key
+            ? "active"
+            : ""
+        }
+        onClick={() => handleCategoryChange(cat.key)}
+      >
+        {cat.label}
+      </button>
+    ))}
+  </div>
+</div>
+{activeCategory !== "all" && brandOptions[activeCategory] && (
+  <div className="filter-row">
 
+    <div className="filter-row">
+
+  <div className="brand-filter">
+    <button
+      
+      onClick={() => setSubFilter("all")}
+    >
+      전체
+    </button>
+
+    {brandOptions[activeCategory].map((brand) => (
+      <button
+        key={brand}
+        className={subFilter === brand ? "active" : ""}
+        onClick={() => setSubFilter(brand)}
+      >
+        {brand.toUpperCase()}
+      </button>
+    ))}
+  </div>
+  <button className="sort-toggle" onClick={toggleSort}>
+    {sortType === "low" ? "⬇ 낮은 가격순" : "⬆ 높은 가격순"}
+  </button>
+</div>
+  </div>
+)}
       <div className="builder-layout">
-
-        {/* 왼쪽 */}
+        {/*왼쪽 */}
         <div className="product-wrapper">
-
          <div className="product-area">
   {paginatedProducts.length === 0 ? (
     <div className="empty-state">
@@ -244,9 +302,7 @@ const handleDecrease = (type) => {
     ))
   )}
 </div>
-
-
-          <div className="pagination">
+<div className="pagination">
   {Array.from(
     { length: Math.ceil(filteredProducts.length / itemsPerPage) },
     (_, i) => (
@@ -260,69 +316,76 @@ const handleDecrease = (type) => {
     )
   )}
 </div>
+</div>
 
+  <div className="estimate-wrapper">
+  <div className={`estimate-box ${isOpen ? "open" : "collapsed"}`}>
 
-        </div>
-
-        {/* 오른쪽 견적 */}
-        <div className="estimate-wrapper">
-  <div className="estimate-box">
-    <h3>내 견적서</h3>
-
-    {categories
-      .filter((cat) => cat.key !== "all")
-      .map((cat) => {
-        const item = selectedItems[cat.key];
-
-        return (
-          <div key={cat.key} className="estimate-slot">
-            <div className="slot-left">
-              <span className="slot-label">{cat.label}</span>
-            </div>
-
-            <div className="slot-right">
-             {item && item.product ? (
-
-  <>
-    <span className="slot-name">
-      {item.product.name}
-    </span>
-
-    {/* 🔥 수량 허용 타입만 + - 표시 */}
-    {multiQuantityTypes.includes(cat.key) && (
-      <div className="quantity-box">
-        <button onClick={() => handleDecrease(cat.key)}>-</button>
-        <span>{item.quantity}</span>
-        <button onClick={() => handleIncrease(cat.key)}>+</button>
-      </div>
-    )}
-
-    <span className="slot-price">
-      {(item.product.price * item.quantity).toLocaleString()}원
-    </span>
-
-    <button
-      className="remove-btn"
-      onClick={() => handleRemove(cat.key)}
+    {/* 모바일 토글 헤더 */}
+    <div 
+      className="estimate-toggle"
+      onClick={() => setIsOpen(!isOpen)}
     >
-      ✕
-    </button>
-  </>
-              ) : (
-                <span className="slot-empty">선택하기</span>
-              )}
-            </div>
-          </div>
-        );
-      })}
-
-    <div className="total-price">
-      총 예상 금액: {totalPrice.toLocaleString()}원
+      <span>내 견적</span>
+      <span>{totalPrice.toLocaleString()}원</span>
     </div>
 
-    <button className="estimate-btn" onClick={handleViewResult}>
-      🛒 구매처 한번에 보기
-    </button>
+    <div className="estimate-content">
+
+      {categories
+        .filter((cat) => cat.key !== "all")
+        .map((cat) => {
+          const item = selectedItems[cat.key];
+
+          return (
+            <div key={cat.key} className="estimate-slot">
+              <div className="slot-left">
+                <span className="slot-label">{cat.label}</span>
+              </div>
+
+              <div className="slot-right">
+                {item && item.product ? (
+                  <>
+                    <span className="slot-name">
+                      {item.product.name}
+                    </span>
+
+                    {multiQuantityTypes.includes(cat.key) && (
+                      <div className="quantity-box">
+                        <button onClick={() => handleDecrease(cat.key)}>-</button>
+                        <span>{item.quantity}</span>
+                        <button onClick={() => handleIncrease(cat.key)}>+</button>
+                      </div>
+                    )}
+
+                    <span className="slot-price">
+                      {(item.product.price * item.quantity).toLocaleString()}원
+                    </span>
+
+                    <button
+                      className="remove-btn"
+                      onClick={() => handleRemove(cat.key)}
+                    >
+                      ✕
+                    </button>
+                  </>
+                ) : (
+                  <span className="slot-empty">선택하기</span>
+                )}
+              </div>
+            </div>
+          );
+        })}
+
+      <div className="total-price">
+        총 예상 금액: {totalPrice.toLocaleString()}원
+      </div>
+
+      <button className="estimate-btn" onClick={handleViewResult}>
+        🛒 구매처 한번에 보기
+      </button>
+
+    </div>
   </div>
 </div>
 
