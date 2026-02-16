@@ -289,13 +289,12 @@
     gap: 35px;
   }
 
-  /* PC용 우측 구매박스 숨김 */
   .buy-box {
     display: none;
   }
 
   /* ========================= */
-  /* SUMMARY ITEM 정렬 */
+  /* SUMMARY ITEM */
   /* ========================= */
 
   .summary-item {
@@ -319,7 +318,8 @@
     font-size: 10px;
   }
 
-  .summary-price {
+  /* 🔥 아이템 가격 */
+  .summary-item .summary-price {
     font-size: 15px;
     font-weight: 700;
     min-width: 80px;
@@ -327,7 +327,32 @@
   }
 
   /* ========================= */
-  /* 🔥 모바일 전용 구매버튼 */
+  /* TOTAL PRICE */
+  /* ========================= */
+
+  .summary-top {
+    align-items: flex-start;
+  }
+
+  .summary-top .summary-price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .price-label {
+    font-size: 11px;
+    color: #888;
+  }
+
+  .summary-top span {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--main-blue);
+  }
+
+  /* ========================= */
+  /* 모바일 구매버튼 */
   /* ========================= */
 
   .mobile-buy-buttons {
@@ -346,29 +371,23 @@
   }
 
   /* ========================= */
-  /* TOTAL PRICE 영역 */
+  /* 하단 버튼 (가로 2개 유지) */
   /* ========================= */
 
-  .summary-top {
-    align-items: flex-start;
-  }
-
-  .summary-price {
+  .result-bottom {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    gap: 10px;
+    padding: 20px;
+    margin-top: 40px;
   }
 
-  .price-label {
-    font-size: 11px;
-    color: #888;
+  .result-bottom button {
+    flex: 1;
+    min-width: 0;
+    height: 48px;
+    border-radius: 14px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
   }
-
-  .summary-top span {
-    font-size: 26px;
-    font-weight: 800;
-    color: var(--main-blue);
-  }
-
 }
-
