@@ -338,12 +338,12 @@
   }
 
   /* 🔥 가격 아래에 버튼 */
-  .buy-buttons {
-    grid-area: buttons;
-    display: flex;
-    gap: 6px;
-    justify-content: flex-end;
-  }
+  .mobile-buy-buttons {   /* 🔥 여기 바꾸세요 */
+  grid-area: buttons;
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
 
   .buy-buttons a {
     font-size: 11px;
