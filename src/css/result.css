@@ -218,18 +218,61 @@
   background: var(--purple-main);
   color: white;
 }
+/* 기본은 보이게 (PC) */
+.buy-box {
+  display: block;
+}
+
+/* 모바일에서는 우측 구매영역 제거 */
+@media (max-width: 768px) {
+  .buy-box {
+    display: none;
+  }
+}
+
 
 /* ========================= */
 /* 모바일 */
 /* ========================= */
 
+/* 모바일 전용 */
 @media (max-width: 768px) {
-  .result-bottom {
-    flex-direction: column;
+
+  .mobile-buy-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
   }
 
-  .result-bottom button {
-    width: 100%;
+  .mobile-buy-buttons button {
+    flex: 1;
+    padding: 8px 0;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-buy-ali {
+    background: var(--green-light);
+    color: var(--green-main);
+    border: 1px solid var(--green-border);
+  }
+
+  .mobile-buy-ali:active {
+    transform: scale(0.96);
+  }
+
+  .mobile-buy-coupang {
+    background: var(--purple-light);
+    color: var(--purple-main);
+    border: 1px solid var(--purple-border);
+  }
+
+  .mobile-buy-coupang:active {
+    transform: scale(0.96);
   }
 }
 

@@ -132,15 +132,27 @@ const handleSaveImage = async () => {
           <h3>제품 구매 링크</h3>
 
           {items.map((item) => (
-            <div key={item.type} className="buy-card">
-              <p className="buy-title">{item.name}</p>
-              <div className="buy-buttons">
-                <button className="ali-btn">알리익스프레스</button>
-                <button className="coupang-btn">쿠팡</button>
-              </div>
-            </div>
-            
-          ))}
+  <div key={item.type} className="summary-item">
+    <div className="summary-left">
+      <p className="item-name">{item.name}</p>
+      <span className="item-type">{item.type.toUpperCase()}</span>
+
+      {/* 🔥 모바일 전용 구매 버튼 */}
+      <div className="mobile-buy-buttons">
+        <button className="mobile-buy-ali">
+          알리
+        </button>
+        <button className="mobile-buy-coupang">
+          쿠팡
+        </button>
+      </div>
+    </div>
+
+    <div className="summary-price">
+      {item.price.toLocaleString()}원
+    </div>
+  </div>
+))}
     
         </div>
    

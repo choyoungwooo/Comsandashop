@@ -547,7 +547,8 @@ button {
 /* ===================================== */
 
 @media (max-width: 768px) {
-   .estimate-wrapper {
+
+  .estimate-wrapper {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -555,22 +556,19 @@ button {
     z-index: 1000;
   }
 
+  /* 🔥 기본은 접힘 강제 */
   .estimate-box {
     background: #fff;
     border-radius: 20px 20px 0 0;
     box-shadow: 0 -5px 20px rgba(0,0,0,0.08);
-    transition: 0.3s ease;
+    height: 70px;           /* 👈 핵심 */
+    overflow: hidden;       /* 👈 핵심 */
+    transition: height 0.3s ease;
   }
 
-  /* 🔥 기본은 접힘 */
-  .estimate-box.collapsed {
-    height: 70px;
-    overflow: hidden;
-  }
-
-  /* 🔥 펼쳐졌을 때 */
+  /* 펼침 */
   .estimate-box.open {
-    height: 70vh;
+    height: 65vh;
     overflow-y: auto;
   }
 
@@ -582,74 +580,4 @@ button {
     font-weight: 700;
     border-bottom: 1px solid #eee;
   }
-
-  .builder-page {
-    padding: 40px 0 80px;
-  }
-
-  /* 카테고리 줄 정리 */
-  .category-nav-inner {
-    width: 100%;
-    padding: 0 20px;
-    justify-content: center;
-  }
-
-  .category-nav button {
-    font-size: 13px;
-    padding: 8px 14px;
-  }
-
-  /* 상품 2열 */
-  .product-area {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* 카드 패딩 축소 */
-  .product-card {
-    padding: 16px;
-  }
-
-  /* 견적 bottom sheet 스타일 */
-  .estimate-wrapper {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    border-radius: 20px 20px 0 0;
-    max-height: 70vh;
-    overflow-y: auto;
-    padding: 20px;
-  }
-
-  .estimate-box {
-    border-radius: 20px 20px 0 0;
-  }
-
 }
-
-
-/* ===================================== */
-/* 📱 작은폰 (480px 이하) */
-/* ===================================== */
-
-@media (max-width: 480px) {
-
-  .product-card h4 {
-    font-size: 15px;
-  }
-
-  .product-card p {
-    font-size: 14px;
-  }
-
-  .slot-name {
-    max-width: 80px;
-  }
-
-  .total-price {
-    font-size: 16px;
-  }
-
-}
-
