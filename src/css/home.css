@@ -534,26 +534,35 @@ button {
 
 @media (max-width: 768px) {
 
+  /* =========================
+     위치 초기화 (PC 제거)
+  ========================== */
   .estimate-wrapper {
     position: fixed;
     bottom: 0;
     left: 0;
+    top: auto;
+    right: auto;
+    transform: none;
     width: 100%;
     z-index: 999;
   }
 
+  /* =========================
+     박스 기본 스타일
+  ========================== */
   .estimate-box {
     background: #fff;
     border-radius: 22px 22px 0 0;
     box-shadow: 0 -10px 40px rgba(0,0,0,0.12);
-    transition: transform 0.35s ease;
     overflow: hidden;
   }
 
-  /* 🔥 핸들 바 */
+  /* =========================
+     상단 핸들 영역
+  ========================== */
   .estimate-toggle {
     padding: 18px 20px 14px;
-    background: #ffffff;
     position: relative;
     font-weight: 700;
     display: flex;
@@ -573,21 +582,28 @@ button {
     background: #ddd;
   }
 
-  /* 🔥 내용 기본 숨김 */
+  /* =========================
+     내용 영역 (핵심)
+  ========================== */
+
+  /* 닫힌 상태 */
   .estimate-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease;
+    transition: max-height 0.35s ease;
   }
 
-  /* 🔥 열렸을 때 */
+  /* 열린 상태 */
   .estimate-box.open .estimate-content {
-    max-height: 75vh;
+    max-height: 70vh;        /* 화면 70%까지만 허용 */
+    overflow-y: auto;        /* 그 이상은 내부 스크롤 */
     padding: 15px 20px 25px;
-    overflow-y: auto;
   }
 
-  /* 총금액 강조 */
+  /* =========================
+     내부 UI 정리
+  ========================== */
+
   .estimate-total {
     font-size: 18px;
     font-weight: 700;
@@ -611,12 +627,5 @@ button {
     padding: 14px;
     font-size: 15px;
   }
-  .estimate-box {
-  max-height: 70px;
-}
-
-.estimate-box.open {
-  max-height: 80vh;
-}
 
 }
