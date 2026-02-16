@@ -323,17 +323,17 @@ const handleDecrease = (type) => {
 
     {/* 📱 토글 헤더 (총금액만 표시) */}
     <div
-      className="estimate-toggle"
-      onClick={() => setIsOpen(!isOpen)}
-    >
-      <span className="arrow">
-        {isOpen ? "▼" : "▲"}
-      </span>
+  className="estimate-toggle"
+  onClick={() => setIsOpen(!isOpen)}
+>
+    <div className="estimate-left">
+    내 견적 상세
+  </div>
 
-      <span className="estimate-total">
-        {totalPrice.toLocaleString()}원
-      </span>
-    </div>
+  <span className="estimate-total">
+    {totalPrice.toLocaleString()}원
+  </span>
+</div>
 
     {/* 📱 선택된 것만 표시 */}
     <div className="estimate-content">

@@ -496,6 +496,32 @@ button {
 .sort-toggle:active {
   transform: scale(0.97);
 }
+.estimate-toggle {
+  padding: 18px 20px 14px;
+  background: #ffffff;
+  position: relative;
+  font-weight: 700;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.estimate-left {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.estimate-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.estimate-total {
+  font-size: 18px;
+  color: #6c5ce7;
+}
 
 
 /* ===================================== */
@@ -506,79 +532,91 @@ button {
 /* 📱 태블릿 이하 (1024px 이하) */
 /* ===================================== */
 
-@media (max-width: 1024px) {
-
-  /* 전체 레이아웃 세로화 */
-  .builder-layout {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* 고정 900px 제거 */
-  .product-wrapper,
-  .pagination,
-  .sort-wrapper,
-  .filter-row {
-    width: 100%;
-    max-width: 900px;
-    padding: 0 20px;
-  }
-
-  /* 상품 2열 */
-  .product-area {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-  }
-
-  /* 견적 박스 아래로 이동 */
-  .estimate-wrapper {
-    position: relative;
-    width: 100%;
-    top: 0;
-    right: auto;
-    transform: none;
-    margin-top: 50px;
-  }
-
-}
-
-
-/* ===================================== */
-/* 📱 모바일 (768px 이하) */
-/* ===================================== */
-
 @media (max-width: 768px) {
 
   .estimate-wrapper {
     position: fixed;
-    bottom: 60px;
+    bottom: 0;
     left: 0;
     width: 100%;
     z-index: 999;
   }
 
   .estimate-box {
-    background: white;
-    border-radius: 16px 16px 0 0;
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+    background: #fff;
+    border-radius: 22px 22px 0 0;
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.12);
+    transition: transform 0.35s ease;
+    overflow: hidden;
   }
 
+  /* 🔥 핸들 바 */
   .estimate-toggle {
-    padding: 14px 20px;
+    padding: 18px 20px 14px;
+    background: #ffffff;
+    position: relative;
     font-weight: 700;
     display: flex;
     justify-content: space-between;
-    background: #f6f7ff;
+    align-items: center;
   }
 
+  .estimate-toggle::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 42px;
+    height: 5px;
+    border-radius: 10px;
+    background: #ddd;
+  }
+
+  /* 🔥 내용 기본 숨김 */
   .estimate-content {
     max-height: 0;
     overflow: hidden;
-    transition: 0.3s ease;
+    transition: max-height 0.4s ease;
   }
 
+  /* 🔥 열렸을 때 */
   .estimate-box.open .estimate-content {
-    max-height: 400px;
-    padding: 10px 20px 20px;
+    max-height: 75vh;
+    padding: 15px 20px 25px;
+    overflow-y: auto;
   }
+
+  /* 총금액 강조 */
+  .estimate-total {
+    font-size: 18px;
+    font-weight: 700;
+    color: #6c5ce7;
+  }
+
+  .estimate-slot {
+    padding: 12px 0;
+    border-bottom: 1px solid #f3f3f3;
+  }
+
+  .total-price {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .estimate-btn {
+    margin-top: 15px;
+    border-radius: 14px;
+    padding: 14px;
+    font-size: 15px;
+  }
+  .estimate-box {
+  max-height: 70px;
+}
+
+.estimate-box.open {
+  max-height: 80vh;
+}
+
 }
