@@ -345,12 +345,33 @@
   justify-content: flex-end;
 }
 
-  .buy-buttons a {
-    font-size: 11px;
-    padding: 6px 10px;
-    border-radius: 8px;
-    text-decoration: none;
-  }
+.mobile-buy-buttons a {
+  padding: 6px 14px;
+  font-size: 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}.mobile-buy-buttons .ali-btn {
+  background: #e8f9f0;
+  color: #1f9d63;
+  border: 1px solid #c6f6d5;
+}
+
+.mobile-buy-buttons .ali-btn:hover {
+  background: #1f9d63;
+  color: #fff;
+}
+.mobile-buy-buttons .coupang-btn {
+  background: #e6f0ff;
+  color: #3b82f6;
+  border: 1px solid #cfe0ff;
+}
+
+.mobile-buy-buttons .coupang-btn:hover {
+  background: #3b82f6;
+  color: #fff;
+}
 
   /* ========================= */
   /* TOTAL PRICE */
