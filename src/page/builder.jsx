@@ -319,80 +319,89 @@ const handleDecrease = (type) => {
 </div>
 
   <div className="estimate-wrapper">
-  <div className={`estimate-box ${isOpen ? "open" : "collapsed"}`}>
+  <div className={`estimate-box ${isOpen ? "open" : ""}`}>
 
-    {/* 모바일 토글 헤더 */}
-    <div 
+    {/* 📱 토글 헤더 (총금액만 표시) */}
+    <div
       className="estimate-toggle"
       onClick={() => setIsOpen(!isOpen)}
     >
-      <span>내 견적</span>
-      <span>{totalPrice.toLocaleString()}원</span>
+      <span className="arrow">
+        {isOpen ? "▼" : "▲"}
+      </span>
+
+      <span className="estimate-total">
+        {totalPrice.toLocaleString()}원
+      </span>
     </div>
 
+    {/* 📱 선택된 것만 표시 */}
     <div className="estimate-content">
 
-      {categories
-        .filter((cat) => cat.key !== "all")
-        .map((cat) => {
-          const item = selectedItems[cat.key];
+      {Object.entries(selectedItems).length === 0 ? (
+        <div className="empty-estimate">
+          선택된 제품이 없습니다.
+        </div>
+      ) : (
+        Object.entries(selectedItems).map(([type, item]) => (
+          <div key={type} className="estimate-slot">
 
-          return (
-            <div key={cat.key} className="estimate-slot">
-              <div className="slot-left">
-                <span className="slot-label">{cat.label}</span>
-              </div>
-
-              <div className="slot-right">
-                {item && item.product ? (
-                  <>
-                    <span className="slot-name">
-                      {item.product.name}
-                    </span>
-
-                    {multiQuantityTypes.includes(cat.key) && (
-                      <div className="quantity-box">
-                        <button onClick={() => handleDecrease(cat.key)}>-</button>
-                        <span>{item.quantity}</span>
-                        <button onClick={() => handleIncrease(cat.key)}>+</button>
-                      </div>
-                    )}
-
-                    <span className="slot-price">
-                      {(item.product.price * item.quantity).toLocaleString()}원
-                    </span>
-
-                    <button
-                      className="remove-btn"
-                      onClick={() => handleRemove(cat.key)}
-                    >
-                      ✕
-                    </button>
-                  </>
-                ) : (
-                  <span className="slot-empty">선택하기</span>
-                )}
-              </div>
+            <div className="slot-left">
+              <span className="slot-label">
+                {categories.find(c => c.key === type)?.label}
+              </span>
             </div>
-          );
-        })}
 
-      <div className="total-price">
-        총 예상 금액: {totalPrice.toLocaleString()}원
-      </div>
+            <div className="slot-right">
 
-      <button className="estimate-btn" onClick={handleViewResult}>
-        🛒 구매처 한번에 보기
-      </button>
+              <span className="slot-name">
+                {item.product.name}
+              </span>
+
+              {multiQuantityTypes.includes(type) && (
+                <div className="quantity-box">
+                  <button onClick={() => handleDecrease(type)}>-</button>
+                  <span>{item.quantity}</span>
+                  <button onClick={() => handleIncrease(type)}>+</button>
+                </div>
+              )}
+
+              <span className="slot-price">
+                {(item.product.price * item.quantity).toLocaleString()}원
+              </span>
+
+              <button
+                className="remove-btn"
+                onClick={() => handleRemove(type)}
+              >
+                ✕
+              </button>
+
+            </div>
+          </div>
+        ))
+      )}
+
+      {Object.entries(selectedItems).length > 0 && (
+        <>
+          <div className="total-price">
+            총 금액: {totalPrice.toLocaleString()}원
+          </div>
+
+          <button
+            className="estimate-btn"
+            onClick={handleViewResult}
+          >
+            🛒 구매처 한번에 보기
+          </button>
+        </>
+      )}
 
     </div>
   </div>
 </div>
-
-
       </div>
     </div>
   );
 }
-
 export default Builder;

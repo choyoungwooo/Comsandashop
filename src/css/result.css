@@ -228,31 +228,34 @@
   .buy-box {
     display: none;
   }
-}
 
+  .result-bottom {
+    display: flex;
+    gap: 8px;
+    padding: 20px;
+  }
 
-/* ========================= */
-/* 모바일 */
-/* ========================= */
-
-/* 모바일 전용 */
-@media (max-width: 768px) {
+  .result-bottom button {
+    flex: 1;
+    font-size: 13px;
+    padding: 10px 0;
+    border-radius: 10px;
+  }
 
   .mobile-buy-buttons {
     display: flex;
-    gap: 8px;
-    margin-top: 10px;
+    gap: 6px;
+    margin-top: 6px;
+    justify-content: flex-end;
   }
 
-  .mobile-buy-buttons button {
-    flex: 1;
-    padding: 8px 0;
-    border-radius: 30px;
-    font-size: 12px;
+  .mobile-buy-buttons a {
+    font-size: 11px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    text-decoration: none;
     font-weight: 600;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
+    transition: 0.15s ease;
   }
 
   .mobile-buy-ali {
@@ -261,8 +264,68 @@
     border: 1px solid var(--green-border);
   }
 
-  .mobile-buy-ali:active {
+  .mobile-buy-coupang {
+    background: var(--purple-light);
+    color: var(--purple-main);
+    border: 1px solid var(--purple-border);
+  }
+
+  .mobile-buy-buttons a:active {
     transform: scale(0.96);
+  }
+
+  /* 모바일에서는 우측 buy-box 제목 숨기기 */
+  .buy-box h3 {
+    display: none;
+  }
+}
+
+/* 모바일 전용 */
+@media (max-width: 768px) {
+    .mobile-buy-buttons {
+  display: none;
+}
+
+  /* 우측 구매 영역 제거 */
+  .buy-box {
+    display: none;
+  }
+
+  /* 하단 버튼 정리 */
+  .result-bottom {
+    display: flex;
+    gap: 8px;
+    padding: 20px;
+  }
+
+  .result-bottom button {
+    flex: 1;
+    font-size: 13px;
+    padding: 10px 0;
+    border-radius: 10px;
+  }
+
+  /* 모바일 구매 버튼 */
+  .mobile-buy-buttons {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+    justify-content: flex-end;
+  }
+
+  .mobile-buy-buttons a {
+    font-size: 11px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.15s ease;
+  }
+
+  .mobile-buy-ali {
+    background: var(--green-light);
+    color: var(--green-main);
+    border: 1px solid var(--green-border);
   }
 
   .mobile-buy-coupang {
@@ -271,37 +334,8 @@
     border: 1px solid var(--purple-border);
   }
 
-  .mobile-buy-coupang:active {
+  .mobile-buy-buttons a:active {
     transform: scale(0.96);
   }
-}
 
-/* ========================= */
-/* 태블릿 이상 */
-/* ========================= */
-
-@media (min-width: 768px) {
-
-  .result-content {
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 80px;
-    margin-top: 60px;
-  }
-
-  .buy-box {
-    width: 320px;
-    position: sticky;
-    top: 120px;
-  }
-
-  .buy-buttons {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
-  .result-title {
-    font-size: 36px;
-  }
 }

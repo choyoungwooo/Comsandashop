@@ -43,6 +43,7 @@ const initItems = baseItems.map((it) => ({
   qty: it.quantity ?? 1,
 }));
 
+
 const handleSaveImage = async () => {
   const canvas = await html2canvas(captureRef.current);
   const link = document.createElement("a");
@@ -139,13 +140,28 @@ const handleSaveImage = async () => {
 
       {/* 🔥 모바일 전용 구매 버튼 */}
       <div className="mobile-buy-buttons">
-        <button className="mobile-buy-ali">
-          알리
-        </button>
-        <button className="mobile-buy-coupang">
-          쿠팡
-        </button>
-      </div>
+
+  <a
+    href={`https://www.coupang.com/np/search?q=${encodeURIComponent(item.name)}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="mobile-buy-coupang"
+  >
+    🔵 쿠팡
+  </a>
+
+  <a
+    href={`https://www.aliexpress.com/wholesale?SearchText=${encodeURIComponent(item.name)}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="mobile-buy-ali"
+  >
+    🟢 알리
+  </a>
+
+</div>
+
+
     </div>
 
     <div className="summary-price">
