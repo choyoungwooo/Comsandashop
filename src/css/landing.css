@@ -329,3 +329,123 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* =================================================
+   MOBILE OPTIMIZED (768px 이하)
+================================================= */
+@media (max-width: 768px){
+
+  /* ---------------- HERO ---------------- */
+  .hero{
+    padding: 70px 16px;
+  }
+
+  .hero h1{
+    font-size: 26px;
+    line-height: 1.3;
+  }
+
+  .hero p{
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+
+  .primary-btn{
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+
+  /* ---------------- DASHBOARD ---------------- */
+  .dashboard{
+    padding: 70px 16px;
+  }
+
+  .dashboard h2{
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+
+  .category-grid{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .category-card{
+    min-height: 150px;
+    padding: 20px;
+  }
+
+  .category-icon{
+    font-size: 24px;
+  }
+
+  .category-card h3{
+    font-size: 15px;
+  }
+
+  .category-card p{
+    font-size: 13px;
+  }
+
+  /* ---------------- WHY ---------------- */
+  .why{
+    padding: 70px 16px;
+  }
+
+  .why h2{
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+
+  .why-grid{
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .why-item{
+    padding: 20px;
+    font-size: 14px;
+  }
+
+  /* ---------------- STATS ---------------- */
+  .stats{
+    padding: 60px 16px;
+  }
+
+  .stats-inner{
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .stats h3{
+    font-size: 24px;
+  }
+
+  .stats p{
+    font-size: 13px;
+  }
+
+  /* ---------------- MONTHLY ---------------- */
+  .monthly{
+    padding: 70px 16px;
+  }
+
+  .monthly h2{
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+
+  .monthly-grid{
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .monthly-card{
+    padding: 24px;
+  }
+
+  .monthly-card p{
+    font-size: 13px;
+  }
+
+}
