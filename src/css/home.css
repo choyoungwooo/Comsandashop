@@ -359,8 +359,7 @@ button{
 .estimate-wrapper {
   position: fixed;
   top: 170px;
-  left: 50%;
-  margin-left: 640px;
+  right: 40px;   /* 🔥 그냥 우측 고정 */
   width: 360px;
   z-index: 100;
 }
@@ -481,12 +480,8 @@ total-price{
   box-shadow: 0 12px 30px rgba(108,92,231,0.25);
 }
 
-/* ✅ 화면이 좁아지면(컨테이너 바깥 공간 부족) 그냥 우측 24px로 */
-@media (max-width: 1400px){
-  .estimate-wrapper{
-    right: var(--gutter);
-  }
-}
+
+
 
 /* =================================================
   MOBILE
@@ -598,6 +593,13 @@ total-price{
   .estimate-box{
     border-radius: 18px 18px 0 0;
   }
+  .category-nav-inner button::before,
+.category-nav-inner button::after,
+.brand-filter button::before,
+.brand-filter button::after{
+  display: none !important;
+  content: none !important;
+}
 
 }
 
