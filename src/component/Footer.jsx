@@ -12,7 +12,7 @@ function Footer() {
         </div>
 
         <div className="footer-info">
-      <span>이메일: jovis000@naver.com</span>
+      <span>이메일: jovision00@naver.com</span>
     </div>
 
         <div className="footer-right">
