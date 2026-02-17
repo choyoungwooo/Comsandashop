@@ -556,25 +556,21 @@ total-price{
 @media (max-width: 768px){
 
   /* =========================
-     전체 패딩 (하단 공간 확보)
+     전체 레이아웃
   ========================== */
   .builder-page{
     padding: 30px 0 160px;
   }
 
-  .builder-layout{
-    padding-right: 0 !important;
-  }
-
   /* =========================
-     🔥 카테고리 필터 가로 스크롤 강제
+     카테고리 상단 스크롤
   ========================== */
   .category-nav-inner{
     display: flex !important;
     flex-wrap: nowrap !important;
     overflow-x: auto !important;
-    gap: 12px !important;
-    padding-bottom: 6px;
+    gap: 12px;
+    padding: 0 16px 6px;
   }
 
   .category-nav-inner::-webkit-scrollbar{
@@ -587,16 +583,53 @@ total-price{
   }
 
   /* =========================
-     상품 박스
+     🔥 브랜드 + 정렬 필터
+  ========================== */
+  .filter-row{
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px;
+    padding: 0 16px 16px;
+  }
+
+  .brand-filter{
+    display: flex !important;
+    overflow-x: auto;
+    gap: 8px;
+  }
+
+  .brand-filter::-webkit-scrollbar{
+    display: none;
+  }
+
+  .brand-filter{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .brand-filter button{
+    flex: 0 0 auto;
+    padding: 8px 14px;
+    font-size: 13px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .sort-toggle{
+    align-self: flex-end;
+    font-size: 13px;
+    padding: 8px 14px;
+    border-radius: 20px;
+  }
+
+  /* =========================
+     상품 영역
   ========================== */
   .product-container{
     padding: 22px 16px;
     border-radius: 18px;
   }
 
-  /* =========================
-     🔥 상품 2열 강제
-  ========================== */
   .product-area{
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
@@ -608,16 +641,14 @@ total-price{
   }
 
   /* =========================
-     🔥 하단 고정 견적창
+     하단 고정 견적창
   ========================== */
   .estimate-wrapper{
     position: fixed !important;
     bottom: 0 !important;
-    top: auto !important;
     left: 0 !important;
     right: 0 !important;
     width: 100% !important;
-
     padding: 0 16px 10px;
     z-index: 9999 !important;
   }
@@ -632,66 +663,5 @@ total-price{
   .estimate-content{
     padding: 0 10px 14px;
   }
-  /* =========================
-   🔥 모바일 필터 전체 정리
-========================= */
-.filter-bar{
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 12px;
-  padding: 0 16px 16px;
-}
-
-/* 🔎 검색 자동완성 */
-.search-wrapper{
-  width: 100% !important;
-}
-
-.search-bar{
-  width: 100% !important;
-  height: 48px !important;
-}
-
-.search-bar input{
-  font-size: 14px;
-}
-
-/* 🏷 전체 / GTX / RTX 필터 */
-.filter-tabs{
-  display: flex !important;
-  overflow-x: auto;
-  gap: 8px;
-}
-
-.filter-tabs::-webkit-scrollbar{
-  display: none;
-}
-
-.filter-tabs{
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.filter-tabs button{
-  flex: 0 0 auto;
-  padding: 8px 14px;
-  font-size: 13px;
-  border-radius: 20px;
-  white-space: nowrap;
-}
-
-/* 🔽 정렬 버튼 */
-.sort-wrapper{
-  display: flex;
-  justify-content: flex-end;
-}
-
-.sort-btn{
-  font-size: 13px;
-  padding: 8px 14px;
-  border-radius: 20px;
-}
-
 
 }
-
