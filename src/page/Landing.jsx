@@ -1,35 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import { categories } from "../data/Categories";
+
 import "../css/landing.css";
 
 function Landing() {
   const navigate = useNavigate();
-
-  const categories = [
-    {
-      icon: "🎮",
-      title: "게이밍 PC",
-      desc: "RTX 기반 고성능 세팅",
-      link: "/computer?type=gaming"
-    },
-    {
-      icon: "💼",
-      title: "사무 · 업무용",
-      desc: "가성비 + 안정성 중심",
-      link: "/computer?type=office"
-    },
-    {
-      icon: "🎬",
-      title: "영상 · 디자인",
-      desc: "GPU 가속 · 고해상도 작업",
-      link: "/computer?type=creator"
-    },
-    {
-      icon: "💰",
-      title: "가성비 추천",
-      desc: "입문자 · 학생 추천",
-      link: "/computer?type=recommend"
-    }
-  ];
 
   return (
     <div className="landing">
@@ -37,10 +12,10 @@ function Landing() {
       {/* HERO */}
       <section className="hero">
         <div className="hero-inner">
-          <h1>나에게 맞는 컴퓨터를 빠르게 찾으세요</h1>
+          <h1>컴맹도 3분이면 완성하는 PC 추천</h1>
           <p>
-            사용 목적에 맞는 PC를 추천하고  
-            실시간 가격 비교까지 한 번에 제공합니다.
+            목적만 선택하면 자동으로 최적 견적을 제안합니다.  
+            복잡한 가격 비교 없이, 빠르게 결정하세요.
           </p>
           <button
             className="primary-btn"
@@ -55,37 +30,103 @@ function Landing() {
       <section className="dashboard">
         <div className="dashboard-inner">
 
-          <h2>🔥 추천 카테고리</h2>
+          <h2>🔥 목적별 빠른 추천</h2>
 
           <div className="category-grid">
-            {categories.map((item, index) => (
-              <div
-                key={index}
-                className="category-card"
-                onClick={() => navigate(item.link)}
-              >
-                <div className="category-icon">{item.icon}</div>
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
-              </div>
-            ))}
-
-            {/* 외부 링크 카드 */}
-            <div
-  className="category-card external danawa-card"
-  onClick={() => window.open("https://shop.danawa.com/pc/")}
->
-              <div className="category-icon">🛠</div>
-              <h3>다나와 견적 요청 게시판</h3>
-              <p>실시간 PC 견적 문의 확인</p>
-            </div>
-
-          </div>
+  {categories.map((item, index) => (
+    <div
+      key={index}
+      className="category-card"
+      onClick={() => {
+        if (item.external) {
+          window.open(item.link, "_blank");
+        } else {
+          navigate(item.path);
+        }
+      }}
+    >
+      <div className="category-icon">{item.icon}</div>
+      <h3>{item.title}</h3>
+      <p>{item.desc}</p>
+    </div>
+  ))}
+</div>
         </div>
       </section>
 
+      {/* WHY SECTION */}
+      <section className="why">
+        <div className="why-inner">
+          <h2>왜 Comsandashop인가?</h2>
+
+          <div className="why-grid">
+            <div className="why-item">
+              ⚡ 복잡한 가격 비교 없이 추천
+            </div>
+            <div className="why-item">
+              🎯 목적 기반 자동 세팅
+            </div>
+            <div className="why-item">
+              💰 예산에 맞는 최적 구성
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="stats">
+  <div className="stats-inner">
+    <div>
+      <h3>1,200+</h3>
+      <p>추천 견적 생성</p>
     </div>
+    <div>
+      <h3>98%</h3>
+      <p>사용자 만족도</p>
+    </div>
+    <div>
+      <h3>3분</h3>
+      <p>평균 견적 완성 시간</p>
+    </div>
+  </div>
+</section>
+
+
+      {/* MONTHLY RECOMMEND */}
+
+
+          <section className="monthly">
+  <div className="monthly-inner">
+    <h2>🔥 이번 달 추천 견적</h2>
+
+    <div className="monthly-grid">
+
+      <div className="monthly-card">
+        <h3>로스트아크 120만원</h3>
+        <p>RTX 4060 · FHD 풀옵션</p>
+        <button>자세히 보기 →</button>
+      </div>
+
+      <div className="monthly-card">
+        <h3>영상편집 150만원</h3>
+        <p>RTX 4060Ti · 32GB RAM</p>
+        <button>자세히 보기 →</button>
+      </div>
+
+      <div className="monthly-card">
+        <h3>대학생 가성비 80만원</h3>
+        <p>i5 · 내장그래픽</p>
+        <button>자세히 보기 →</button>
+      </div>
+
+      <div className="monthly-card">
+        <h3>코딩용 100만원</h3>
+        <p>Ryzen 5 · 16GB RAM</p>
+        <button>자세히 보기 →</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+        </div>
   );
 }
-
 export default Landing;

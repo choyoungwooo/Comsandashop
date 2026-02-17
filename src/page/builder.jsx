@@ -10,39 +10,32 @@ function Builder() {
   const navigate = useNavigate();
 
 
-  const categories = [
-    { label: "전체", key: "all" },
-    { label: "그래픽카드", key: "gpu" },
-    { label: "메인보드", key: "mainboard" },
-    { label: "노트북", key: "notebook" },
-    { label: "모니터", key: "monitor" },
-    { label: "램카드", key: "ram" },
-    { label: "SSD", key: "ssd" },
-    { label: "파워", key: "psu" },
-    { label: "케이스", key: "case" },
-    { label: "쿨러", key: "cooler" },
-    { label: "마우스", key: "mouse" },
-    { label: "키보드", key: "keyboard" },
-    { label: "헤드셋", key: "headset" },
-    { label: "마이크", key: "mic" },
-    { label: "웹캠", key: "webcam" },
-    { label: "스피커", key: "speaker" },
-  ];
+const categories = [
+  { label: "그래픽카드", key: "gpu" },
+  { label: "메인보드", key: "mainboard" },
+  { label: "램", key: "ram" },
+  { label: "SSD", key: "ssd" },
+  { label: "파워", key: "psu" },
+  { label: "케이스", key: "case" },
+  { label: "쿨러", key: "cooler"}
+];
 
   const brandOptions = {
   gpu: ["rtx", "gtx", "amd"],
   mainboard: ["intel", "amd"],
   cpu: ["intel", "amd"],
-  mouse: ["logitech", "razer"],
-  keyboard: ["logitech", "abko"],
-  headset: ["corsair"],
-  mic: ["blue"],
-  webcam: ["logitech"],
-  speaker: ["britz"],
+  ram: ["samsung", "skhynix", "corsair", "gskill"],
+  ssd: ["samsung", "wd", "skhynix", "crucial"],
+  psu: ["seasonic", "fsp", "micronics", "corsair"],
+  case: ["darkflash","3rays","abko","nzxt",],
+  cooler: ["deepcool", "thermalright", "nzxt", "corsair", "coolermaster"],
+
 };
 
-
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeBrand, setActiveBrand] = useState("all");
+  const [sortOrder, setSortOrder] = useState("low"); // low / high
+  const [budget, setBudget] = useState(1000000);
+  const [activeCategory, setActiveCategory] = useState("gpu");
   const [sortType, setSortType] = useState("low");
   const [subFilter, setSubFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
@@ -51,6 +44,43 @@ function Builder() {
   const { searchKeyword } = useOutletContext();
   const [isEstimateOpen, setIsEstimateOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+ const autoBuild = (budget) => {
+  const getBest = (type, maxPrice) =>
+    products
+      .filter(p => p.type === type && p.price <= maxPrice)
+      .sort((a, b) => b.price - a.price)[0] || null;
+
+  // 💡 비율 설정
+  const gpuBudget = budget * 0.45;
+  const cpuBudget = budget * 0.25;
+  const ramBudget = budget * 0.1;
+
+  const selectedGPU = getBest("gpu", gpuBudget);
+  const selectedCPU = getBest("cpu", cpuBudget);
+  const selectedRAM = getBest("ram", ramBudget);
+  const selectedSSD = getBest("ssd", budget * 0.1);
+  const selectedPSU = getBest("psu", budget * 0.1);
+  const selectedCase = getBest("case", budget * 0.1);
+
+  const autoSelected = {
+    cpu: selectedCPU && { product: selectedCPU, quantity: 1 },
+    gpu: selectedGPU && { product: selectedGPU, quantity: 1 },
+    ram: selectedRAM && { product: selectedRAM, quantity: 2 },
+    ssd: selectedSSD && { product: selectedSSD, quantity: 1 },
+    psu: selectedPSU && { product: selectedPSU, quantity: 1 },
+    case: selectedCase && { product: selectedCase, quantity: 1 },
+  };
+
+  // null 제거
+  Object.keys(autoSelected).forEach(key => {
+    if (!autoSelected[key]) delete autoSelected[key];
+  });
+
+  setSelectedItems(autoSelected);
+  setIsOpen(true);
+};
+
 
   const toggleSort = () => {
   setSortType((prev) => (prev === "low" ? "high" : "low"));
@@ -229,179 +259,220 @@ const handleDecrease = (type) => {
     localStorage.setItem("pc-builder", JSON.stringify(selectedItems));
   }, [selectedItems]);
 
+  
   return (
-    <div className="builder-page">
+  <div className="builder-page">
 
-     <div className="category-nav">
-  <div className="category-nav-inner">
-    {categories.map((cat) => (
-      <button
-        key={cat.key}
-        className={
-          activeCategory !== "all" && activeCategory === cat.key
-            ? "active"
-            : ""
-        }
-        onClick={() => handleCategoryChange(cat.key)}
-      >
-        {cat.label}
-      </button>
-    ))}
-  </div>
-</div>
-{activeCategory !== "all" && brandOptions[activeCategory] && (
-  <div className="filter-row">
+    <div className="main-container">
 
-    <div className="filter-row">
+      {/* =======================
+          📦 왼쪽 메인 영역
+      ======================== */}
+      <div className="main-content">
 
-  <div className="brand-filter">
-    <button
-      
-      onClick={() => setSubFilter("all")}
-    >
-      전체
-    </button>
-
-    {brandOptions[activeCategory].map((brand) => (
-      <button
-        key={brand}
-        className={subFilter === brand ? "active" : ""}
-        onClick={() => setSubFilter(brand)}
-      >
-        {brand.toUpperCase()}
-      </button>
-    ))}
-  </div>
-  <button className="sort-toggle" onClick={toggleSort}>
-    {sortType === "low" ? "⬇ 낮은 가격순" : "⬆ 높은 가격순"}
-  </button>
-</div>
-  </div>
-)}
-      <div className="builder-layout">
-        {/*왼쪽 */}
-        <div className="product-wrapper">
-         <div className="product-area">
-  {paginatedProducts.length === 0 ? (
-    <div className="empty-state">
-      <div className="empty-icon">🔍</div>
-      <h3>검색 결과가 없습니다</h3>
-      <p>
-        <span>"{searchKeyword}"</span> 와 일치하는 상품이 없어요.
-      </p>
-    </div>
-  ) : (
-    paginatedProducts.map((product) => (
-      <div key={product.id} className="product-card">
-        <h4>{product.name}</h4>
-        <p>{product.price.toLocaleString()}원</p>
-        <button onClick={() => handleSelect(product)}>
-          선택하기
-        </button>
-      </div>
-    ))
-  )}
-</div>
-<div className="pagination">
-  {Array.from(
-    { length: Math.ceil(filteredProducts.length / itemsPerPage) },
-    (_, i) => (
-      <button
-        key={i}
-        className={currentPage === i + 1 ? "active" : ""}
-        onClick={() => setCurrentPage(i + 1)}
-      >
-        {i + 1}
-      </button>
-    )
-  )}
-</div>
-</div>
-
-  <div className="estimate-wrapper">
-  <div className={`estimate-box ${isOpen ? "open" : ""}`}>
-
-    {/* 📱 토글 헤더 (총금액만 표시) */}
-    <div
-  className="estimate-toggle"
-  onClick={() => setIsOpen(!isOpen)}
->
-    <div className="estimate-left">
-    내 견적 상세
-  </div>
-
-  <span className="estimate-total">
-    {totalPrice.toLocaleString()}원
-  </span>
-</div>
-
-    {/* 📱 선택된 것만 표시 */}
-    <div className="estimate-content">
-
-      {Object.entries(selectedItems).length === 0 ? (
-        <div className="empty-estimate">
-          선택된 제품이 없습니다.
-        </div>
-      ) : (
-        Object.entries(selectedItems).map(([type, item]) => (
-          <div key={type} className="estimate-slot">
-
-            <div className="slot-left">
-              <span className="slot-label">
-                {categories.find(c => c.key === type)?.label}
-              </span>
-            </div>
-
-            <div className="slot-right">
-
-              <span className="slot-name">
-                {item.product.name}
-              </span>
-
-              {multiQuantityTypes.includes(type) && (
-                <div className="quantity-box">
-                  <button onClick={() => handleDecrease(type)}>-</button>
-                  <span>{item.quantity}</span>
-                  <button onClick={() => handleIncrease(type)}>+</button>
-                </div>
-              )}
-
-              <span className="slot-price">
-                {(item.product.price * item.quantity).toLocaleString()}원
-              </span>
-
+        {/* 카테고리 */}
+        <div className="category-nav">
+          <div className="category-nav-inner">
+            {categories.map((cat) => (
               <button
-                className="remove-btn"
-                onClick={() => handleRemove(type)}
+                key={cat.key}
+                className={activeCategory === cat.key ? "active" : ""}
+                onClick={() => handleCategoryChange(cat.key)}
               >
-                ✕
+                {cat.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* 자동 설계 */}
+        <div className="auto-build-box">
+          <h3>🎮 게이밍 자동 설계</h3>
+
+          <div className="auto-inner">
+            <select
+              value={budget}
+              onChange={(e) => setBudget(Number(e.target.value))}
+              className="budget-select"
+            >
+              <option value={1000000}>100만원 이하</option>
+              <option value={2000000}>200만원 이하</option>
+              <option value={3000000}>300만원 이하</option>
+              <option value={4000000}>400만원 이하</option>
+              <option value={5000000}>500만원 이하</option>
+            </select>
+
+            <button onClick={() => autoBuild(budget)}>
+              ⚡ 자동완성
+            </button>
+          </div>
+        </div>
+
+        {/* 필터 영역 */}
+        {activeCategory !== "all" && brandOptions[activeCategory] && (
+          <div className="filter-row">
+
+            <div className="brand-filter">
+              <button onClick={() => setSubFilter("all")}>
+                전체
               </button>
 
+              {brandOptions[activeCategory].map((brand) => (
+                <button
+                  key={brand}
+                  className={subFilter === brand ? "active" : ""}
+                  onClick={() => setSubFilter(brand)}
+                >
+                  {brand.toUpperCase()}
+                </button>
+              ))}
             </div>
-          </div>
-        ))
-      )}
 
-      {Object.entries(selectedItems).length > 0 && (
-        <>
-          <div className="total-price">
-            총 금액: {totalPrice.toLocaleString()}원
+            <button className="sort-toggle" onClick={toggleSort}>
+              {sortType === "low"
+                ? "⬇ 낮은 가격순"
+                : "⬆ 높은 가격순"}
+            </button>
+
+          </div>
+        )}
+
+        {/* 상품 */}
+        <div className="product-container">
+
+          <div className="product-area">
+            {paginatedProducts.length === 0 ? (
+              <div className="empty-state">
+                <div className="empty-icon">🔍</div>
+                <h3>검색 결과가 없습니다</h3>
+                <p>
+                  <span>"{searchKeyword}"</span> 와 일치하는 상품이 없어요.
+                </p>
+              </div>
+            ) : (
+              paginatedProducts.map((product) => (
+                <div key={product.id} className="product-card">
+                    <img src={product.image} alt={product.name} />
+                  <h4>{product.name}</h4>
+                  <p>{product.price.toLocaleString()}원</p>
+                  <button onClick={() => handleSelect(product)}>
+                    선택하기
+                  </button>
+                </div>
+              ))
+            )}
           </div>
 
-          <button
-            className="estimate-btn"
-            onClick={handleViewResult}
-          >
-            🛒 구매처 한번에 보기
-          </button>
-        </>
-      )}
+          <div className="pagination">
+            {Array.from(
+              { length: Math.ceil(filteredProducts.length / itemsPerPage) },
+              (_, i) => (
+                <button
+                  key={i}
+                  className={currentPage === i + 1 ? "active" : ""}
+                  onClick={() => setCurrentPage(i + 1)}
+                >
+                  {i + 1}
+                </button>
+              )
+            )}
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
+
+    {/* =======================
+        🧾 견적창 (완전 별도)
+    ======================== */}
+    <div className="estimate-wrapper">
+      <div className={`estimate-box ${isOpen ? "open" : ""}`}>
+
+        <div
+          className="estimate-toggle"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <div className="estimate-left">
+            내 견적 상세
+          </div>
+
+          <span className="estimate-total">
+            {totalPrice.toLocaleString()}원
+          </span>
+        </div>
+
+        <div className="estimate-content">
+
+          {Object.entries(selectedItems).length === 0 ? (
+  <div className="empty-estimate">
+    선택된 제품이 없습니다.
   </div>
-</div>
+) : (
+  Object.entries(selectedItems).map(([type, item]) => (
+    <div key={type} className="estimate-slot">
+
+      <div className="slot-left">
+        <span className="slot-label">
+          {categories.find(c => c.key === type)?.label}
+        </span>
+      </div>
+
+      <div className="slot-right">
+
+        <span className="slot-name">
+          {item.product.name}
+        </span>
+
+        {multiQuantityTypes.includes(type) && (
+          <div className="quantity-box">
+            <button onClick={() => handleDecrease(type)}>-</button>
+            <span>{item.quantity}</span>
+            <button onClick={() => handleIncrease(type)}>+</button>
+          </div>
+        )}
+
+        <span className="slot-price">
+          {(item.product.price * item.quantity).toLocaleString()}원
+        </span>
+
+        <button
+          className="remove-btn"
+          onClick={() => handleRemove(type)}
+        >
+          ✕
+        </button>
+
       </div>
     </div>
-  );
+  ))
+)}
+
+          {Object.entries(selectedItems).length > 0 && (
+            <>
+              <div className="total-price">
+                총 금액: {totalPrice.toLocaleString()}원
+              </div>
+
+              <button
+                className="estimate-btn"
+                onClick={handleViewResult}
+              >
+                🛒 구매처 한번에 보기
+              </button>
+            </>
+          )}
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+);
 }
+
+            
+
+
 export default Builder;

@@ -1,60 +1,111 @@
 export const products = [
 
-  // 🎮 GPU (1~5)
-  { id: 1, name: "RTX 4060", price: 450000, type: "gpu", brand: "rtx" },
-  { id: 2, name: "RTX 4070", price: 650000, type: "gpu", brand: "rtx" },
-  { id: 3, name: "RTX 4080", price: 1150000, type: "gpu", brand: "rtx" },
-  { id: 4, name: "GTX 1660", price: 300000, type: "gpu", brand: "gtx" },
-  { id: 5, name: "RX 7800 XT", price: 720000, type: "gpu", brand: "amd" },
+  // ================= GPU (15) =================
+  { id: 1, name: "RTX 4060", price: 450000, type: "gpu", brand: "rtx", image: "", wow: "" },
+  { id: 2, name: "RTX 4060 Ti", price: 520000, type: "gpu", brand: "rtx", image: "", wow: "" },
+  { id: 3, name: "RTX 4070", price: 650000, type: "gpu", brand: "rtx", image: "", wow: "" },
+  { id: 4, name: "RTX 4070 Super", price: 720000, type: "gpu", brand: "rtx", image: "", wow: "" },
+  { id: 5, name: "RTX 4080", price: 1150000, type: "gpu", brand: "rtx", image: "", wow: "" },
+  { id: 6, name: "RTX 4090", price: 1850000, type: "gpu", brand: "rtx", image: "", wow: "" },
+  { id: 7, name: "GTX 1660 Super", price: 320000, type: "gpu", brand: "gtx", image: "", wow: "" },
+  { id: 8, name: "GTX 1650", price: 250000, type: "gpu", brand: "gtx", image: "", wow: "" },
+  { id: 9, name: "RX 7600", price: 420000, type: "gpu", brand: "amd", image: "", wow: "" },
+  { id: 10, name: "RX 7700 XT", price: 580000, type: "gpu", brand: "amd", image: "", wow: "" },
+  { id: 11, name: "RX 7800 XT", price: 720000, type: "gpu", brand: "amd", image: "", wow: "" },
+  { id: 12, name: "RX 7900 XT", price: 1050000, type: "gpu", brand: "amd", image: "", wow: "" },
+  { id: 13, name: "RTX 3050", price: 330000, type: "gpu", brand: "rtx", image: "", wow: "" },
+  { id: 14, name: "RTX 3060", price: 390000, type: "gpu", brand: "rtx", image: "", wow: "" },
+  { id: 15, name: "RTX 3060 Ti", price: 480000, type: "gpu", brand: "rtx", image: "", wow: "" },
 
-  // 🖥 메인보드 (6~8)
-  { id: 6, name: "Intel 메인보드 Z790", price: 250000, type: "mainboard" },
-  { id: 7, name: "Ryzen 메인보드 B650", price: 220000, type: "mainboard" },
-  { id: 8, name: "ASUS PRIME B760", price: 190000, type: "mainboard" },
+  // ================= MAINBOARD (15) =================
+  { id: 16, name: "ASUS Z790", price: 320000, type: "mainboard", brand: "intel", image: "", wow: "" },
+  { id: 17, name: "MSI Z790 PRO", price: 280000, type: "mainboard", brand: "intel", image: "", wow: "" },
+  { id: 18, name: "ASRock B760M", price: 190000, type: "mainboard", brand: "intel", image: "", wow: "" },
+  { id: 19, name: "Gigabyte B760", price: 210000, type: "mainboard", brand: "intel", image: "", wow: "" },
+  { id: 20, name: "ASUS B650", price: 230000, type: "mainboard", brand: "amd", image: "", wow: "" },
+  { id: 21, name: "MSI B650M", price: 200000, type: "mainboard", brand: "amd", image: "", wow: "" },
+  { id: 22, name: "Gigabyte X670", price: 350000, type: "mainboard", brand: "amd", image: "", wow: "" },
+  { id: 23, name: "ASRock X670E", price: 390000, type: "mainboard", brand: "amd", image: "", wow: "" },
+  { id: 24, name: "ASUS H610M", price: 130000, type: "mainboard", brand: "intel", image: "", wow: "" },
+  { id: 25, name: "MSI B660M", price: 170000, type: "mainboard", brand: "intel", image: "", wow: "" },
+  { id: 26, name: "Gigabyte B550", price: 160000, type: "mainboard", brand: "amd", image: "", wow: "" },
+  { id: 27, name: "ASRock B550M", price: 150000, type: "mainboard", brand: "amd", image: "", wow: "" },
+  { id: 28, name: "ASUS PRIME Z690", price: 310000, type: "mainboard", brand: "intel", image: "", wow: "" },
+  { id: 29, name: "MSI MPG Z690", price: 290000, type: "mainboard", brand: "intel", image: "", wow: "" },
+  { id: 30, name: "Gigabyte A620M", price: 140000, type: "mainboard", brand: "amd", image: "", wow: "" },
 
-  // 💾 RAM (9~11)
-  { id: 9, name: "RAM 16GB", price: 80000, type: "ram" },
-  { id: 10, name: "RAM 32GB", price: 150000, type: "ram" },
-  { id: 11, name: "DDR5 32GB RGB", price: 210000, type: "ram" },
+  // ================= RAM (15) =================
+  { id: 31, name: "Samsung DDR4 16GB", price: 80000, type: "ram", brand: "samsung", image: "", wow: "" },
+  { id: 32, name: "Samsung DDR5 16GB", price: 120000, type: "ram", brand: "samsung", image: "", wow: "" },
+  { id: 33, name: "SK Hynix DDR4 16GB", price: 75000, type: "ram", brand: "skhynix", image: "", wow: "" },
+  { id: 34, name: "SK Hynix DDR5 32GB", price: 210000, type: "ram", brand: "skhynix", image: "", wow: "" },
+  { id: 35, name: "Corsair DDR4 32GB", price: 150000, type: "ram", brand: "corsair", image: "", wow: "" },
+  { id: 36, name: "Corsair DDR5 32GB RGB", price: 230000, type: "ram", brand: "corsair", image: "", wow: "" },
+  { id: 37, name: "G.Skill DDR5 32GB", price: 220000, type: "ram", brand: "gskill", image: "", wow: "" },
+  { id: 38, name: "G.Skill DDR4 16GB", price: 90000, type: "ram", brand: "gskill", image: "", wow: "" },
+  { id: 39, name: "Samsung DDR4 8GB", price: 45000, type: "ram", brand: "samsung", image: "", wow: "" },
+  { id: 40, name: "Corsair DDR4 16GB RGB", price: 110000, type: "ram", brand: "corsair", image: "", wow: "" },
+  { id: 41, name: "G.Skill DDR5 16GB", price: 140000, type: "ram", brand: "gskill", image: "", wow: "" },
+  { id: 42, name: "SK Hynix DDR4 32GB", price: 160000, type: "ram", brand: "skhynix", image: "", wow: "" },
+  { id: 43, name: "Samsung DDR5 32GB", price: 200000, type: "ram", brand: "samsung", image: "", wow: "" },
+  { id: 44, name: "Corsair Vengeance 16GB", price: 130000, type: "ram", brand: "corsair", image: "", wow: "" },
+  { id: 45, name: "G.Skill Trident Z 32GB", price: 250000, type: "ram", brand: "gskill", image: "", wow: "" },
 
-  // 💽 SSD (12~14)
-  { id: 12, name: "SSD NVME 1TB", price: 120000, type: "ssd" },
-  { id: 13, name: "SSD NVME 2TB", price: 220000, type: "ssd" },
-  { id: 14, name: "SSD SATA 1TB", price: 90000, type: "ssd" },
+  // ================= SSD (15) =================
+  { id: 46, name: "Samsung 980 1TB NVMe", price: 130000, type: "ssd", brand: "samsung", image: "", wow: "" },
+  { id: 47, name: "Samsung 990 Pro 2TB", price: 280000, type: "ssd", brand: "samsung", image: "", wow: "" },
+  { id: 48, name: "WD Black SN850X 1TB", price: 150000, type: "ssd", brand: "wd", image: "", wow: "" },
+  { id: 49, name: "WD Blue 1TB SATA", price: 90000, type: "ssd", brand: "wd", image: "", wow: "" },
+  { id: 50, name: "SK Hynix Platinum P41 1TB", price: 160000, type: "ssd", brand: "skhynix", image: "", wow: "" },
+  { id: 51, name: "Crucial P3 1TB", price: 100000, type: "ssd", brand: "crucial", image: "", wow: "" },
+  { id: 52, name: "Crucial MX500 1TB", price: 95000, type: "ssd", brand: "crucial", image: "", wow: "" },
+  { id: 53, name: "Samsung 970 EVO 1TB", price: 120000, type: "ssd", brand: "samsung", image: "", wow: "" },
+  { id: 54, name: "WD SN770 1TB", price: 110000, type: "ssd", brand: "wd", image: "", wow: "" },
+  { id: 55, name: "SK Hynix Gold P31 1TB", price: 140000, type: "ssd", brand: "skhynix", image: "", wow: "" },
+  { id: 56, name: "Crucial P5 Plus 2TB", price: 240000, type: "ssd", brand: "crucial", image: "", wow: "" },
+  { id: 57, name: "Samsung 870 EVO 1TB", price: 95000, type: "ssd", brand: "samsung", image: "", wow: "" },
+  { id: 58, name: "WD Blue 2TB SATA", price: 170000, type: "ssd", brand: "wd", image: "", wow: "" },
+  { id: 59, name: "SK Hynix P41 2TB", price: 300000, type: "ssd", brand: "skhynix", image: "", wow: "" },
+  { id: 60, name: "Crucial BX500 480GB", price: 45000, type: "ssd", brand: "crucial", image: "", wow: "" },
 
-  // 🔌 파워 (15~16)
-  { id: 15, name: "파워 700W", price: 90000, type: "psu" },
-  { id: 16, name: "파워 850W GOLD", price: 140000, type: "psu" },
+  // ================= PSU (15) =================
+  { id: 61, name: "Seasonic 750W GOLD", price: 150000, type: "psu", brand: "seasonic", image: "", wow: "" },
+  { id: 62, name: "Seasonic 850W GOLD", price: 170000, type: "psu", brand: "seasonic", image: "", wow: "" },
+  { id: 63, name: "FSP 700W", price: 90000, type: "psu", brand: "fsp", image: "", wow: "" },
+  { id: 64, name: "FSP 750W GOLD", price: 120000, type: "psu", brand: "fsp", image: "", wow: "" },
+  { id: 65, name: "Micronics 600W", price: 70000, type: "psu", brand: "micronics", image: "", wow: "" },
+  { id: 66, name: "Micronics 700W", price: 85000, type: "psu", brand: "micronics", image: "", wow: "" },
+  { id: 67, name: "Corsair RM750x", price: 160000, type: "psu", brand: "corsair", image: "", wow: "" },
+  { id: 68, name: "Corsair RM850x", price: 180000, type: "psu", brand: "corsair", image: "", wow: "" },
+  { id: 69, name: "Seasonic 650W", price: 110000, type: "psu", brand: "seasonic", image: "", wow: "" },
+  { id: 70, name: "FSP 850W GOLD", price: 150000, type: "psu", brand: "fsp", image: "", wow: "" },
+  { id: 71, name: "Micronics Classic II 700W", price: 95000, type: "psu", brand: "micronics", image: "", wow: "" },
+  { id: 72, name: "Corsair CX650", price: 100000, type: "psu", brand: "corsair", image: "", wow: "" },
+  { id: 73, name: "Seasonic Focus GX 850", price: 175000, type: "psu", brand: "seasonic", image: "", wow: "" },
+  { id: 74, name: "FSP Hydro G 750W", price: 140000, type: "psu", brand: "fsp", image: "", wow: "" },
+  { id: 75, name: "Micronics Performance II 800W", price: 120000, type: "psu", brand: "micronics", image: "", wow: "" },
 
-  // 🏠 케이스 (17~18)
-  { id: 17, name: "미들타워 케이스", price: 70000, type: "case" },
-  { id: 18, name: "RGB 강화유리 케이스", price: 120000, type: "case" },
+  // ================= CASE (9) =================
+  { id: 76, name: "DarkFlash DLX21", price: 75000, type: "case", brand: "darkflash", image: "", wow: "" },
+  { id: 77, name: "3R SYS L600", price: 65000, type: "case", brand: "3rays", image: "", wow: "" },
+  { id: 78, name: "ABKO NCORE", price: 60000, type: "case", brand: "abko", image: "", wow: "" },
+  { id: 79, name: "NZXT H510", price: 120000, type: "case", brand: "nzxt", image: "", wow: "" },
+  { id: 80, name: "DarkFlash DLM22", price: 70000, type: "case", brand: "darkflash", image: "", wow: "" },
+  { id: 81, name: "3R SYS T800", price: 95000, type: "case", brand: "3rays", image: "", wow: "" },
+  { id: 82, name: "ABKO SUITMASTER", price: 85000, type: "case", brand: "abko", image: "", wow: "" },
+  { id: 83, name: "NZXT H7 Flow", price: 180000, type: "case", brand: "nzxt", image: "", wow: "" },
+  { id: 84, name: "DarkFlash DK200", price: 68000, type: "case", brand: "darkflash", image: "", wow: "" },
 
-  // ❄ 쿨러 (19~20)
-  { id: 19, name: "공랭 쿨러", price: 40000, type: "cooler" },
-  { id: 20, name: "수랭 쿨러 360mm", price: 180000, type: "cooler" },
+  // ================= COOLER (10) =================
+{ id: 85, name: "DEEPCOOL AK400 공랭", price: 45000, type: "cooler", brand: "deepcool", image: "", wow: "" },
+{ id: 86, name: "DEEPCOOL AK620 공랭", price: 75000, type: "cooler", brand: "deepcool", image: "", wow: "" },
+{ id: 87, name: "Thermalright Peerless Assassin 120", price: 55000, type: "cooler", brand: "thermalright", image: "", wow: "" },
+{ id: 88, name: "NZXT Kraken 240 수랭", price: 180000, type: "cooler", brand: "nzxt", image: "", wow: "" },
+{ id: 89, name: "NZXT Kraken 360 수랭", price: 220000, type: "cooler", brand: "nzxt", image: "", wow: "" },
+{ id: 90, name: "Corsair H100i RGB", price: 190000, type: "cooler", brand: "corsair", image: "", wow: "" },
+{ id: 91, name: "Corsair H150i Elite", price: 240000, type: "cooler", brand: "corsair", image: "", wow: "" },
+{ id: 92, name: "CoolerMaster Hyper 212", price: 38000, type: "cooler", brand: "coolermaster", image: "", wow: "" },
+{ id: 93, name: "CoolerMaster ML240L", price: 130000, type: "cooler", brand: "coolermaster", image: "", wow: "" },
+{ id: 94, name: "Thermalright Frozen Notte 360", price: 160000, type: "cooler", brand: "thermalright", image: "", wow: "" },
 
-  // 🖥 모니터 (21~22)
-  { id: 21, name: "27인치 게이밍 모니터 144Hz", price: 280000, type: "monitor" },
-  { id: 22, name: "32인치 4K 모니터", price: 450000, type: "monitor" },
-
-  // 💻 노트북 (23~24)
-  { id: 23, name: "게이밍 노트북 RTX4060", price: 1450000, type: "notebook" },
-  { id: 24, name: "사무용 노트북 i5", price: 850000, type: "notebook" },
-
-  // 🖱 마우스 (25~26)
-  { id: 25, name: "로지텍 G102 게이밍 마우스", price: 25000, type: "mouse" },
-  { id: 26, name: "레이저 데스에더 V2", price: 59000, type: "mouse" },
-
-  // ⌨ 키보드 (27~28)
-  { id: 27, name: "앱코 K660 기계식 키보드", price: 45000, type: "keyboard" },
-  { id: 28, name: "로지텍 MX Keys", price: 129000, type: "keyboard" },
-
-  // 🎧 헤드셋 (29)
-  { id: 29, name: "커세어 HS80 RGB", price: 159000, type: "headset" },
-
-  // 🎤 마이크 (30)
-  { id: 30, name: "블루 예티 USB 마이크", price: 170000, type: "mic" },
-  { id: 31, name: "로지텍 StreamCam FHD 웹캠", price: 159000, type: "webcam", brand: "logitech"},
-  { id: 32, name: "브리츠 BR-1600BT 블루투스 스피커", price: 89000, type: "speaker", brand: "britz"}
 ];
