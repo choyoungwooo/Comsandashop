@@ -34,13 +34,10 @@
   padding: 60px 0 120px;
   background: #f4f6fb;
 }
-.main-container {
-  width: 1200px;
-  margin: 0 auto;
-  position: relative;   /* 🔥 기준점 */
-}
-.main-content {
-  width: 100%;
+.main-container,
+.main-content{
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 button{
@@ -494,88 +491,26 @@ total-price{
 /* =================================================
   MOBILE
 ================================================= */
-@media (max-width: 768px){
-
-  .builder-page{
-    padding: 30px 0 180px; /* 하단 견적 공간 */
-  }
-
-  .category-nav-inner{
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    gap: 10px;
-  }
-
-  .product-container{
-    padding: 26px 18px;
-    border-radius: 20px;
-  }
-
-  .product-area{
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-
-  /* ✅ 모바일 견적은 하단 고정 */
-  .estimate-wrapper{
-    position: fixed !important;
-    top: auto !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
-    padding: 0 var(--gutter) 10px;
-    z-index: 999999 !important;
-  }
-
-  .estimate-box{
-    border-radius: 18px 18px 0 0;
-    max-height: none;
-  }
-}/* PC에서 견적 공간 확보 */
-@media (min-width: 1200px) {
-  .builder-layout {
-    padding-right: calc(var(--estimate-w) + 60px);
-  }
-}
-@media (max-width: 1500px) {
-  .estimate-wrapper {
-    right: -380px;
-  }
-}
-
-@media (max-width: 1350px) {
-  .estimate-wrapper {
-    position: static;
-    width: 100%;
-    margin-top: 40px;
-  }
-}/* =================================================
-   MOBILE (768px 이하) – 완성 버전
+/* =================================================
+   MOBILE FINAL (768px 이하)
 ================================================= */
 @media (max-width: 768px){
 
-  /* =========================
-     🔥 전체 레이아웃 초기화
-  ========================== */
-  .builder-page,
-  .main-container,
-  .main-content{
+  /* 🔥 PC 고정폭 완전 제거 */
+  .main-container{
     width: 100% !important;
     max-width: 100% !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    margin: 0 auto !important;
   }
 
   .builder-page{
-    padding: 20px 0 160px !important;
+    padding: 20px 0 170px !important;
   }
 
   /* =========================
-     🔥 카테고리 상단
+     카테고리
   ========================== */
   .category-nav{
-    width: 100%;
     padding: 0 16px;
   }
 
@@ -598,7 +533,7 @@ total-price{
   }
 
   /* =========================
-     🔥 필터 영역
+     필터 영역
   ========================== */
   .filter-row{
     display: flex !important;
@@ -609,7 +544,6 @@ total-price{
 
   .brand-filter{
     display: flex !important;
-    flex-wrap: nowrap !important;
     overflow-x: auto !important;
     gap: 8px;
   }
@@ -632,10 +566,9 @@ total-price{
   }
 
   /* =========================
-     🔥 상품 영역 2열 강제
+     상품 2열
   ========================== */
   .product-container{
-    width: 100% !important;
     padding: 20px 16px !important;
   }
 
@@ -645,12 +578,12 @@ total-price{
     gap: 14px !important;
   }
 
-  .product-card{
-    width: 100% !important;
+  .product-card img{
+    height: 140px;
   }
 
   /* =========================
-     🔥 하단 견적창
+     하단 견적
   ========================== */
   .estimate-wrapper{
     position: fixed !important;
@@ -663,14 +596,7 @@ total-price{
   }
 
   .estimate-box{
-    border-radius: 20px 20px 0 0;
-    max-height: 60vh;
-    overflow-y: auto;
-    box-shadow: 0 -10px 30px rgba(0,0,0,0.12);
-  }
-
-  .estimate-content{
-    padding: 0 10px 14px;
+    border-radius: 18px 18px 0 0;
   }
 
 }
