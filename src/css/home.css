@@ -105,15 +105,13 @@ button{
 }
 
 /* 얇은 구분선 */
-.category-nav-inner button:not(:last-child)::before {
-  content: "";
-  position: absolute;
-  right: -16px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1px;
-  height: 14px;
-  background: #e5e7eb;
+.category-nav-inner button{
+  border-right: 1px solid #e5e7eb;
+  padding-right: 18px;
+}
+
+.category-nav-inner button:last-child{
+  border-right: none;
 }
 /* =================================================
   CENTER WRAPPER (자동설계 + 상품박스가 같은 폭)
@@ -373,14 +371,21 @@ button{
   padding: 22px;
   box-shadow: 0 20px 60px rgba(108,92,231,0.12);
 }
-.estimate-toggle{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: 800;
-  margin-bottom: 18px;
-}
 
+  .estimate-toggle{
+    height: 70px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 800;
+  }
+
+  .estimate-content{
+    height: calc(65vh - 70px);
+    overflow-y: auto;
+    padding: 15px 20px 25px;
+  }
 .estimate-left{
   font-size: 15px;
   color: #333;
@@ -389,10 +394,6 @@ button{
 .estimate-total{
   font-size: 15px;
   color: var(--main-blue);
-}
-
-.estimate-content{
-  padding: 0 20px 18px;
 }
 
 .estimate-slot{
@@ -508,6 +509,7 @@ total-price{
     padding: 20px 0 170px !important;
   }
 
+  
   /* ===============================
      📂 카테고리 스크롤
   =============================== */
@@ -586,7 +588,7 @@ total-price{
   /* ===============================
      📦 하단 견적 슬라이드
   =============================== */
-  .estimate-wrapper{
+    .estimate-wrapper{
     position: fixed !important;
     bottom: 0 !important;
     left: 0 !important;
@@ -607,19 +609,20 @@ total-price{
     transition: height 0.35s ease;
   }
 
+    .estimate-box{
+    width: 100%;
+    background: #fff;
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.12);
+
+    height: 70px;          /* 🔥 기본 닫힘 */
+    overflow: hidden;
+    transition: height 0.35s ease;
+  }
+
   .estimate-box.open{
-    height: 65vh;
+    height: 65vh;          /* 🔥 열렸을 때 */
   }
-
-  .estimate-toggle{
-    height: 70px;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-weight: 800;
-  }
-
   .estimate-content{
     height: calc(65vh - 70px);
     overflow-y: auto;
