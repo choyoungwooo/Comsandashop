@@ -365,14 +365,28 @@
     margin-bottom: 30px;
   }
 
-  .category-grid{
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    .category-grid{
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0 4px 10px 4px;
+}
+  /* 카드 너비 고정 (한 줄 5개 느낌) */
+  .category-card{
+    flex: 0 0 75%;              /* 카드 하나가 화면 75% 차지 */
+    min-width: 260px;
+    scroll-snap-align: start;
   }
 
-  .category-card{
-    min-height: 150px;
-    padding: 20px;
+  /* 스크롤바 숨기기 */
+  .category-grid::-webkit-scrollbar{
+    display: none;
+  }
+
+  .category-grid{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
   .category-icon{

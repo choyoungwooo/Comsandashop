@@ -555,7 +555,9 @@ total-price{
 ================================================= */
 @media (max-width: 768px){
 
-  /* 전체 패딩 (하단 공간 확보) */
+  /* =========================
+     전체 패딩 (하단 공간 확보)
+  ========================== */
   .builder-page{
     padding: 30px 0 160px;
   }
@@ -564,28 +566,49 @@ total-price{
     padding-right: 0 !important;
   }
 
-  /* 카테고리 스크롤 */
+  /* =========================
+     🔥 카테고리 필터 가로 스크롤 강제
+  ========================== */
   .category-nav-inner{
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    gap: 12px;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    gap: 12px !important;
     padding-bottom: 6px;
   }
 
-  /* 상품 박스 */
+  .category-nav-inner::-webkit-scrollbar{
+    display: none;
+  }
+
+  .category-nav-inner{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* =========================
+     상품 박스
+  ========================== */
   .product-container{
     padding: 22px 16px;
     border-radius: 18px;
   }
 
-  /* 카드 2열 */
+  /* =========================
+     🔥 상품 2열 강제
+  ========================== */
   .product-area{
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px !important;
+  }
+
+  .product-card{
+    width: 100% !important;
   }
 
   /* =========================
-     🔥 핵심: 하단 고정 견적창
+     🔥 하단 고정 견적창
   ========================== */
   .estimate-wrapper{
     position: fixed !important;
@@ -606,9 +629,69 @@ total-price{
     box-shadow: 0 -10px 30px rgba(0,0,0,0.12);
   }
 
-  /* 견적 내부 간격 정리 */
   .estimate-content{
     padding: 0 10px 14px;
   }
+  /* =========================
+   🔥 모바일 필터 전체 정리
+========================= */
+.filter-bar{
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px;
+  padding: 0 16px 16px;
+}
+
+/* 🔎 검색 자동완성 */
+.search-wrapper{
+  width: 100% !important;
+}
+
+.search-bar{
+  width: 100% !important;
+  height: 48px !important;
+}
+
+.search-bar input{
+  font-size: 14px;
+}
+
+/* 🏷 전체 / GTX / RTX 필터 */
+.filter-tabs{
+  display: flex !important;
+  overflow-x: auto;
+  gap: 8px;
+}
+
+.filter-tabs::-webkit-scrollbar{
+  display: none;
+}
+
+.filter-tabs{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.filter-tabs button{
+  flex: 0 0 auto;
+  padding: 8px 14px;
+  font-size: 13px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* 🔽 정렬 버튼 */
+.sort-wrapper{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sort-btn{
+  font-size: 13px;
+  padding: 8px 14px;
+  border-radius: 20px;
+}
+
 
 }
+
