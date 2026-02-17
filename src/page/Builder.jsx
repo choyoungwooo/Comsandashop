@@ -23,7 +23,6 @@ const categories = [
   const brandOptions = {
   gpu: ["rtx", "gtx", "amd"],
   mainboard: ["intel", "amd"],
-  cpu: ["intel", "amd"],
   ram: ["samsung", "skhynix", "corsair", "gskill"],
   ssd: ["samsung", "wd", "skhynix", "crucial"],
   psu: ["seasonic", "fsp", "micronics", "corsair"],
@@ -64,8 +63,8 @@ const categories = [
   const selectedCase = getBest("case", budget * 0.1);
 
   const autoSelected = {
-    cpu: selectedCPU && { product: selectedCPU, quantity: 1 },
     gpu: selectedGPU && { product: selectedGPU, quantity: 1 },
+    mainboard: selectedCPU && { product: selectedCPU, quantity: 1 },
     ram: selectedRAM && { product: selectedRAM, quantity: 2 },
     ssd: selectedSSD && { product: selectedSSD, quantity: 1 },
     psu: selectedPSU && { product: selectedPSU, quantity: 1 },

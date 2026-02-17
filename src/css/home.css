@@ -34,10 +34,13 @@
   padding: 60px 0 120px;
   background: #f4f6fb;
 }
-.main-container,
-.main-content{
-  width: 100% !important;
-  max-width: 100% !important;
+.main-container {
+  width: 1200px;
+  margin: 0 auto;
+  position: relative;   /* 🔥 기준점 */
+}
+.main-content {
+  width: 100%;
 }
 
 button{
@@ -359,7 +362,8 @@ button{
 .estimate-wrapper {
   position: fixed;
   top: 170px;
-  right: 40px;   /* 🔥 그냥 우측 고정 */
+  left: 50%;
+  margin-left: 640px;
   width: 360px;
   z-index: 100;
 }
@@ -491,7 +495,9 @@ total-price{
 ================================================= */
 @media (max-width: 768px){
 
-  /* 🔥 PC 고정폭 완전 제거 */
+  /* ===============================
+     🔥 기본 레이아웃 초기화
+  =============================== */
   .main-container{
     width: 100% !important;
     max-width: 100% !important;
@@ -502,9 +508,9 @@ total-price{
     padding: 20px 0 170px !important;
   }
 
-  /* =========================
-     카테고리
-  ========================== */
+  /* ===============================
+     📂 카테고리 스크롤
+  =============================== */
   .category-nav{
     padding: 0 16px;
   }
@@ -527,9 +533,9 @@ total-price{
     display: none;
   }
 
-  /* =========================
-     필터 영역
-  ========================== */
+  /* ===============================
+     🔎 필터 영역
+  =============================== */
   .filter-row{
     display: flex !important;
     flex-direction: column !important;
@@ -560,9 +566,9 @@ total-price{
     padding: 8px 14px;
   }
 
-  /* =========================
-     상품 2열
-  ========================== */
+  /* ===============================
+     🛍 상품 2열
+  =============================== */
   .product-container{
     padding: 20px 16px !important;
   }
@@ -577,35 +583,35 @@ total-price{
     height: 140px;
   }
 
-  /* =========================
-     하단 견적
-  ========================== */
+  /* ===============================
+     📦 하단 견적 슬라이드
+  =============================== */
   .estimate-wrapper{
     position: fixed !important;
     bottom: 0 !important;
     left: 0 !important;
     right: 0 !important;
-    width: 100vw !important;
-    z-index: 999999 !important;
+    width: 100% !important;
+    z-index: 9999 !important;
     padding: 0 !important;
   }
-      .estimate-box{
+
+  .estimate-box{
     width: 100%;
     background: #fff;
     border-radius: 18px 18px 0 0;
     box-shadow: 0 -10px 30px rgba(0,0,0,0.12);
 
     height: 70px;
-    transition: height 0.35s ease;
     overflow: hidden;
+    transition: height 0.35s ease;
   }
-
 
   .estimate-box.open{
     height: 65vh;
   }
-  /* 상단 토글바 */
-    .estimate-toggle{
+
+  .estimate-toggle{
     height: 70px;
     padding: 0 20px;
     display: flex;
@@ -614,12 +620,41 @@ total-price{
     font-weight: 800;
   }
 
-  /* 내부 스크롤 영역 */
-   .estimate-content{
+  .estimate-content{
     height: calc(65vh - 70px);
     overflow-y: auto;
     padding: 15px 20px 25px;
   }
 
+  /* ===============================
+     🔥 그래픽카드 '.' 현상 해결
+  =============================== */
+
+  .estimate-slot{
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px;
+  }
+
+  .slot-left{
+    display: block !important;
+    min-width: auto !important;
+    flex-shrink: 0 !important;
+  }
+
+  .slot-label{
+    display: block !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: #9ca3af !important;
+  }
+
+  .slot-right{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
 }
+
 
