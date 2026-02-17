@@ -494,6 +494,9 @@ total-price{
 /* =================================================
    MOBILE FINAL (768px 이하)
 ================================================= */
+/* =========================================
+   📱 MOBILE (768px 이하)
+========================================= */
 @media (max-width: 768px){
 
   /* ===============================
@@ -510,21 +513,62 @@ total-price{
   }
 
   /* ===============================
-     📂 카테고리 왼쪽 정렬
+     📂 카테고리 가로 스크롤
   =============================== */
   .category-nav{
     padding: 0 16px;
   }
 
   .category-nav-inner{
+    display: flex;
     justify-content: flex-start !important;
     padding-left: 16px;
+    gap: 8px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
   }
 
   .category-nav-inner button{
     flex: 0 0 auto;
     white-space: nowrap;
     font-size: 13px;
+    padding: 8px 14px;
+  }
+
+  .category-nav-inner::-webkit-scrollbar{
+    display: none;
+  }
+
+  /* ===============================
+     🔎 필터 영역
+  =============================== */
+  .filter-row{
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px;
+    padding: 0 16px 14px;
+  }
+
+  .brand-filter{
+    display: flex !important;
+    overflow-x: auto !important;
+    gap: 8px;
+  }
+
+  .brand-filter button{
+    flex: 0 0 auto;
+    white-space: nowrap;
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+
+  .brand-filter::-webkit-scrollbar{
+    display: none;
+  }
+
+  .sort-toggle{
+    align-self: flex-end;
+    font-size: 12px;
     padding: 8px 14px;
   }
 
@@ -536,6 +580,7 @@ total-price{
   }
 
   .product-area{
+    display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 14px !important;
   }
@@ -547,12 +592,13 @@ total-price{
   /* ===============================
      📦 하단 견적 슬라이드
   =============================== */
+
   .estimate-wrapper{
     position: fixed !important;
     bottom: 0 !important;
     left: 0 !important;
     width: 100% !important;
-    z-index: 9999999 !important;
+    z-index: 9999 !important;
   }
 
   .estimate-box{
@@ -560,13 +606,13 @@ total-price{
     background: #fff;
     border-radius: 20px 20px 0 0;
     box-shadow: 0 -8px 30px rgba(0,0,0,0.15);
-    height: 70px;
+    height: 70px;               /* 닫힘 상태 */
     overflow: hidden;
     transition: height 0.3s ease;
   }
 
   .estimate-box.open{
-    height: 65vh;
+    height: 65vh;               /* 열림 상태 */
   }
 
   .estimate-toggle{
@@ -582,6 +628,34 @@ total-price{
     height: calc(65vh - 70px);
     overflow-y: auto;
     padding: 15px 20px 30px;
+  }
+
+  /* ===============================
+     🔥 슬롯 정렬 깨짐 방지
+  =============================== */
+
+  .estimate-slot{
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px;
+  }
+
+  .slot-left{
+    display: block !important;
+    min-width: auto !important;
+  }
+
+  .slot-label{
+    display: block !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: #9ca3af !important;
+  }
+
+  .slot-right{
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
 }
