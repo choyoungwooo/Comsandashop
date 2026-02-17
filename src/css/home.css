@@ -531,12 +531,22 @@ button {
 @media (max-width: 768px) {
 
   /* =========================
-     전체 기본 (헤더 폭 기준 맞춤)
+     기본 안정화
   ========================== */
 
-  .builder-page {
-    padding: 30px 0 100px;
+  html, body {
+    overflow-x: hidden;
   }
+
+  .builder-page {
+    padding: 30px 0 180px; /* 🔥 하단 견적 공간 확보 */
+    overflow: visible !important;
+    transform: none !important;
+  }
+
+  /* =========================
+     공통 좌우 여백 (헤더 기준)
+  ========================== */
 
   .category-nav-inner,
   .product-wrapper,
@@ -544,9 +554,7 @@ button {
   .sort-wrapper,
   .pagination {
     width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;   /* 🔥 헤더와 동일 */
+    padding: 0 20px;
     box-sizing: border-box;
   }
 
@@ -571,7 +579,7 @@ button {
   }
 
   /* =========================
-     상품 2열 축소
+     상품 2열
   ========================== */
 
   .product-area {
@@ -599,37 +607,76 @@ button {
   }
 
   /* =========================
-     정렬/필터 줄맞춤
+     검색창 안정화
+  ========================== */
+
+  .search-wrapper,
+  .search-bar {
+    width: 100%;
+  }
+
+  .search-bar input {
+    flex: 1;
+    width: 100%;
+  }
+
+  /* =========================
+     정렬 / 필터 정리
   ========================== */
 
   .filter-row {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+    align-items: stretch;
+    gap: 10px;
   }
 
   .sort-wrapper {
+    display: flex;
     justify-content: flex-start;
   }
 
   /* =========================
-     모바일 견적 바텀시트
+     페이징 여백 확보
+  ========================== */
+
+  .pagination {
+    margin: 40px 0 140px;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .pagination button {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+  }
+
+  /* =========================
+     🔥 모바일 견적 하단 고정
   ========================== */
 
   .estimate-wrapper {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 0 20px;  /* 🔥 헤더와 동일 */
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+
+    width: 100% !important;
+    padding: 0 20px 10px;
     box-sizing: border-box;
-    z-index: 999;
+
+    transform: none !important;
+    top: auto !important;
+
+    z-index: 999999 !important;
   }
 
   .estimate-box {
+    width: 100%;
     background: #fff;
     border-radius: 18px 18px 0 0;
-    box-shadow: 0 -8px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 -8px 30px rgba(0,0,0,0.12);
     overflow: hidden;
   }
 
@@ -648,7 +695,7 @@ button {
     top: 8px;
     left: 50%;
     transform: translateX(-50%);
-    width: 38px;
+    width: 36px;
     height: 4px;
     border-radius: 10px;
     background: #ddd;
