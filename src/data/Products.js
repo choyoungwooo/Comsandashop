@@ -108,16 +108,16 @@ export const products = [
 { id: 94, name: "Thermalright Frozen Notte 360", price: 160000, type: "cooler", brand: "thermalright", image: "", wow: "" },
 
 
-{ id: 95, name: "Intel i3-12100F", price: 140000, type: "cpu", brand: "intel", image: "", wow: "" },
-{ id: 96, name: "Intel i5-12400F", price: 210000, type: "cpu", brand: "intel", image: "", wow: "" },
-{ id: 97, name: "Intel i5-13400F", price: 270000, type: "cpu", brand: "intel", image: "", wow: "" },
-{ id: 98, name: "Intel i7-14700K", price: 520000, type: "cpu", brand: "intel", image: "", wow: "" },
+{ id: 95, name: "Intel i3-12100F", price: 140000, type: "cpu", brand: "intel", socket: "LGA1700" },
+{ id: 96, name: "Intel i5-12400F", price: 210000, type: "cpu", brand: "intel", socket: "LGA1700" },
+{ id: 97, name: "Intel i5-13400F", price: 270000, type: "cpu", brand: "intel", socket: "LGA1700" },
+{ id: 98, name: "Intel i7-14700K", price: 520000, type: "cpu", brand: "intel", socket: "LGA1700" },
+{ id: 104, name: "Intel i9-14900K", price: 750000, type: "cpu", brand: "intel", socket: "LGA1700" },
 
-{ id: 99, name: "AMD Ryzen 5 5600", price: 170000, type: "cpu", brand: "amd", image: "", wow: "" },
-{ id: 100, name: "AMD Ryzen 5 7500F", price: 230000, type: "cpu", brand: "amd", image: "", wow: "" },
-{ id: 101, name: "AMD Ryzen 7 7700", price: 390000, type: "cpu", brand: "amd", image: "", wow: "" },
-{ id: 102, name: "AMD Ryzen 7 7800X3D", price: 540000, type: "cpu", brand: "amd", image: "", wow: "" },
-{ id: 103, name: "AMD Ryzen 9 7900X", price: 600000, type: "cpu", brand: "amd", image: "", wow: "" },
-{ id: 104, name: "Intel i9-14900K", price: 750000, type: "cpu", brand: "intel", image: "", wow: "" },
+{ id: 99, name: "AMD Ryzen 5 5600", price: 170000, type: "cpu", brand: "amd", socket: "AM4" },
+{ id: 100, name: "AMD Ryzen 5 7500F", price: 230000, type: "cpu", brand: "amd", socket: "AM5" },
+{ id: 101, name: "AMD Ryzen 7 7700", price: 390000, type: "cpu", brand: "amd", socket: "AM5" },
+{ id: 102, name: "AMD Ryzen 7 7800X3D", price: 540000, type: "cpu", brand: "amd", socket: "AM5" },
+{ id: 103, name: "AMD Ryzen 9 7900X", price: 600000, type: "cpu", brand: "amd", socket: "AM5" },
 
 ];
