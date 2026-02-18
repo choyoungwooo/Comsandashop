@@ -17,6 +17,15 @@
   --estimate-w: 360px;   /* ✅ 견적창 폭 */
 }
 
+.compatibility-warning {
+  background: #fff3f3;
+  color: #e11d48;
+  font-size: 13px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
 
 .filter-row{
   display: flex;
@@ -157,7 +166,7 @@ button{
   gap: 12px;
 }
 
-.budget-select{
+.game-select{
   padding: 10px 14px;
   border-radius: 14px;
   border: 1px solid #ddd;
@@ -167,7 +176,7 @@ button{
   cursor: pointer;
 }
 
-.budget-select:focus{
+.game-select:focus{
   outline: none;
   border-color: var(--main-blue);
   box-shadow: 0 0 0 3px rgba(108,92,231,0.15);

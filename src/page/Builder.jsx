@@ -12,6 +12,7 @@ function Builder() {
 
 const categories = [
   { label: "그래픽카드", key: "gpu" },
+  { label: "CPU", key: "cpu" },
   { label: "메인보드", key: "mainboard" },
   { label: "램", key: "ram" },
   { label: "SSD", key: "ssd" },
@@ -33,7 +34,7 @@ const categories = [
 
   const [activeBrand, setActiveBrand] = useState("all");
   const [sortOrder, setSortOrder] = useState("low"); // low / high
-  const [budget, setBudget] = useState(1000000);
+  const [selectedGame, setSelectedGame] = useState("lol");
   const [activeCategory, setActiveCategory] = useState("gpu");
   const [sortType, setSortType] = useState("low");
   const [subFilter, setSubFilter] = useState("all");
@@ -43,32 +44,87 @@ const categories = [
   const { searchKeyword } = useOutletContext();
   const [isEstimateOpen, setIsEstimateOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const games = [
+  { label: "롤", key: "lol" },
+  { label: "발로란트", key: "valorant" },
+  { label: "피파", key: "fifa" },
+  { label: "오버워치", key: "overwatch" },
+  { label: "배틀그라운드", key: "pubg" },
+  { label: "로스트아크", key: "loa" },
+  { label: "GTA/스팀 고사양", key: "highend" },
+  { label: "저사양 RPG", key: "light" }
+];
 
- const autoBuild = (budget) => {
-  const getBest = (type, maxPrice) =>
-    products
+ const gameBudgetMap = {
+  lol: 800000,
+  valorant: 900000,
+  fifa: 800000,
+  overwatch: 1000000,
+  pubg: 1300000,
+  loa: 1200000,
+  highend: 1800000,
+  light: 700000,
+};
+
+
+const gameTierMap = {
+  lol: "low",
+  valorant: "low",
+  fifa: "low",
+  overwatch: "mid",
+  pubg: "high",
+  loa: "high",
+  highend: "ultra",
+  light: "low",
+};
+
+const tierBudgetMap = {
+  low: 800000,
+  mid: 1000000,
+  high: 1300000,
+  ultra: 1800000,
+};
+const autoBuild = (game) => {
+
+  const tier = gameTierMap[game] || "mid";
+  const budget = tierBudgetMap[tier];
+
+  const getBest = (type, maxPrice) => {
+    return products
       .filter(p => p.type === type && p.price <= maxPrice)
       .sort((a, b) => b.price - a.price)[0] || null;
+  };
 
-  // 💡 비율 설정
-  const gpuBudget = budget * 0.45;
-  const cpuBudget = budget * 0.25;
-  const ramBudget = budget * 0.1;
+  // 예산 분배
+  const selectedCPU = getBest("cpu", budget * 0.25);
+  let selectedMainboard = null;
 
-  const selectedGPU = getBest("gpu", gpuBudget);
-  const selectedCPU = getBest("cpu", cpuBudget);
-  const selectedRAM = getBest("ram", ramBudget);
+if (selectedCPU) {
+  selectedMainboard = products
+    .filter(p =>
+      p.type === "mainboard" &&
+      p.socket === selectedCPU.socket &&
+      p.price <= budget * 0.2
+    )
+    .sort((a, b) => b.price - a.price)[0] || null;
+}
+
+  const selectedGPU = getBest("gpu", budget * 0.45);
+  const selectedRAM = getBest("ram", budget * 0.1);
   const selectedSSD = getBest("ssd", budget * 0.1);
   const selectedPSU = getBest("psu", budget * 0.1);
-  const selectedCase = getBest("case", budget * 0.1);
+  const selectedCase = getBest("case", budget * 0.08);
+  const selectedCooler = getBest("cooler", budget * 0.07);
 
   const autoSelected = {
+    cpu: selectedCPU && { product: selectedCPU, quantity: 1 },
+    mainboard: selectedMainboard && { product: selectedMainboard, quantity: 1 },
     gpu: selectedGPU && { product: selectedGPU, quantity: 1 },
-    mainboard: selectedCPU && { product: selectedCPU, quantity: 1 },
     ram: selectedRAM && { product: selectedRAM, quantity: 2 },
     ssd: selectedSSD && { product: selectedSSD, quantity: 1 },
     psu: selectedPSU && { product: selectedPSU, quantity: 1 },
     case: selectedCase && { product: selectedCase, quantity: 1 },
+    cooler: selectedCooler && { product: selectedCooler, quantity: 1 },
   };
 
   // null 제거
@@ -235,19 +291,42 @@ const handleDecrease = (type) => {
     return sum + item.product.price * item.quantity;
   }, 0);
 }, [selectedItems]);
+const compatibilityWarning = useMemo(() => {
+  const cpu = selectedItems.cpu?.product;
+  const mainboard = selectedItems.mainboard?.product;
+
+  if (!cpu || !mainboard) return null;
+
+  if (cpu.socket !== mainboard.socket) {
+    return `⚠ CPU(${cpu.socket})와 메인보드(${mainboard.socket}) 소켓이 맞지 않습니다.`;
+  }
+
+  return null;
+}, [selectedItems]);
 
 
 
-  const handleViewResult = () => {
-    if (Object.keys(selectedItems).length === 0) {
-      alert("제품을 선택해주세요.");
-      return;
-    }
 
-    navigate("/result", {
-      state: { items: selectedItems, total: totalPrice },
-    });
-  };
+const handleViewResult = () => {
+  if (Object.keys(selectedItems).length === 0) {
+    alert("제품을 선택해주세요.");
+    return;
+  }
+
+  // 🔥 호환성 경고가 있을 경우
+  if (compatibilityWarning) {
+    const confirmMove = window.confirm(
+      compatibilityWarning + "\n\n그래도 진행하시겠습니까?"
+    );
+
+    if (!confirmMove) return;
+  }
+
+  navigate("/result", {
+    state: { items: selectedItems, total: totalPrice },
+  });
+};
+
 
   const handleCategoryChange = (key) => {
     setActiveCategory(key);
@@ -290,18 +369,18 @@ const handleDecrease = (type) => {
 
           <div className="auto-inner">
             <select
-              value={budget}
-              onChange={(e) => setBudget(Number(e.target.value))}
-              className="budget-select"
-            >
-              <option value={1000000}>100만원 이하</option>
-              <option value={2000000}>200만원 이하</option>
-              <option value={3000000}>300만원 이하</option>
-              <option value={4000000}>400만원 이하</option>
-              <option value={5000000}>500만원 이하</option>
-            </select>
+  value={selectedGame}
+  onChange={(e) => setSelectedGame(e.target.value)}
+  className="game-select"
+>
+  {games.map(game => (
+    <option key={game.key} value={game.key}>
+      {game.label}
+    </option>
+  ))}
+</select>
 
-            <button onClick={() => autoBuild(budget)}>
+            <button onClick={() => autoBuild(selectedGame)}>
               ⚡ 자동완성
             </button>
           </div>
@@ -400,7 +479,12 @@ const handleDecrease = (type) => {
           <span className="estimate-total">
             {totalPrice.toLocaleString()}원
           </span>
-        </div>
+        </div>{compatibilityWarning && (
+  <div className="compatibility-warning">
+    {compatibilityWarning}
+  </div>
+)}
+
 
         <div className="estimate-content">
 
