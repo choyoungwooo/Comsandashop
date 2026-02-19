@@ -48,14 +48,15 @@ function SearchBar({ onSearch, products = [] }) {
     >
       <div className="search-bar">
         <input
-          value={keyword}
-          onChange={(e) => {
-            setKeyword(e.target.value);
-            setShowDropdown(true);
-          }}
-          onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-          placeholder="부품명을 검색해보세요"
-        />
+  value={keyword}
+  onFocus={() => setKeyword("")}   // 🔥 포커스 시 초기화
+  onChange={(e) => {
+    setKeyword(e.target.value);
+    setShowDropdown(true);
+  }}
+  onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+  placeholder="부품명을 검색해보세요"
+/>
         <button onClick={handleSearch}>검색</button>
       </div>
 
