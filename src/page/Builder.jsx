@@ -252,11 +252,14 @@ const handleDecrease = (type) => {
 
   const filteredProducts = useMemo(() => {
   let filtered = products;
-    if (searchKeyword.trim() !== "") {
-  filtered = filtered.filter((p) =>
-    flexibleMatch(p.name, searchKeyword)
-  );
-}
+
+  const keyword = searchKeyword?.trim() || "";
+
+  if (keyword !== "") {
+    filtered = filtered.filter((p) =>
+      flexibleMatch(p.name, keyword)
+    );
+  }
 
   if (activeCategory !== "all") {
     filtered = filtered.filter((p) => p.type === activeCategory);
@@ -266,8 +269,6 @@ const handleDecrease = (type) => {
     filtered = filtered.filter((p) => p.brand === subFilter);
   }
 
-  // 🔥 검색 추가
-
   if (sortType === "low") {
     filtered = [...filtered].sort((a, b) => a.price - b.price);
   } else {
@@ -276,6 +277,7 @@ const handleDecrease = (type) => {
 
   return filtered;
 }, [activeCategory, subFilter, sortType, searchKeyword]);
+
 
 
   const paginatedProducts = useMemo(() => {
@@ -336,6 +338,41 @@ const handleViewResult = () => {
   useEffect(() => {
     localStorage.setItem("pc-builder", JSON.stringify(selectedItems));
   }, [selectedItems]);
+
+  useEffect(() => {
+  setCurrentPage(1);
+}, [searchKeyword, activeCategory, subFilter]);
+useEffect(() => {
+  if (searchKeyword !== undefined) {
+    setActiveCategory("all");
+    setSubFilter("all");
+    setCurrentPage(1);
+    setSelectedItems({});
+  }
+}, [searchKeyword]);
+
+
+useEffect(() => {
+  console.log("검색어 변경됨:", searchKeyword);
+}, [searchKeyword]);
+
+useEffect(() => {
+  const keyword = searchKeyword?.trim();
+
+  if (!keyword) {
+    // 🔥 검색어 없으면 초기화
+    setActiveCategory("gpu");   // 기본 카테고리
+    setSubFilter("all");
+    setCurrentPage(1);
+  } else {
+    // 🔥 검색어 있으면 전체에서 검색
+    setActiveCategory("all");
+    setSubFilter("all");
+    setCurrentPage(1);
+  }
+}, [searchKeyword]);
+
+
 
   
   return (
@@ -419,7 +456,9 @@ const handleViewResult = () => {
         <div className="product-container">
 
           <div className="product-area">
-            {paginatedProducts.length === 0 ? (
+            {(searchKeyword?.trim() || "") !== "" && filteredProducts.length === 0 ? (
+
+
               <div className="empty-state">
                 <div className="empty-icon">🔍</div>
                 <h3>검색 결과가 없습니다</h3>

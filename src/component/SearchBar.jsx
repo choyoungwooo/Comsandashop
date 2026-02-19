@@ -34,11 +34,11 @@ function SearchBar({ onSearch, products = [] }) {
   }, []);
 
   // 🔵 검색 실행
-  const handleSearch = () => {
-    if (!keyword.trim()) return;
-    onSearch(keyword);
-    setShowDropdown(false);
-  };
+const handleSearch = () => {
+  onSearch(keyword.trim());   // 🔥 빈값도 그대로 전달
+  setShowDropdown(false);
+};
+
 
   return (
     <div
@@ -47,16 +47,25 @@ function SearchBar({ onSearch, products = [] }) {
       style={{ position: "relative" }}
     >
       <div className="search-bar">
-        <input
+       
+<input
   value={keyword}
-  onFocus={() => setKeyword("")}   // 🔥 포커스 시 초기화
+ onFocus={() => {
+  setKeyword("");
+}}
   onChange={(e) => {
-    setKeyword(e.target.value);
+    const value = e.target.value;
+    setKeyword(value);
     setShowDropdown(true);
+
+    if (value.trim() === "") {
+      onSearch("");   // 입력 지우면 전체상품
+    }
   }}
   onKeyDown={(e) => e.key === "Enter" && handleSearch()}
   placeholder="부품명을 검색해보세요"
 />
+
         <button onClick={handleSearch}>검색</button>
       </div>
 

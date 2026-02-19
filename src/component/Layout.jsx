@@ -10,11 +10,12 @@ function Layout() {
   const navigate = useNavigate();
 
   const handleSearch = (keyword) => {
-    if (!keyword.trim()) return;
+  setSearchKeyword(keyword);
 
-    setSearchKeyword(keyword);
-    navigate("/builder");   // 🔥 랜딩에서 검색 시 builder 이동
-  };
+  if (window.location.pathname !== "/builder") {
+    navigate("/builder");
+  }
+};
 
   return (
     <>
@@ -42,8 +43,9 @@ function Layout() {
 
       {/* ================= PAGE ================= */}
       <main>
-        <Outlet context={{ searchKeyword }} />
-      </main>
+  <Outlet context={{ searchKeyword }} />
+</main>
+
 
       {/* ================= FOOTER ================= */}
       <Footer />

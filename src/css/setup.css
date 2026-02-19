@@ -1,0 +1,44 @@
+/* ========================= */
+/* Setup 전용 필터 영역 */
+/* ========================= */
+
+.setup-filter {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin: 30px 0 40px;
+  flex-wrap: wrap;
+}
+
+/* 버튼 기본 */
+.setup-btn {
+  padding: 8px 20px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #f3f4f6;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* hover */
+.setup-btn:hover {
+  border-color: #4f46e5;
+  color: #4f46e5;
+  background: #eef0ff;
+}
+
+/* active 상태 */
+.setup-btn.active {
+  background: #4f46e5;
+  color: #fff;
+  border-color: #4f46e5;
+  cursor: default;
+}
+
+/* active 상태일 때 hover 무시 */
+.setup-btn.active:hover {
+  background: #4f46e5;
+  color: #fff;
+}
