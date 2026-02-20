@@ -1,4 +1,13 @@
 /* ========================= */
+/* 페이지 기본 */
+/* ========================= */
+
+.recommend-page {
+  padding: 60px 20px 100px;
+  text-align: center;
+}
+
+/* ========================= */
 /* 콘솔 플랫폼 필터 */
 /* ========================= */
 
@@ -38,10 +47,123 @@
   color: white;
 }
 
-/* 정렬 버튼 위치 */
+/* ========================= */
+/* 정렬 버튼 */
+/* ========================= */
+
 .console-sort {
   display: flex;
   justify-content: flex-end;
   max-width: 1100px;
-  margin: 0 auto 30px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+}
+
+.sort-btn {
+  height: 36px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.sort-btn:hover {
+  border-color: #4f46e5;
+  color: #4f46e5;
+  background: #f2f3ff;
+}
+
+/* ========================= */
+/* 카드 그리드 */
+/* ========================= */
+
+.recommend-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 40px;
+  padding: 0 20px;
+}
+
+/* ========================= */
+/* 카드 */
+/* ========================= */
+
+.recommend-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  text-align: center;
+  transition: 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  border: 1px solid #f0f0f0;
+}
+
+.recommend-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+}
+
+.recommend-card img {
+  width: 100%;
+  height: 170px;
+  object-fit: contain;
+  margin-bottom: 18px;
+}
+
+.recommend-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.recommend-card p {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.recommend-card a {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 20px;
+  background: #4f46e5;
+  color: white;
+  font-size: 13px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.recommend-card a:hover {
+  background: #4338ca;
+}
+
+/* ========================= */
+/* 모바일 */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+  .console-sort {
+    justify-content: center;
+  }
+
+  .recommend-grid {
+    gap: 24px;
+  }
+
+  .recommend-card {
+    padding: 18px;
+  }
+
+  .recommend-card img {
+    height: 140px;
+  }
+
 }

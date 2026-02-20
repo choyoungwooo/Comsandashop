@@ -14,7 +14,7 @@ function Setup() {
     { label: "의자", value: "chair" },
     { label: "모니터암", value: "arm" },
     { label: "LED", value: "led" },
-    { label: "악세서리", value: "accessory" }
+    { label: "패드", value: "pad" }
   ];
 
   const filteredProducts = useMemo(() => {

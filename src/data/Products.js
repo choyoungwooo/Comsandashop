@@ -226,10 +226,10 @@ export const products = [
   },
   {
     id: 115,
-    name: "게이밍 데스크 악세서리 세트",
+    name: "게이밍 장패드",
     price: 59000,
     category: "setup",
-    type: "accessory",
+    type: "pad",
     image: "https://via.placeholder.com/300x200",
     link: "#"
   },
@@ -252,5 +252,124 @@ export const products = [
     type: "gaming",
     image: "https://via.placeholder.com/300x200",
     link: "#"
+  },
+  /* ====== 추가 항목 ====== */
+
+  /* ================= 콘솔 ================= */
+  {
+    id: 118,
+    name: "PS5 디스크 에디션",
+    price: 698000,
+    category: "console",
+    platform: "ps5",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+  {
+    id: 119,
+    name: "닌텐도 스위치 라이트",
+    price: 249000,
+    category: "console",
+    platform: "nintendo",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+  {
+    id: 120,
+    name: "Xbox Series S",
+    price: 398000,
+    category: "console",
+    platform: "xbox",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+
+  /* ================= 주변기기 ================= */
+  {
+    id: 121,
+    name: "로지텍 G PRO 무선 마우스",
+    price: 149000,
+    category: "mouse",
+    option: "wireless",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+  {
+    id: 122,
+    name: "앱코 저소음 키보드",
+    price: 89000,
+    category: "keyboard",
+    option: "silent",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+  {
+    id: 123,
+    name: "삼성 32인치 게이밍 모니터",
+    price: 459000,
+    category: "monitor",
+    option: "32",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+
+  /* ================= 세팅 ================= */
+  {
+    id: 124,
+    name: "DXRacer 게이밍 의자",
+    price: 329000,
+    category: "setup",
+    type: "chair",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+  {
+    id: 125,
+    name: "NB 모니터 암 싱글",
+    price: 59000,
+    category: "setup",
+    type: "arm",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+  {
+    id: 126,
+    name: "RGB 데스크 LED 조명",
+    price: 49000,
+    category: "setup",
+    type: "led",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+  {
+    id: 127,
+    name: "게이밍 데스크 패드",
+    price: 39000,
+    category: "setup",
+    type: "pad",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+
+  /* ================= 노트북 ================= */
+  {
+    id: 128,
+    name: "HP Omen RTX4050 게이밍 노트북",
+    price: 1290000,
+    category: "notebook",
+    type: "gaming",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+  {
+    id: 129,
+    name: "ASUS ROG RTX4080 게이밍 노트북",
+    price: 3490000,
+    category: "notebook",
+    type: "gaming",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
   }
+
 ];
+
