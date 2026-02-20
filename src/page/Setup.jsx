@@ -20,19 +20,27 @@ function Setup() {
 
   const filteredProducts = useMemo(() => {
 
-    let filtered = products.filter(
-      p => p.category === "setup"
+  let filtered = products.filter(
+    p => p.category === "setup"
+  );
+
+  if (selectedType !== "all") {
+    filtered = filtered.filter(
+      p => p.type === selectedType
     );
+  }
 
-    if (selectedType !== "all") {
-      filtered = filtered.filter(
-        p => p.type === selectedType
-      );
-    }
+  // 🔥 정렬 추가
+  filtered.sort((a, b) =>
+    sortOrder === "low"
+      ? a.price - b.price
+      : b.price - a.price
+  );
 
-    return filtered;
+  return filtered;
 
-  }, [selectedType]);
+}, [selectedType, sortOrder]);   // 🔥 sortOrder도 추가
+
 
   return (
     <div className="recommend-page">
