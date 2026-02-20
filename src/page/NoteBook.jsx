@@ -53,26 +53,27 @@ function NoteBook() {
       {/* ================= 가격 필터 ================= */}
       <div className="price-filter">
 
-        <button
-          className={priceRange === "all" ? "" : ""}
-          onClick={() => setPriceRange("all")}
-        >
-          전체
-        </button>
+      <button
+  className={priceRange === "100-150" ? "active" : ""}
+  onClick={() => setPriceRange("100-150")}
+>
+  100 ~ 150만원
+</button>
 
-        <button
-          className={priceRange === "100-" ? "active" : ""}
-          onClick={() => setPriceRange("100-")}
-        >
-          100만원 이하
-        </button>
+<button
+  className={priceRange === "150-200" ? "active" : ""}
+  onClick={() => setPriceRange("150-200")}
+>
+  150 ~ 200만원
+</button>
 
-        <button
-          className={priceRange === "100-200" ? "active" : ""}
-          onClick={() => setPriceRange("100-200")}
-        >
-          100~200만원
-        </button>
+<button
+  className={priceRange === "200+" ? "active" : ""}
+  onClick={() => setPriceRange("200+")}
+>
+  200만원 이상
+</button>
+
 
         <button
           className={priceRange === "200~300" ? "active" : ""}

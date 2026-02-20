@@ -8,12 +8,13 @@ function Console() {
   const [selectedPlatform, setSelectedPlatform] = useState("all");
   const [sortOrder, setSortOrder] = useState("low");
 
-  const platformOptions = [
-    { label: "전체", value: "all" },
-    { label: "PS5", value: "ps5" },
-    { label: "닌텐도", value: "nintendo" },
-    { label: "Xbox", value: "xbox" }
-  ];
+ const platformOptions = [
+  { label: "전체", value: "all" },
+  { label: "PS5", value: "ps5" },
+  { label: "닌텐도", value: "nintendo" },
+  { label: "Xbox", value: "xbox" }
+];
+
 
   const filteredProducts = useMemo(() => {
 

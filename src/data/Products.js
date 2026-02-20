@@ -120,4 +120,137 @@ export const products = [
 { id: 102, name: "AMD Ryzen 7 7800X3D", price: 540000, type: "cpu", brand: "amd", socket: "AM5" },
 { id: 103, name: "AMD Ryzen 9 7900X", price: 600000, type: "cpu", brand: "amd", socket: "AM5" },
 
+
+{
+    id: 104,
+    name: "PS5 듀얼센스 무선 컨트롤러",
+    price: 89000,
+    category: "console",
+    platform: "ps5",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+  {
+    id: 105,
+    name: "닌텐도 스위치 OLED",
+    price: 385000,
+    category: "console",
+    platform: "nintendo",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+  {
+    id: 106,
+    name: "Xbox 무선 컨트롤러",
+    price: 79000,
+    category: "console",
+    platform: "xbox",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+
+  /* ================= 주변기기 ================= */
+  {
+    id: 107,
+    name: "로지텍 G304 무선 마우스",
+    price: 42000,
+    category: "mouse",
+    option: "wireless",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+  {
+    id: 108,
+    name: "레이저 데스에더 유선 마우스",
+    price: 39000,
+    category: "mouse",
+    option: "wired",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+  {
+    id: 109,
+    name: "앱코 적축 키보드",
+    price: 59000,
+    category: "keyboard",
+    option: "red",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+  {
+    id: 110,
+    name: "한성 갈축 키보드",
+    price: 69000,
+    category: "keyboard",
+    option: "brown",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+  {
+    id: 111,
+    name: "LG 27인치 모니터",
+    price: 289000,
+    category: "monitor",
+    option: "27",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+
+  /* ================= 세팅 ================= */
+  {
+    id: 112,
+    name: "제닉스 게이밍 의자",
+    price: 199000,
+    category: "setup",
+    type: "chair",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+  {
+    id: 113,
+    name: "카멜 모니터암",
+    price: 79000,
+    category: "setup",
+    type: "arm",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+  {
+    id: 114,
+    name: "RGB LED 스트립",
+    price: 39000,
+    category: "setup",
+    type: "led",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+  {
+    id: 115,
+    name: "게이밍 데스크 악세서리 세트",
+    price: 59000,
+    category: "setup",
+    type: "accessory",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+
+  /* ================= 노트북 ================= */
+  {
+    id: 116,
+    name: "MSI 게이밍 노트북 RTX4060",
+    price: 1690000,
+    category: "notebook",
+    type: "gaming",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  },
+  {
+    id: 117,
+    name: "ASUS 게이밍 노트북 RTX4070",
+    price: 2190000,
+    category: "notebook",
+    type: "gaming",
+    image: "https://via.placeholder.com/300x200",
+    link: "#"
+  }
 ];
