@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import "../css/recommend.css";
 import BuildGrid from "../component/BuildGrid";
+import "../css/gaming/css";
 
 function Gaming() {
 
@@ -144,6 +145,11 @@ function Gaming() {
 
       <h1>🎮 게이밍 PC 추천</h1>
       <p className="recommend-desc">게임별 예산에 맞는 추천 구성</p>
+
+          <p className="affiliate-notice">
+      이 페이지는 쿠팡 파트너스 활동의 일환으로,
+      이에 따른 일정액의 수수료를 제공받을 수 있습니다.
+    </p>
 
       {/* 🔥 필터 영역 */}
       <div className="filter-bar">
