@@ -7,6 +7,7 @@ import "../css/setup.css";   // setup 전용이면 이것도
 
 function Setup() {
 
+  const [sortOrder, setSortOrder] = useState("low");
   const [selectedType, setSelectedType] = useState("all");
 
   const typeOptions = [
@@ -38,10 +39,16 @@ function Setup() {
 
       <h1>🪑 게이밍 환경 세팅</h1>
 
+      
+
+
       {/* ================= 타입 필터 ================= */}
       {/* ================= 타입 필터 ================= */}
 <div className="setup-filter">
+  
+  
   {typeOptions.map(option => (
+    
     <button
       key={option.value}
       className={`setup-btn ${
@@ -55,8 +62,16 @@ function Setup() {
       {option.label}
     </button>
   ))}
+  
 </div>
-
+  <button
+          className="sort-btn"
+          onClick={() =>
+            setSortOrder(prev => prev === "low" ? "high" : "low")
+          }
+        >
+          {sortOrder === "low" ? "⬇ 낮은 가격순" : "⬆ 높은 가격순"}
+        </button>
 
       {/* ================= 상품 ================= */}
       <div className="recommend-grid">
