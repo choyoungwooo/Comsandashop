@@ -342,14 +342,14 @@ const handleViewResult = () => {
   useEffect(() => {
   setCurrentPage(1);
 }, [searchKeyword, activeCategory, subFilter]);
-useEffect(() => {
-  if (searchKeyword !== undefined) {
-    setActiveCategory("all");
-    setSubFilter("all");
-    setCurrentPage(1);
+const handleSearch = () => {
+  if (!searchInput.trim()) {
+    localStorage.removeItem("pc-builder");
     setSelectedItems({});
   }
-}, [searchKeyword]);
+
+  setSearchKeyword(searchInput);
+};
 
 
 useEffect(() => {
