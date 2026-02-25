@@ -16,102 +16,21 @@ function Gaming() {
 },
 
     {
-  name: "가성비 게이밍 PC RTX3060 배그 롤 피파",
+  name: "샵다나와 조립PC 게이밍컴퓨터 사무용 업무용 데스크탑 스팀게임 배그 롤 오버워치",
   price: "679,000원",
   wowprice: "663,000원",
   priceValue: 66,
-  image: "",
-  link: ""
+  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/739f/c60b481865cbfa0c300fe11865a9523a9340806ce7e66a41e8de1a5ebfa5.jpg",
+  link: "https://link.coupang.com/a/dSYUSw"
 },
 
 {
-  name: "FHD 풀옵 게이밍 컴퓨터 RTX4060",
-  price: "829,000원",
-  wowprice: "799,000원",
+  name: "에스티컴퓨터 2025 게이밍 조립PC 라이젠5 라이젠 7000 시리즈 라데온 RX 9060",
+  price: "1,264,000원",
+  wowprice: "1,248,000원",
   priceValue: 82,
-  image: "",
-  link: ""
-},
-
-{
-  name: "RTX4060Ti 고급형 게이밍 PC",
-  price: "1,099,000원",
-  wowprice: "1,059,000원",
-  priceValue: 109,
-  image: "",
-  link: ""
-},
-
-{
-  name: "배그 국민옵션 100만원대 세팅",
-  price: "999,000원",
-  wowprice: "959,000원",
-  priceValue: 99,
-  image: "",
-  link: ""
-},
-
-{
-  name: "고사양 FPS 전용 게이밍 PC",
-  price: "1,299,000원",
-  wowprice: "1,249,000원",
-  priceValue: 129,
-  image: "",
-  link: ""
-},
-
-{
-  name: "RTX4070 QHD 게이밍 세팅",
-  price: "1,499,000원",
-  wowprice: "1,439,000원",
-  priceValue: 149,
-  image: "",
-  link: ""
-},
-
-{
-  name: "하이엔드 RTX4070Ti 게이밍",
-  price: "1,799,000원",
-  wowprice: "1,729,000원",
-  priceValue: 179,
-  image: "",
-  link: ""
-},
-
-{
-  name: "영상편집 + 게이밍 겸용 32GB RAM",
-  price: "1,399,000원",
-  wowprice: "1,349,000원",
-  priceValue: 139,
-  image: "",
-  link: ""
-},
-
-{
-  name: "사무용 + 가벼운 게임 70만원대",
-  price: "699,000원",
-  wowprice: "",
-  priceValue: 69,
-  image: "",
-  link: ""
-},
-
-{
-  name: "대학생 가성비 80만원 PC",
-  price: "829,000원",
-  wowprice: "",
-  priceValue: 82,
-  image: "",
-  link: ""
-},
-
-{
-  name: "라이젠5 RTX3060 조합",
-  price: "879,000원",
-  wowprice: "849,000원",
-  priceValue: 87,
-  image: "",
-  link: ""
+  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2025/12/10/11/5/8a2d38b0-1710-49af-ba34-0f827aedb883.jpg",
+  link: "https://link.coupang.com/a/dSYXu6"
 },
   ];
 

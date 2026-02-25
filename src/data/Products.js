@@ -152,21 +152,21 @@ export const products = [
   /* ================= 주변기기 ================= */
   {
     id: 107,
-    name: "로지텍 G304 무선 마우스",
-    price: 42000,
+    name: "아이리버 여성용 손목보호 작은손 무선 버티컬 마우스 EQwear-Lady Vertical Grip EV15",
+    price: 24900,
     category: "mouse",
     option: "wireless",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
+    image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/804832835745833-9df07074-4486-4025-ba63-73710d503cfe.jpg",
+    link: "https://link.coupang.com/a/dSY4zQ"
   },
   {
     id: 108,
     name: "레이저 데스에더 유선 마우스",
-    price: 39000,
+    price: 6630,
     category: "mouse",
     option: "wired",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
+    image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2025/09/19/16/3/5f824a69-e8b9-4758-8478-448e421b7fbc.jpg",
+    link: "https://link.coupang.com/a/dSZdHn"
   },
   {
     id: 109,
@@ -287,12 +287,12 @@ export const products = [
   /* ================= 주변기기 ================= */
   {
     id: 121,
-    name: "로지텍 G PRO 무선 마우스",
-    price: 149000,
+    name: "레드빈 리유저블 멀티페어링 무소음 블루투스 마우스",
+    price: 29600,
     category: "mouse",
     option: "wireless",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
+    image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/6494643209351411-0b52fac7-c237-4d96-91d7-8e2010294ef1.jpg",
+    link: "https://link.coupang.com/a/dSZbTY"
   },
   {
     id: 122,
