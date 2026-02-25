@@ -81,6 +81,11 @@ function Setup() {
           {sortOrder === "low" ? "⬇ 낮은 가격순" : "⬆ 높은 가격순"}
         </button>
 
+        <p className="partner-notice">
+  ※ 본 페이지는 쿠팡 파트너스 활동의 일환으로,
+  이에 따른 일정액의 수수료를 제공받을 수 있습니다.
+</p>
+
       {/* ================= 상품 ================= */}
       <div className="recommend-grid">
         {filteredProducts.map(item => (
