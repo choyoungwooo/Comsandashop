@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { products } from "../data/Products";
+import BuildGrid from "../component/BuildGrid";
 import "../css/recommend.css";
 import "../css/console.css";
 
@@ -8,13 +9,12 @@ function Console() {
   const [selectedPlatform, setSelectedPlatform] = useState("all");
   const [sortOrder, setSortOrder] = useState("low");
 
- const platformOptions = [
-  { label: "전체", value: "all" },
-  { label: "PS5", value: "ps5" },
-  { label: "닌텐도", value: "nintendo" },
-  { label: "Xbox", value: "xbox" }
-];
-
+  const platformOptions = [
+    { label: "전체", value: "all" },
+    { label: "PS5", value: "ps5" },
+    { label: "닌텐도", value: "nintendo" },
+    { label: "Xbox", value: "xbox" }
+  ];
 
   const filteredProducts = useMemo(() => {
 
@@ -34,7 +34,13 @@ function Console() {
         : b.price - a.price
     );
 
-    return filtered;
+    // 🔥 BuildGrid 형식으로 변환
+    return filtered.map(p => ({
+      name: p.name,
+      image: p.image,
+      price: `${p.price.toLocaleString()}원`,
+      link: p.link
+    }));
 
   }, [selectedPlatform, sortOrder]);
 
@@ -43,7 +49,7 @@ function Console() {
 
       <h1>🎮 콘솔 · 게임 용품</h1>
 
-      {/* ================= 플랫폼 필터 ================= */}
+      {/* 플랫폼 필터 */}
       <div className="console-filter">
         {platformOptions.map(option => (
           <button
@@ -60,7 +66,7 @@ function Console() {
         ))}
       </div>
 
-      {/* ================= 정렬 ================= */}
+      {/* 정렬 */}
       <div className="console-sort">
         <button
           className="sort-btn"
@@ -73,23 +79,12 @@ function Console() {
       </div>
 
       <p className="partner-notice">
-  ※ 본 페이지는 쿠팡 파트너스 활동의 일환으로,
-  이에 따른 일정액의 수수료를 제공받을 수 있습니다.
-</p>
+        ※ 본 페이지는 쿠팡 파트너스 활동의 일환으로,
+        이에 따른 일정액의 수수료를 제공받을 수 있습니다.
+      </p>
 
-      {/* ================= 상품 ================= */}
-      <div className="recommend-grid">
-        {filteredProducts.map(item => (
-          <div key={item.id} className="recommend-card">
-            <img src={item.image} alt={item.name} />
-            <h3>{item.name}</h3>
-            <p>{item.price.toLocaleString()}원</p>
-            <a href={item.link} target="_blank" rel="noopener noreferrer">
-              구매하기
-            </a>
-          </div>
-        ))}
-      </div>
+      {/* 🔥 공통 카드 사용 */}
+      <BuildGrid builds={filteredProducts} />
 
     </div>
   );

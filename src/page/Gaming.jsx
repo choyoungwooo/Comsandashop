@@ -8,7 +8,6 @@ function Gaming() {
     {
   name: "샵다나와 조립PC 게이밍컴퓨터 사무용 업무용 데스크탑 스팀게임 배그 롤 오버워치",
   price: "679,000원", 
-  wowprice : "663,000원",
   priceValue: 66,
   image: "https://thumbnail2.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/739f/c60b481865cbfa0c300fe11865a9523a9340806ce7e66a41e8de1a5ebfa5.jpg",
   link: "https://link.coupang.com/a/dNOQh8"
@@ -17,7 +16,6 @@ function Gaming() {
     {
   name: "샵다나와 조립PC 게이밍컴퓨터 사무용 업무용 데스크탑 스팀게임 배그 롤 오버워치",
   price: "679,000원",
-  wowprice: "663,000원",
   priceValue: 66,
   image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/739f/c60b481865cbfa0c300fe11865a9523a9340806ce7e66a41e8de1a5ebfa5.jpg",
   link: "https://link.coupang.com/a/dSYUSw"
@@ -26,7 +24,6 @@ function Gaming() {
 {
   name: "에스티컴퓨터 2025 게이밍 조립PC 라이젠5 라이젠 7000 시리즈 라데온 RX 9060",
   price: "1,264,000원",
-  wowprice: "1,248,000원",
   priceValue: 82,
   image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2025/12/10/11/5/8a2d38b0-1710-49af-ba34-0f827aedb883.jpg",
   link: "https://link.coupang.com/a/dSYXu6"
