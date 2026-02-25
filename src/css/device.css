@@ -116,11 +116,11 @@
 .recommend-card {
   background: #fff;
   border-radius: 20px;
-  padding: 24px;
-  text-align: center;
-  transition: 0.3s ease;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-  border: 1px solid #f0f0f0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  /* 🔥 핵심 */
+  height: 100%;                    /* 카드 높이 동일 */
 }
 
 .recommend-card:hover {

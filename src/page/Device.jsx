@@ -1,6 +1,5 @@
 import { useState, useMemo } from "react";
 import { products } from "../data/Products";
-import "../css/recommend.css";
 import "../css/device.css";
 
 function Device() {
