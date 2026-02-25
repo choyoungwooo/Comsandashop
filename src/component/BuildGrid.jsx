@@ -23,7 +23,7 @@ function BuildGrid({ builds }) {
               className="build-btn"
               onClick={() => window.open(b.link, "_blank")}
             >
-              바로가기 →
+              구매하기
             </button>
           </div>
         </div>

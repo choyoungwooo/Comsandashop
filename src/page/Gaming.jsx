@@ -1,5 +1,4 @@
 import { useState, useMemo } from "react";
-import "../css/recommend.css";
 import BuildGrid from "../component/BuildGrid";
 import "../css/gaming.css";
 
