@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { products } from "../data/Products";
+import BuildGrid from "../component/BuildGrid";
 import "../css/device.css";
 
 function Device() {
@@ -14,7 +15,6 @@ function Device() {
     { label: "모니터", key: "monitor" }
   ];
 
-  // 🔥 브랜드 대신 카테고리별 옵션
   const optionMap = {
     mouse: [
       { label: "전체", value: "all" },
@@ -37,11 +37,11 @@ function Device() {
   };
 
   const filteredProducts = useMemo(() => {
+
     let filtered = products.filter(
       p => p.category === activeCategory
     );
 
-    // 🔥 옵션 필터
     if (selectedOption !== "all") {
       filtered = filtered.filter(
         p => p.option === selectedOption
@@ -54,15 +54,22 @@ function Device() {
         : b.price - a.price
     );
 
-    return filtered;
+    // 🔥 BuildGrid 형식에 맞게 데이터 변환
+    return filtered.map(p => ({
+      name: p.name,
+      image: p.image,
+      price: `${p.price.toLocaleString()}원`,
+      link: p.link
+    }));
 
   }, [activeCategory, sortOrder, selectedOption]);
 
   return (
     <div className="recommend-page">
+
       <h1>🎧 주변기기 모음</h1>
 
-      {/* ================= 카테고리 ================= */}
+      {/* 카테고리 */}
       <div className="device-nav">
         {categories.map(cat => (
           <button
@@ -78,9 +85,8 @@ function Device() {
         ))}
       </div>
 
-      {/* ================= 필터 ================= */}
+      {/* 필터 */}
       <div className="filter-row">
-
         <button
           className="sort-btn"
           onClick={() =>
@@ -101,26 +107,15 @@ function Device() {
             </option>
           ))}
         </select>
+      </div>
 
-      </div>
-      
       <p className="partner-notice">
-  ※ 본 페이지는 쿠팡 파트너스 활동의 일환으로,
-  이에 따른 일정액의 수수료를 제공받을 수 있습니다.
-</p>
-      {/* ================= 상품 ================= */}
-      <div className="recommend-grid">
-        {filteredProducts.map(item => (
-          <div key={item.id} className="recommend-card">
-            <img src={item.image} alt={item.name} />
-            <h3>{item.name}</h3>
-            <p>{item.price.toLocaleString()}원</p>
-            <a href={item.link} target="_blank" rel="noopener noreferrer">
-              구매하기
-            </a>
-          </div>
-        ))}
-      </div>
+        ※ 본 페이지는 쿠팡 파트너스 활동의 일환으로,
+        이에 따른 일정액의 수수료를 제공받을 수 있습니다.
+      </p>
+
+      {/* 🔥 BuildGrid 사용 */}
+      <BuildGrid builds={filteredProducts} />
 
     </div>
   );
