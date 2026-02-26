@@ -93,34 +93,71 @@ function Landing() {
       {/* MONTHLY RECOMMEND */}
 
 
-          <section className="monthly">
+<section className="monthly">
   <div className="monthly-inner">
     <h2>🔥 이번 달 추천 견적</h2>
 
     <div className="monthly-grid">
 
       <div className="monthly-card">
-        <h3>로스트아크 120만원</h3>
-        <p>RTX 4060 · FHD 풀옵션</p>
-        <button>자세히 보기 →</button>
+        <h3>달컴 윈도우탑재 게이밍 조립PC</h3>
+        <p>RTX 5070 + i7 12700F 조합</p>
+        <a
+          href="https://link.coupang.com/a/dTl4vg"
+          className="detail-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          구성 확인하기 →
+        </a>
       </div>
 
       <div className="monthly-card">
-        <h3>영상편집 150만원</h3>
-        <p>RTX 4060Ti · 32GB RAM</p>
-        <button>자세히 보기 →</button>
+        <h3>40만원대 가성비 i7 게이밍 PC</h3>
+        <p>
+          GTX1060 + 16GB 구성 <br />
+          입문용으로 부담 적은 가격대
+        </p>
+        <a
+          href="https://link.coupang.com/a/dTmyL4"
+          className="detail-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          가격 확인하기 →
+        </a>
       </div>
 
       <div className="monthly-card">
-        <h3>대학생 가성비 80만원</h3>
-        <p>i5 · 내장그래픽</p>
-        <button>자세히 보기 →</button>
+        <h3>
+            원트컴 음악작업 미디 작곡용 큐베이스 컴퓨터</h3>
+        <p>
+          🎼 음악 작업 입문자용 32GB 세팅, 홈레코딩·BGM 제작에 적합한 PC
+        </p>
+        <a
+          href="https://link.coupang.com/a/dTmHvY"
+          className="detail-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          가격 확인하기 →
+        </a>
       </div>
 
       <div className="monthly-card">
-        <h3>코딩용 100만원</h3>
-        <p>Ryzen 5 · 16GB RAM</p>
-        <button>자세히 보기 →</button>
+        <h3>
+            포토샵 컴퓨터 일러스트 디자인 디자이너 오토캐드 스케치업 캐드용 설계용</h3>
+        <p>
+          🖌️ 포토샵·캐드용 실속형 본체, 사무·디자인 겸용으로 적당
+        </p>
+        <a
+          href="https://link.coupang.com/a/dTmYiT"
+          className="detail-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          가격 확인하기 →
+        </a>
       </div>
 
     </div>
