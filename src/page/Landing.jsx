@@ -100,6 +100,7 @@ function Landing() {
     <div className="monthly-grid">
 
       <div className="monthly-card">
+        <span className="badge">BEST</span>
         <h3>달컴 윈도우탑재 게이밍 조립PC</h3>
         <p>RTX 5070 + i7 12700F 조합</p>
         <a
@@ -113,6 +114,7 @@ function Landing() {
       </div>
 
       <div className="monthly-card">
+        <span className="badge">가성비</span>
         <h3>40만원대 가성비 i7 게이밍 PC</h3>
         <p>
           GTX1060 + 16GB 구성 <br />
@@ -129,6 +131,7 @@ function Landing() {
       </div>
 
       <div className="monthly-card">
+        <span className="badge">BEST</span>
         <h3>
             원트컴 음악작업 미디 작곡용 큐베이스 컴퓨터</h3>
         <p>
@@ -145,6 +148,7 @@ function Landing() {
       </div>
 
       <div className="monthly-card">
+        <span className="badge">BEST</span>
         <h3>
             포토샵 컴퓨터 일러스트 디자인 디자이너 오토캐드 스케치업 캐드용 설계용</h3>
         <p>
