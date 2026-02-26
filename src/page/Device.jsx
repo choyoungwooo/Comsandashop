@@ -26,7 +26,8 @@ function Device() {
       { label: "적축", value: "red" },
       { label: "갈축", value: "brown" },
       { label: "청축", value: "blue" },
-      { label: "저소음", value: "silent" }
+      { label: "저소음", value: "silent" },
+      { label: "흑축", value: "black" }
     ],
     monitor: [
       { label: "전체", value: "all" },

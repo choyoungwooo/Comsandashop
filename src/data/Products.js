@@ -121,33 +121,33 @@ export const products = [
 { id: 103, name: "AMD Ryzen 9 7900X", price: 600000, type: "cpu", brand: "amd", socket: "AM5" },
 
 
-{
-    id: 104,
-    name: "PS5 듀얼센스 무선 컨트롤러",
-    price: 89000,
-    category: "console",
-    platform: "ps5",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
-  },
-  {
-    id: 105,
-    name: "닌텐도 스위치 OLED",
-    price: 385000,
-    category: "console",
-    platform: "nintendo",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
-  },
-  {
-    id: 106,
-    name: "Xbox 무선 컨트롤러",
-    price: 79000,
-    category: "console",
-    platform: "xbox",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
-  },
+// {
+//     id: 104,
+//     name: "PS5 듀얼센스 무선 컨트롤러",
+//     price: 89000,
+//     category: "console",
+//     platform: "ps5",
+//     image: "https://via.placeholder.com/300x200",
+//     link: "#"
+//   },
+//   {
+//     id: 105,
+//     name: "닌텐도 스위치 OLED",
+//     price: 385000,
+//     category: "console",
+//     platform: "nintendo",
+//     image: "https://via.placeholder.com/300x200",
+//     link: "#"
+//   },
+//   {
+//     id: 106,
+//     name: "Xbox 무선 컨트롤러",
+//     price: 79000,
+//     category: "console",
+//     platform: "xbox",
+//     image: "https://via.placeholder.com/300x200",
+//     link: "#"
+//   },
 
   /* ================= 주변기기 ================= */
   {
@@ -170,119 +170,119 @@ export const products = [
   },
   {
     id: 109,
-    name: "앱코 적축 키보드",
-    price: 59000,
+    name: "앱코 축교환 레인보우 무빙 LED 기계식 유선 일반형 키보드",
+    price: 30900,
     category: "keyboard",
-    option: "red",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
+    option: "brown",
+    image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/1025_amir_coupang_oct_80k/1c62/98f3c1af3966e166a88b79645a2aeca6c00f0c438144ad58b68313a49558.jpg",
+    link: "https://link.coupang.com/a/dTeSTV"
   },
   {
     id: 110,
-    name: "한성 갈축 키보드",
-    price: 69000,
+    name: "MSI FORGE GK300 RGB 게이밍 유선 키보드 청축",
+    price: 39900,
     category: "keyboard",
-    option: "brown",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
+    option: "blue",
+    image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/e54e/7ec4791a91d81d8fc8dd594b1724e55dfc23d4a704b62192be774f103d9f.jpg",
+    link: "https://link.coupang.com/a/dTe596"
   },
   {
     id: 111,
-    name: "LG 27인치 모니터",
-    price: 289000,
+    name: "MSI FHD PRO MP273L E14-800 IPS 144 시력보호 게이밍 무결점 모니터",
+    price: 128270,
     category: "monitor",
     option: "27",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
+    image: "https://thumbnail12.coupangcdn.com/thumbnails/remote/212x212ex/image/retail/images/2025/12/29/14/1/9813af0b-5d43-444a-bb86-eb89cb623cad.jpg",
+    link: "https://link.coupang.com/a/dTflyb"
   },
 
   /* ================= 세팅 ================= */
-  {
-    id: 112,
-    name: "제닉스 게이밍 의자",
-    price: 199000,
-    category: "setup",
-    type: "chair",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
-  },
-  {
-    id: 113,
-    name: "카멜 모니터암",
-    price: 79000,
-    category: "setup",
-    type: "arm",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
-  },
-  {
-    id: 114,
-    name: "RGB LED 스트립",
-    price: 39000,
-    category: "setup",
-    type: "led",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
-  },
-  {
-    id: 115,
-    name: "게이밍 장패드",
-    price: 59000,
-    category: "setup",
-    type: "pad",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
-  },
+  // {
+  //   id: 112,
+  //   name: "제닉스 게이밍 의자",
+  //   price: 199000,
+  //   category: "setup",
+  //   type: "chair",
+  //   image: "https://via.placeholder.com/300x200",
+  //   link: "#"
+  // },
+  // {
+  //   id: 113,
+  //   name: "카멜 모니터암",
+  //   price: 79000,
+  //   category: "setup",
+  //   type: "arm",
+  //   image: "https://via.placeholder.com/300x200",
+  //   link: "#"
+  // },
+  // {
+  //   id: 114,
+  //   name: "RGB LED 스트립",
+  //   price: 39000,
+  //   category: "setup",
+  //   type: "led",
+  //   image: "https://via.placeholder.com/300x200",
+  //   link: "#"
+  // },
+  // {
+  //   id: 115,
+  //   name: "게이밍 장패드",
+  //   price: 59000,
+  //   category: "setup",
+  //   type: "pad",
+  //   image: "https://via.placeholder.com/300x200",
+  //   link: "#"
+  // },
 
   /* ================= 노트북 ================= */
   {
     id: 116,
-    name: "MSI 게이밍 노트북 RTX4060",
-    price: 1690000,
+    name: "HP 2023 오멘 16 16.1 코어i5 인텔 13세대 지포스 RTX 4060",
+    price: 1949000,
     category: "notebook",
     type: "gaming",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
+    image: "https://thumbnail7.coupangcdn.com/thumbnails/remote/212x212ex/image/retail/images/83301988890711-cd88c90f-583d-4eee-a468-388ab1b310a5.jpg",
+    link: "https://link.coupang.com/a/dTfztr"
   },
   {
     id: 117,
-    name: "ASUS 게이밍 노트북 RTX4070",
-    price: 2190000,
+    name: "HP 2025 오멘 16 라이젠9 라이젠 8000 시리즈 지포스 RTX 5060",
+    price: 2499000,
     category: "notebook",
     type: "gaming",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
+    image: "https://t1a.coupangcdn.com/thumbnails/remote/212x212ex/image/retail/images/2025/06/13/14/6/b29540df-1701-4d18-8902-7064ee7406ec.jpg",
+    link: "https://link.coupang.com/a/dTfCdj"
   },
   /* ====== 추가 항목 ====== */
 
   /* ================= 콘솔 ================= */
   {
     id: 118,
-    name: "PS5 디스크 에디션",
-    price: 698000,
+    name: "엑스박스 블루투스 컨트롤러 4세대 카본 블랙 + 케이블 세트",
+    price: 62800,
     category: "console",
-    platform: "ps5",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
+    platform: "xnox",
+    image: "https://thumbnail4.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/574f/59e8bcfc5852dc97eabcfbd2a4db9765c731ee718ea8bf543cca3bc98ad9.jpg",
+    link: "https://link.coupang.com/a/dTfvzK"
   },
-  {
-    id: 119,
-    name: "닌텐도 스위치 라이트",
-    price: 249000,
-    category: "console",
-    platform: "nintendo",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
-  },
-  {
-    id: 120,
-    name: "Xbox Series S",
-    price: 398000,
-    category: "console",
-    platform: "xbox",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
-  },
+  // {
+  //   id: 119,
+  //   name: "닌텐도 스위치 라이트",
+  //   price: 249000,
+  //   category: "console",
+  //   platform: "nintendo",
+  //   image: "https://via.placeholder.com/300x200",
+  //   link: "#"
+  // },
+  // {
+  //   id: 120,
+  //   name: "Xbox Series S",
+  //   price: 398000,
+  //   category: "console",
+  //   platform: "xbox",
+  //   image: "https://via.placeholder.com/300x200",
+  //   link: "#"
+  // },
 
   /* ================= 주변기기 ================= */
   {
@@ -296,80 +296,106 @@ export const products = [
   },
   {
     id: 122,
-    name: "앱코 저소음 키보드",
-    price: 89000,
+    name: "에이투 유선 텐키리스 기계식 게이밍 키보드",
+    price: 59900,
     category: "keyboard",
-    option: "silent",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
+    option: "red",
+    image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/82669979050581-42099e30-7d5f-4f54-b5c3-9cba83bab3a7.jpg",
+    link: "https://link.coupang.com/a/dTeN89"
   },
   {
     id: 123,
-    name: "삼성 32인치 게이밍 모니터",
-    price: 459000,
+    name: "삼삼성전자 오디세이 G5 IPS 32인치(80.1cm) QHD 피벗 평면 모니터",
+    price: 389000,
     category: "monitor",
     option: "32",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
+    image: "https://thumbnail2.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/7212/5f6d30fac4fa81bca905131dfd92836b599325420116acd1e0768845e52e.jpg",
+    link: "https://link.coupang.com/a/dTfola"
   },
 
   /* ================= 세팅 ================= */
   {
     id: 124,
-    name: "DXRacer 게이밍 의자",
-    price: 329000,
+    name: "New World e스포츠 의자 인체공학 컴퓨터 의자 게임 의자 사무용 의자 767",
+    price: 162000,
     category: "setup",
     type: "chair",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
+    image: "https://thumbnail4.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/1e96/1ae82360329ec3d8bd79f67e66fb5feaeb007c232a8e48239a84b9d3c3ae.png",
+    link: "https://link.coupang.com/a/dTfMoA"
   },
   {
     id: 125,
-    name: "NB 모니터 암 싱글",
-    price: 59000,
+    name: "카멜 듀얼 모니터암 CA-1D + 홀타입",
+    price: 49000,
     category: "setup",
     type: "arm",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
+    image: "https://t3c.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/df24/eb276efa9c79e2e07c094c96192675f3bd01a874d77b75749d11480f6683.jpg",
+    link: "https://link.coupang.com/a/dTfNQc"
   },
   {
     id: 126,
-    name: "RGB 데스크 LED 조명",
-    price: 49000,
+    name: "RGB 라인 LED 스트립 붙이는조명 PC방 감성 간접 무드등 틱톡조명 홈피시방",
+    price: 9800,
     category: "setup",
     type: "led",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
+    image: "https://t1a.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/123a/b1953c8b3dd6bd20693d8fdb55505c367521d4ec7fca90cfd3898f4345a2.jpg",
+    link: "https://link.coupang.com/a/dTfQv9"
   },
   {
     id: 127,
-    name: "게이밍 데스크 패드",
-    price: 39000,
+    name: "녹스 게이밍 장패드 캐릭터 마우스패드 방수코팅 NX-P1드",
+    price: 18500,
     category: "setup",
     type: "pad",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
+    image: "https://thumbnail8.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/8924/137226c789b2ee6e6bd6849834534a999faeb05ec8391d111f0a07ec0919.jpg",
+    link: "https://link.coupang.com/a/dTfRT8"
   },
 
   /* ================= 노트북 ================= */
   {
     id: 128,
-    name: "HP Omen RTX4050 게이밍 노트북",
-    price: 1290000,
+    name: "삼성 노트북 PLUS2 NT551XDA i7-1165G7/MX450/8G/SSD256GB/15.6 FHD/win11 11세대i7 지포스 게이밍 ddr4 램추가 최신사양삼성 PLUS2 NT551XDA · WIN11 Pro · 16GB · 256GB · 미스틱그레이",
+    price: 549000,
     category: "notebook",
     type: "gaming",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
+    image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/image_audit/stage/manual/057c7047-d522-4f56-a91d-976ea6d618c8_1768454394984.jpeg",
+    link: "https://link.coupang.com/a/dTfExD"
   },
   {
     id: 129,
-    name: "ASUS ROG RTX4080 게이밍 노트북",
-    price: 3490000,
+    name: "MSI 소드 GF76 HX B14WGK-i9 i9-14900HX RTX5070 WIN11 설치 고성능 게임용 노트북소드 GF76 HX B14WGK-i9 · WIN11 Pro · 64GB · 2TB · 단일색상",
+    price: 3933000,
     category: "notebook",
     type: "gaming",
-    image: "https://via.placeholder.com/300x200",
-    link: "#"
-  }
+    image: "https://thumbnail12.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/4fb5/4c92e0cf7e9e8524ac534d5693a22aca6c00657d9a0a7f4c6d0a66e92f85.jpg",
+    link: "https://link.coupang.com/a/dTfGij"
+  },
+     { id: 130,
+    name: "아이리버 Silent 듀얼모드 멀티페어링 블루투스 무소음 무선 키보드",
+    price: 26900,
+    category: "keyboard",
+    option: "silent",
+    image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2025/11/11/11/3/c253ef10-e067-43a2-94e1-8196f3568a43.jpg",
+    link: "https://link.coupang.com/a/dTfb2Z"
+     },
+
+     { id: 131,
+    name: "CHERRY 유선 기계식키보드",
+    price: 72700,
+    category: "keyboard",
+    option: "black",
+    image: "https://thumbnail9.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/1158/8bc9533b703067b42c6715bf0574629b14b774b108f8ab8ebe1cd53d2490.jpg",
+    link: "https://link.coupang.com/a/dTffGV"
+     },
+       {
+    id: 132,
+    name: "레노버 FHD C타입 144Hz IPS 무결점 모니터",
+    price: 189000,
+    category: "monitor",
+    option: "24",
+    image: "https://t5a.coupangcdn.com/thumbnails/remote/212x212ex/image/retail/images/2025/12/08/12/4/082640b7-9035-4209-99f1-ce0b185b1fee.jpg",
+    link: "https://link.coupang.com/a/dTfqgO"
+  },
 
 ];
 
