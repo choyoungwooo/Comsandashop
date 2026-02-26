@@ -109,7 +109,7 @@ function Landing() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          구성 확인하기 →
+          가격 확인하기 →
         </a>
       </div>
 
@@ -150,7 +150,7 @@ function Landing() {
       <div className="monthly-card">
         <span className="badge">BEST</span>
         <h3>
-            포토샵 컴퓨터 일러스트 디자인 디자이너 오토캐드 스케치업 캐드용 설계용</h3>
+            포토샵·오토캐드 작업용</h3>
         <p>
           🖌️ 포토샵·캐드용 실속형 본체, 사무·디자인 겸용으로 적당
         </p>
