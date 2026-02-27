@@ -299,6 +299,13 @@ const handleDecrease = (type) => {
     );
   }
 
+  // ✅ 선택 안 된 카테고리 목록
+const emptyCategories = useMemo(() => {
+  return categories
+    .filter(cat => !selectedItems[cat.key])   // 선택 안된 것
+    .map(cat => cat.label);
+}, [selectedItems, categories]);
+
   if (activeCategory !== "all") {
     filtered = filtered.filter((p) => p.type === activeCategory);
   }
@@ -353,12 +360,19 @@ const handleViewResult = () => {
     return;
   }
 
-  // 🔥 호환성 경고가 있을 경우
+  // ✅ 비어있는 카테고리 안내
+  if (emptyCategories.length > 0) {
+    const confirmMove = window.confirm(
+      `아직 선택되지 않은 항목이 있습니다:\n- ${emptyCategories.join("\n- ")}\n\n그래도 구매처 보기를 진행하시겠습니까?`
+    );
+    if (!confirmMove) return;
+  }
+
+  // ✅ 호환성 경고가 있을 경우 (기존 로직 유지)
   if (compatibilityWarning) {
     const confirmMove = window.confirm(
       compatibilityWarning + "\n\n그래도 진행하시겠습니까?"
     );
-
     if (!confirmMove) return;
   }
 
