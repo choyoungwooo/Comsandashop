@@ -119,9 +119,9 @@ const ItemRow = ({ item, showButtons = false }) => (
       </div>
     </div>
 
-    <div className="summary-price">
-      {(item.price * item.qty).toLocaleString()}원
-    </div>
+    <div className="item-price">
+  {(item.price * item.qty).toLocaleString()}원
+</div>
   </div>
 );
 
@@ -162,8 +162,8 @@ const ItemRow = ({ item, showButtons = false }) => (
           </div>
 
           {items.map((item) => (
-            <ItemRow key={item.id} item={item} showButtons={true} />
-          ))}
+  <ItemRow key={item.id} item={item} showButtons={false} />
+))}
 
           <div className="summary-footer">
             <div className="footer-left">comsanda.co.kr</div>

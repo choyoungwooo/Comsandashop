@@ -192,13 +192,13 @@
 }
 
 
-.buy-buttons a:hover {
+/* .buy-buttons a:hover {
   background: linear-gradient(135deg, var(--main-blue), var(--main-purple));
   color: white;
   border-color: transparent;
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(108,92,231,0.25);
-}
+} */
 
 .price-label {
   font-size: 13px;
@@ -506,4 +506,57 @@
     color:#6c5ce7;
     display:block;        /* 🔥 위에서 display:flex로 바꾼거 무력화 */
   }
+}/* =========================
+   FIX: summary-price 충돌 제거
+========================= */
+
+/* 총액 영역은 유지 (summary-top 안에서만) */
+.summary-top .summary-price{
+  min-width: auto;
+  text-align: right;
+  font-weight: 700;
+}
+
+/* 아이템 가격은 item-price로 분리 */
+.item-price{
+  font-weight: 700;
+  font-size: 16px;
+  color: #6c5ce7;
+  min-width: 120px;
+  text-align: right;
+}
+
+/* 기존 summary-item 레이아웃 안정화 */
+.summary-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap: 16px;
+}
+
+.summary-left{
+  flex: 1;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  min-width: 0;
+}
+
+.summary-info{
+  min-width:0;
+}
+
+/* 긴 제품명 줄바꿈/말줄임 안정 */
+.item-name{
+  margin: 0;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+/* =========================
+   (선택) 왼쪽 summary-box에서는 buy-buttons 숨김 (보험)
+   -> 혹시 실수로 showButtons true로 다시 넣어도 안 보이게
+========================= */
+.summary-box .buy-buttons{
+  display:none !important;
 }
