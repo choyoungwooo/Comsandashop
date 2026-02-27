@@ -21,80 +21,53 @@ const categories = [
   { label: "쿨러", key: "cooler"}
 ];
 
-const brandOptions = {
 
-    gpu: {
-    manufacturer: [
-      { value: "nvidia", label: "NVIDIA" },
-      { value: "amd", label: "AMD Radeon" }
-    ]
-  },
-
-  cpu: {
-    manufacturer: [
-      { value: "intel", label: "Intel" },
-      { value: "amd", label: "AMD" }
-    ]
-  },
-
-  mainboard: {
-    socket: [
-      { value: "intel", label: "Intel Socket" },
-      { value: "amd", label: "AMD Socket" }
-    ],
-    brand: [
-      { value: "asus", label: "ASUS" },
-      { value: "msi", label: "MSI" },
-      { value: "gigabyte", label: "Gigabyte" },
-      { value: "asrock", label: "ASRock" }
-    ]
-  },
-
-  ram: {
-    brand: [
-      { value: "samsung", label: "Samsung" },
-      { value: "skhynix", label: "SK Hynix" },
-      { value: "corsair", label: "Corsair" },
-      { value: "gskill", label: "G.SKILL" }
-    ]
-  },
-
-  ssd: {
-    brand: [
-      { value: "samsung", label: "Samsung" },
-      { value: "wd", label: "Western Digital" },
-      { value: "skhynix", label: "SK Hynix" },
-      { value: "crucial", label: "Crucial" }
-    ]
-  },
-
-  psu: {
-    brand: [
-      { value: "seasonic", label: "Seasonic" },
-      { value: "fsp", label: "FSP" },
-      { value: "micronics", label: "Micronics" },
-      { value: "corsair", label: "Corsair" }
-    ]
-  },
-
-  case: {
-    brand: [
-      { value: "darkflash", label: "DarkFlash" },
-      { value: "3rsys", label: "3RSYS" },
-      { value: "abko", label: "ABKO" },
-      { value: "nzxt", label: "NZXT" }
-    ]
-  },
-
-  cooler: {
-    brand: [
-      { value: "deepcool", label: "DeepCool" },
-      { value: "thermalright", label: "Thermalright" },
-      { value: "nzxt", label: "NZXT" },
-      { value: "corsair", label: "Corsair" },
-      { value: "coolermaster", label: "Cooler Master" }
-    ]
-  }
+ const brandOptions = {
+  gpu: [
+    { value: "nvidia", label: "NVIDIA" },
+    { value: "amd", label: "AMD Radeon" }
+  ],
+  cpu: [
+    { value: "intel", label: "Intel" },
+    { value: "amd", label: "AMD" }
+  ],
+  mainboard: [
+    { value: "asus", label: "ASUS" },
+    { value: "msi", label: "MSI" },
+    { value: "gigabyte", label: "Gigabyte" },
+    { value: "asrock", label: "ASRock" }
+  ],
+  ram: [
+    { value: "samsung", label: "Samsung" },
+    { value: "skhynix", label: "SK Hynix" },
+    { value: "corsair", label: "Corsair" },
+    { value: "gskill", label: "G.SKILL" }
+  ],
+  ssd: [
+    { value: "samsung", label: "Samsung" },
+    { value: "wd", label: "Western Digital" },
+    { value: "skhynix", label: "SK Hynix" },
+    { value: "crucial", label: "Crucial" }
+  ],
+  psu: [
+    { value: "seasonic", label: "Seasonic" },
+    { value: "fsp", label: "FSP" },
+    { value: "micronics", label: "Micronics" },
+    { value: "corsair", label: "Corsair" }
+  ],
+  case: [
+    { value: "darkflash", label: "DarkFlash" },
+    { value: "3rsys", label: "3RSYS" },
+    { value: "abko", label: "ABKO" },
+    { value: "nzxt", label: "NZXT" }
+  ],
+  cooler: [
+    { value: "deepcool", label: "DeepCool" },
+    { value: "thermalright", label: "Thermalright" },
+    { value: "nzxt", label: "NZXT" },
+    { value: "corsair", label: "Corsair" },
+    { value: "coolermaster", label: "Cooler Master" }
+  ]
 };
 
   const [activeBrand, setActiveBrand] = useState("all");
