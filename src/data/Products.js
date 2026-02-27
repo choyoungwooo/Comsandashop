@@ -1,6 +1,6 @@
 export const products = [
 
-  // ================= GPU (15) =================
+  // ================= GPU (nvidia) =================
   { id: 1, name: "갤럭틱 지포스 rtx 4060 EX 원클릭 OC 익스트림 튜너 앱 컨트롤 8GB GDDR6 128비트 DP3/HDMI 2.1/DLSS 3/게이밍 그래픽 카드", price: 575400, type: "gpu", brand: "nvidia", image: "https://thumbnail1.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/6b01/b7479780e0ea25d6e32b865c76836cb285323250d8a6051d5ee81cc7c515.jpg", link: "https://link.coupang.com/a/dT2Hn0" },
   { id: 2, name: "MSI/MSI rtx 4060TI VENTUS 2X BLACK 8G OC Wantu Shi", price: 668900, type: "gpu", brand: "nvidia", image: "https://thumbnail8.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/2897/796a7dd2a8631b3241aef740c05b8cc17044d7723960b8e18602f2453c5b.jpg", link: "https://link.coupang.com/a/dT22F9" },
   { id: 3, name: "[PNY] 지포스 rtx 4070 SUPER VERTO OC D6X 12GB DF STCOM", price: 1018000, type: "gpu", brand: "nvidia", image: "https://t3c.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/70c5/a6f7fd35e674a7bf57142082b3e049a2f943ebd4a0498fbc907bd00e5412.jpg", link: "https://link.coupang.com/a/dT25ba" },
@@ -9,7 +9,15 @@ export const products = [
   { id: 6, name: "액슬 지포스 rtx 3060 Ti D6 8GB White 에즈윈단일상품", price: 511240, type: "gpu", brand: "nvidia", image: "https://t5a.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/31b7/4afcd77f600eb161a3512ae289b12def27c0e11e7999cd5ad7d50dcc3e0d.jpg", link: "https://link.coupang.com/a/dT3a5o" },
   { id: 7, name: "지포스 gtx 1660 6GB 게이밍 그래픽카드", price: 168000, type: "gpu", brand: "nvidia", image: "https://thumbnail7.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/fd4c/2ced38d82f89eb04c432f981f8fd5ff1e99a727db2aed9c98cad8b4a4daa.jpg", link: "https://link.coupang.com/a/dT3cWa" },
   { id: 8, name: "이도디스플레이 지포스 GTX 1660 SUPER RAGE-X D6 6GB 새상품단일상품", price: 272950, type: "gpu", brand: "nvidia", image: "https://thumbnail15.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/05b6/d46938ba17d8fda29acae1d3d17db281fa155189b82dc6630feb50422dae.jpg", link: "https://link.coupang.com/a/dT3jYs" },
+
+  // ================= GPU (amd) =================
   { id: 9, name: "[ASRock] Radeon™ RX 7600 CHALLENGER OC D6 8GB 대원씨티에스", price: 498000, type: "gpu", brand: "amd", image: "https://t1a.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/9ff4/e8facf30596fe11d5f5b3da1d4bfc6dc1c90ecb834fa836a4e347ad56837.jpg", link: "https://link.coupang.com/a/dT3mqy" },
+  { id: 10, name: "XFX 라데온 RX 570 RS XXX 에디션 1286MHz 8GB GDDR5 DX12 VR 지원 듀얼 BIOS 3개 DP HDMI DVI AMD 그래픽 카드 (RX570P8D", price: 163100, type: "gpu", brand: "amd", image: "https://thumbnail6.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/25a6/9f16133e9c39f06e2511d14bccff9cd744edcfb8c2440189c93293e31ff0.jpg", link: "https://link.coupang.com/a/dT3PtY" },
+  { id: 11, name: "기존 ASUS RX 5600 XT 6GB 그래픽 카드 GPU AMD Radeon RX5600 5600XT 게임 비디오 카드 데스크탑 게임 맵 컴퓨터 화면 카드", price: 275400, type: "gpu", brand: "amd", image: "https://t5a.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/d2d6/e75f915a879e51c77825b6948ee0c9afc00c00fdbb71e81dddf0278b5087.jpg", link: "https://link.coupang.com/a/dT3YiH" },
+  { id: 12, name: "GPVHOSO Radeon RX 5700 XT 8GB 그래픽 카드 2560SP GDDR6 256비트 컴퓨터 그래픽 카드 GPU PCI-e 4.0 x16 HDMI/디스플레이 포트", price: 498000, type: "gpu", brand: "amd", image: "https://t3c.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/3cbf/9920d99ce7e3ca28bf99ae9622bfba875a088119787c0f77aed7b73728af.jpg", link: "https://link.coupang.com/a/dT31eK" },
+  { id: 13, name: "SAPPHIRE 라데온 RX 6600 PULSE D6 8GB", price: 1000000, type: "gpu", brand: "amd", image: "https://thumbnail10.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/3567/4d3d2377bbe2a9aed1e8137838016aa0daa5b5485676dad58cea0b63cdc4.png", link: "https://link.coupang.com/a/dT34hj" },
+  { id: 14, name: "[XFX] Radeon™ RX 7900 XTX MERC 310 BLACK D6 24GB STCOM", price: 1797000, type: "gpu", brand: "amd", image: "https://t1c.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/8bf9/80a8a3da08f53d63edfe7cf0214f03ab1e8a579c53fc9b1abc4571560cdb.jpg", link: "https://link.coupang.com/a/dT3604" },
+  
 
   // ================= MAINBOARD (15) =================
   { id: 16, name: "ASUS Z790", price: 320000, type: "mainboard", brand: "intel", socket: "LGA1700",link:"" },

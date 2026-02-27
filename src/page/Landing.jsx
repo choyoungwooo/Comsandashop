@@ -109,7 +109,7 @@ function Landing() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          가격 확인하기 →
+          상품 보러가기 →
         </a>
       </div>
 
@@ -126,7 +126,7 @@ function Landing() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          가격 확인하기 →
+          상품 보러가기 →
         </a>
       </div>
 
@@ -143,7 +143,7 @@ function Landing() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          가격 확인하기 →
+          상품 보러가기 →
         </a>
       </div>
 
@@ -160,7 +160,7 @@ function Landing() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          가격 확인하기 →
+          상품 보러가기 →
         </a>
       </div>
 
