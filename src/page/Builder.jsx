@@ -441,6 +441,8 @@ useEffect(() => {
         <div className="category-nav">
           <div className="category-nav-inner">
             {categories.map((cat) => (
+
+              
               <button
                 key={cat.key}
                 className={activeCategory === cat.key ? "active" : ""}
@@ -578,6 +580,67 @@ useEffect(() => {
 
 
         <div className="estimate-content">
+          {categories.map((cat) => {
+  const item = selectedItems[cat.key];
+
+  // ✅ 비어있는 슬롯
+  if (!item) {
+    return (
+      <div key={cat.key} className="estimate-slot empty">
+        <div className="slot-left">
+          <span className="slot-label">{cat.label}</span>
+        </div>
+
+        <div className="slot-right">
+          <span className="slot-empty">비어있음</span>
+
+          <button
+            className="go-select-btn"
+            onClick={() => handleCategoryChange(cat.key)}
+          >
+            선택하러가기
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // ✅ 선택된 슬롯 (기존 그대로)
+  return (
+    <div key={cat.key} className="estimate-slot">
+      <div className="slot-left">
+        <span className="slot-label">{cat.label}</span>
+      </div>
+
+      <div className="slot-right">
+        <div className="slot-info">
+          <img
+            src={item.product.image}
+            alt={item.product.name}
+            className="slot-image"
+          />
+          <span className="slot-name">{item.product.name}</span>
+        </div>
+
+        {multiQuantityTypes.includes(cat.key) && (
+          <div className="quantity-box">
+            <button onClick={() => handleDecrease(cat.key)}>-</button>
+            <span>{item.quantity}</span>
+            <button onClick={() => handleIncrease(cat.key)}>+</button>
+          </div>
+        )}
+
+        <span className="slot-price">
+          {(item.product.price * item.quantity).toLocaleString()}원
+        </span>
+
+        <button className="remove-btn" onClick={() => handleRemove(cat.key)}>
+          ✕
+        </button>
+      </div>
+    </div>
+  );
+})}
 
           {Object.entries(selectedItems).length === 0 ? (
   <div className="empty-estimate">
