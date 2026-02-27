@@ -113,11 +113,6 @@
 .summary-item:last-child {
   border-bottom: none;
 }
-.summary-left {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
 
 .summary-price {
   font-weight: 600;
@@ -203,11 +198,6 @@
   border-color: transparent;
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(108,92,231,0.25);
-}
-.summary-price {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* 🔥 여기서 간격 조절 */
 }
 
 .price-label {
