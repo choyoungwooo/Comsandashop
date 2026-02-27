@@ -99,9 +99,9 @@ const [confirmMessage, setConfirmMessage] = useState("");
 ];
 
  const gameBudgetMap = {
-  lol: 120000,
+  lol: 1200000,
   valorant: 1500000,
-  fifa: 120000,
+  fifa: 1200000,
   overwatch: 1500000,
   pubg: 2000000,
   loa: 2000000,
@@ -122,10 +122,10 @@ const gameTierMap = {
 };
 
 const tierBudgetMap = {
-  low: 800000,
-  mid: 1000000,
-  high: 1300000,
-  ultra: 1800000,
+  low: 1200000,
+  mid: 2000000,
+  high: 3000000,
+  ultra: 10000000000,
 };
 const autoBuild = (game) => {
 
