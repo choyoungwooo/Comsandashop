@@ -80,9 +80,18 @@ function Result() {
      5. 상품 UI 컴포넌트
   ========================== */
 
-  const ItemRow = ({ item, showButtons = false }) => (
-    <div className="summary-item">
-      <div className="summary-left">
+const ItemRow = ({ item, showButtons = false }) => (
+  <div className="summary-item">
+    
+    <div className="summary-left">
+
+      <img
+        src={item.image}
+        alt={item.name}
+        className="summary-image"
+      />
+
+      <div>
         <p className="item-name">{item.name}</p>
         <span className="item-type">{item.type.toUpperCase()}</span>
 
@@ -109,11 +118,13 @@ function Result() {
         )}
       </div>
 
-      <div className="summary-price">
-        {item.price.toLocaleString()}원
-      </div>
     </div>
-  );
+
+    <div className="summary-price">
+      {item.price.toLocaleString()}원
+    </div>
+  </div>
+);
 
   if (!items.length) {
     return (

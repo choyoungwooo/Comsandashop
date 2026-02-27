@@ -426,3 +426,17 @@
   line-height: 1.5;
   text-align: center;
 }
+.summary-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.summary-image {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #f4f6fb;
+  padding: 6px;
+}
