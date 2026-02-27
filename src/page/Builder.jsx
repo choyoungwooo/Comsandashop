@@ -581,9 +581,16 @@ useEffect(() => {
 
       <div className="slot-right">
 
-        <span className="slot-name">
-          {item.product.name}
-        </span>
+        <div className="slot-info">
+  <img 
+    src={item.product.image} 
+    alt={item.product.name} 
+    className="slot-image"
+  />
+  <span className="slot-name">
+    {item.product.name}
+  </span>
+</div>
 
         {multiQuantityTypes.includes(type) && (
           <div className="quantity-box">

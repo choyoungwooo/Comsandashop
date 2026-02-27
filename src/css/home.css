@@ -675,3 +675,17 @@ total-price{
   }
 
 }
+.slot-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.slot-image {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #f5f6fa;
+  padding: 4px;
+}

@@ -38,6 +38,7 @@ function Result() {
       name: it.product.name,
       price: it.product.price,
       type: it.product.type,
+      image: it.product.image, 
       qty: it.quantity ?? 1,
     }));
   };
