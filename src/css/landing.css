@@ -506,3 +506,10 @@
   border-radius: 20px;
   font-weight: 600;
 }
+.partner-notice {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  font-size: 13px;
+  color: #888;
+  text-align: center;
+}

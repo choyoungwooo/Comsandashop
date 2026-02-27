@@ -96,6 +96,9 @@ function Landing() {
 <section className="monthly">
   <div className="monthly-inner">
     <h2>🔥 이번 달 추천 견적</h2>
+       <p className="partner-notice">
+      ※ 본 페이지는 쿠팡 파트너스 활동을 통해 일정액의 수수료를 제공받을 수 있습니다.
+    </p>
 
     <div className="monthly-grid">
 
