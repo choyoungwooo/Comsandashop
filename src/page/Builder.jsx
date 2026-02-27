@@ -470,15 +470,15 @@ useEffect(() => {
                 전체
               </button>
 
-              {brandOptions[activeCategory].map((brand) => (
-                <button
-                  key={brand}
-                  className={subFilter === brand ? "active" : ""}
-                  onClick={() => setSubFilter(brand)}
-                >
-                  {brand.toUpperCase()}
-                </button>
-              ))}
+              {brandOptions[activeCategory].map((option) => (
+  <button
+    key={option.value}
+    className={subFilter === option.value ? "active" : ""}
+    onClick={() => setSubFilter(option.value)}
+  >
+    {option.label}
+  </button>
+))}
             </div>
 
             <button className="sort-toggle" onClick={toggleSort}>
