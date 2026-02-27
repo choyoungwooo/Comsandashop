@@ -127,40 +127,57 @@ const tierBudgetMap = {
   high: 3000000,
   ultra: 10000000000,
 };
+
+const ramTierPriceMap = {
+  low: { min: 0, max: 190000 },
+  mid: { min: 190000, max: 300000 },
+  high: { min: 300000, max: 500000 },
+  ultra: { min: 500000, max: Infinity },
+};
 const autoBuild = (game) => {
   const tier = gameTierMap[game] || "mid";
   const budget = tierBudgetMap[tier];
 
-  // ✅ 최소 보장 옵션들 (너 데이터에 맞게 가격 범위만 조절하면 됨)
-  const pickBestInRange = (type, minPrice, maxPrice) => {
-    return products
-      .filter(p => p.type === type && p.price >= minPrice && p.price <= maxPrice)
-      .sort((a, b) => b.price - a.price)[0] || null;
-  };
+  /* =========================
+     1️⃣ RAM 등급별 보장
+  ========================== */
 
-  const pickBestUnder = (type, maxPrice) => {
-    return products
-      .filter(p => p.type === type && p.price <= maxPrice)
-      .sort((a, b) => b.price - a.price)[0] || null;
-  };
+  const ramRange = ramTierPriceMap[tier] || { min: 0, max: Infinity };
 
-  // ✅ 1) RAM 최소 보장: 16GB를 "무조건"
-  // - 네 데이터가 16GB 단품이면 quantity=1
-  // - 8GB 단품이면 quantity=2로 16GB 만들기
-  // 여기선 "8GB 제품을 2개" 가정 (필요하면 16GB 제품 1개로 바꿔)
-  const ramMin = pickBestInRange("ram", 180000); // 8GB/16GB 저가대 대충 범위
-  const ramQuantity = 1; // ✅ 2개로 16GB 가정
+  const ramMin = products
+    .filter(p =>
+      p.type === "ram" &&
+      p.price >= ramRange.min &&
+      p.price < ramRange.max
+    )
+    .sort((a, b) => b.price - a.price)[0] || null;
 
-  // RAM이 없으면(데이터 없으면) 그냥 null 처리
+  const ramQuantity = 1;
   const ramCost = ramMin ? ramMin.price * ramQuantity : 0;
 
-  // ✅ 2) 남은 예산
+  /* =========================
+     2️⃣ 남은 예산 계산
+  ========================== */
+
   const remain = Math.max(budget - ramCost, 0);
 
-  // ✅ 3) 남은 예산으로 CPU/GPU 등 배분 (RAM이 먼저 먹었으니 비율 조금 조절)
-  const selectedCPU = pickBestUnder("cpu", remain * 0.25);
+  /* =========================
+     3️⃣ CPU 선택
+  ========================== */
+
+  const selectedCPU = products
+    .filter(p =>
+      p.type === "cpu" &&
+      p.price <= remain * 0.25
+    )
+    .sort((a, b) => b.price - a.price)[0] || null;
+
+  /* =========================
+     4️⃣ 메인보드 (CPU 소켓 매칭)
+  ========================== */
 
   let selectedMainboard = null;
+
   if (selectedCPU) {
     selectedMainboard = products
       .filter(p =>
@@ -171,19 +188,35 @@ const autoBuild = (game) => {
       .sort((a, b) => b.price - a.price)[0] || null;
   }
 
-  const selectedGPU = pickBestUnder("gpu", remain * 0.45);
-  const selectedPSU = pickBestUnder("psu", remain * 0.10);
-  const selectedCase = pickBestUnder("case", remain * 0.08);
-  const selectedCooler = pickBestUnder("cooler", remain * 0.07);
+  /* =========================
+     5️⃣ 나머지 부품
+  ========================== */
+
+  const selectedGPU = products
+    .filter(p => p.type === "gpu" && p.price <= remain * 0.45)
+    .sort((a, b) => b.price - a.price)[0] || null;
+
+  const selectedPSU = products
+    .filter(p => p.type === "psu" && p.price <= remain * 0.10)
+    .sort((a, b) => b.price - a.price)[0] || null;
+
+  const selectedCase = products
+    .filter(p => p.type === "case" && p.price <= remain * 0.08)
+    .sort((a, b) => b.price - a.price)[0] || null;
+
+  const selectedCooler = products
+    .filter(p => p.type === "cooler" && p.price <= remain * 0.07)
+    .sort((a, b) => b.price - a.price)[0] || null;
+
+  /* =========================
+     6️⃣ 최종 객체 생성
+  ========================== */
 
   const autoSelected = {
     cpu: selectedCPU && { product: selectedCPU, quantity: 1 },
     mainboard: selectedMainboard && { product: selectedMainboard, quantity: 1 },
     gpu: selectedGPU && { product: selectedGPU, quantity: 1 },
-
-    // ✅ RAM은 무조건 들어가게 (ramMin이 있으면)
     ram: ramMin && { product: ramMin, quantity: ramQuantity },
-
     psu: selectedPSU && { product: selectedPSU, quantity: 1 },
     case: selectedCase && { product: selectedCase, quantity: 1 },
     cooler: selectedCooler && { product: selectedCooler, quantity: 1 },
@@ -443,14 +476,6 @@ const handleViewResult = () => {
     );
     setConfirmOpen(true);
     return;
-  }
-
-  // ✅ 호환성 경고가 있을 경우 (기존 로직 유지)
-  if (compatibilityWarning) {
-    const confirmMove = window.confirm(
-      compatibilityWarning + "\n\n그래도 진행하시겠습니까?"
-    );
-    if (!confirmMove) return;
   }
 
   navigate("/result", {
