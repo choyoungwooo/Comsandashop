@@ -82,7 +82,7 @@ function Result() {
 
 const ItemRow = ({ item, showButtons = false }) => (
   <div className="summary-item">
-    
+
     <div className="summary-left">
 
       <img
@@ -91,7 +91,7 @@ const ItemRow = ({ item, showButtons = false }) => (
         className="summary-image"
       />
 
-      <div>
+      <div className="summary-info">
         <p className="item-name">{item.name}</p>
         <span className="item-type">{item.type.toUpperCase()}</span>
 
@@ -117,11 +117,10 @@ const ItemRow = ({ item, showButtons = false }) => (
           </div>
         )}
       </div>
-
     </div>
 
     <div className="summary-price">
-      {item.price.toLocaleString()}원
+      {(item.price * item.qty).toLocaleString()}원
     </div>
   </div>
 );
