@@ -128,47 +128,67 @@ const tierBudgetMap = {
   ultra: 10000000000,
 };
 const autoBuild = (game) => {
-
   const tier = gameTierMap[game] || "mid";
   const budget = tierBudgetMap[tier];
 
-  const getBest = (type, maxPrice) => {
+  // ✅ 최소 보장 옵션들 (너 데이터에 맞게 가격 범위만 조절하면 됨)
+  const pickBestInRange = (type, minPrice, maxPrice) => {
+    return products
+      .filter(p => p.type === type && p.price >= minPrice && p.price <= maxPrice)
+      .sort((a, b) => b.price - a.price)[0] || null;
+  };
+
+  const pickBestUnder = (type, maxPrice) => {
     return products
       .filter(p => p.type === type && p.price <= maxPrice)
       .sort((a, b) => b.price - a.price)[0] || null;
   };
 
-  // 예산 분배
-  const selectedCPU = getBest("cpu", budget * 0.25);
+  // ✅ 1) RAM 최소 보장: 16GB를 "무조건"
+  // - 네 데이터가 16GB 단품이면 quantity=1
+  // - 8GB 단품이면 quantity=2로 16GB 만들기
+  // 여기선 "8GB 제품을 2개" 가정 (필요하면 16GB 제품 1개로 바꿔)
+  const ramMin = pickBestInRange("ram", 180000); // 8GB/16GB 저가대 대충 범위
+  const ramQuantity = 1; // ✅ 2개로 16GB 가정
+
+  // RAM이 없으면(데이터 없으면) 그냥 null 처리
+  const ramCost = ramMin ? ramMin.price * ramQuantity : 0;
+
+  // ✅ 2) 남은 예산
+  const remain = Math.max(budget - ramCost, 0);
+
+  // ✅ 3) 남은 예산으로 CPU/GPU 등 배분 (RAM이 먼저 먹었으니 비율 조금 조절)
+  const selectedCPU = pickBestUnder("cpu", remain * 0.25);
+
   let selectedMainboard = null;
+  if (selectedCPU) {
+    selectedMainboard = products
+      .filter(p =>
+        p.type === "mainboard" &&
+        p.socket === selectedCPU.socket &&
+        p.price <= remain * 0.20
+      )
+      .sort((a, b) => b.price - a.price)[0] || null;
+  }
 
-if (selectedCPU) {
-  selectedMainboard = products
-    .filter(p =>
-      p.type === "mainboard" &&
-      p.socket === selectedCPU.socket &&
-      p.price <= budget * 0.2
-    )
-    .sort((a, b) => b.price - a.price)[0] || null;
-}
-
-  const selectedGPU = getBest("gpu", budget * 0.45);
-  const selectedRAM = getBest("ram", budget * 0.1);
-  const selectedPSU = getBest("psu", budget * 0.1);
-  const selectedCase = getBest("case", budget * 0.08);
-  const selectedCooler = getBest("cooler", budget * 0.07);
+  const selectedGPU = pickBestUnder("gpu", remain * 0.45);
+  const selectedPSU = pickBestUnder("psu", remain * 0.10);
+  const selectedCase = pickBestUnder("case", remain * 0.08);
+  const selectedCooler = pickBestUnder("cooler", remain * 0.07);
 
   const autoSelected = {
     cpu: selectedCPU && { product: selectedCPU, quantity: 1 },
     mainboard: selectedMainboard && { product: selectedMainboard, quantity: 1 },
     gpu: selectedGPU && { product: selectedGPU, quantity: 1 },
-    ram: selectedRAM && { product: selectedRAM, quantity: 1 },
+
+    // ✅ RAM은 무조건 들어가게 (ramMin이 있으면)
+    ram: ramMin && { product: ramMin, quantity: ramQuantity },
+
     psu: selectedPSU && { product: selectedPSU, quantity: 1 },
     case: selectedCase && { product: selectedCase, quantity: 1 },
     cooler: selectedCooler && { product: selectedCooler, quantity: 1 },
   };
 
-  // null 제거
   Object.keys(autoSelected).forEach(key => {
     if (!autoSelected[key]) delete autoSelected[key];
   });
