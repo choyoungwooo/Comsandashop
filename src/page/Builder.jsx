@@ -2,6 +2,7 @@ import { useMemo, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import { products } from "../data/Products";
+import ConfirmModal from "../component/ConfirmModal";
 
 
 import "../css/home.css";
@@ -71,6 +72,8 @@ const categories = [
 };
 
   const [activeBrand, setActiveBrand] = useState("all");
+  const outlet = useOutletContext?.() || {};
+const searchKeyword = outlet.searchKeyword || ""; // 안전하게
   const [sortOrder, setSortOrder] = useState("low"); // low / high
   const [selectedGame, setSelectedGame] = useState("lol");
   const [activeCategory, setActiveCategory] = useState("gpu");
@@ -79,8 +82,10 @@ const categories = [
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
   const multiQuantityTypes = ["ram", "ssd", "cooler"];
-  const { searchKeyword } = useOutletContext();
+  const [confirmOpen, setConfirmOpen] = useState(false);
+const [confirmMessage, setConfirmMessage] = useState("");
   const [isEstimateOpen, setIsEstimateOpen] = useState(false);
+
   const [isOpen, setIsOpen] = useState(false);
   const games = [
   { label: "롤", key: "lol" },
@@ -94,14 +99,14 @@ const categories = [
 ];
 
  const gameBudgetMap = {
-  lol: 800000,
-  valorant: 900000,
-  fifa: 800000,
-  overwatch: 1000000,
-  pubg: 1300000,
-  loa: 1200000,
-  highend: 1800000,
-  light: 700000,
+  lol: 120000,
+  valorant: 1500000,
+  fifa: 120000,
+  overwatch: 1500000,
+  pubg: 2000000,
+  loa: 2000000,
+  highend: 3000000,
+  light: 1000000,
 };
 
 
@@ -149,7 +154,6 @@ if (selectedCPU) {
 
   const selectedGPU = getBest("gpu", budget * 0.45);
   const selectedRAM = getBest("ram", budget * 0.1);
-  const selectedSSD = getBest("ssd", budget * 0.1);
   const selectedPSU = getBest("psu", budget * 0.1);
   const selectedCase = getBest("case", budget * 0.08);
   const selectedCooler = getBest("cooler", budget * 0.07);
@@ -158,8 +162,7 @@ if (selectedCPU) {
     cpu: selectedCPU && { product: selectedCPU, quantity: 1 },
     mainboard: selectedMainboard && { product: selectedMainboard, quantity: 1 },
     gpu: selectedGPU && { product: selectedGPU, quantity: 1 },
-    ram: selectedRAM && { product: selectedRAM, quantity: 2 },
-    ssd: selectedSSD && { product: selectedSSD, quantity: 1 },
+    ram: selectedRAM && { product: selectedRAM, quantity: 1 },
     psu: selectedPSU && { product: selectedPSU, quantity: 1 },
     case: selectedCase && { product: selectedCase, quantity: 1 },
     cooler: selectedCooler && { product: selectedCooler, quantity: 1 },
@@ -247,13 +250,26 @@ if (selectedCPU) {
   });
 };
 const handleIncrease = (type) => {
-  setSelectedItems((prev) => ({
-    ...prev,
-    [type]: {
-      ...prev[type],
-      quantity: prev[type].quantity + 1,
-    },
-  }));
+  setSelectedItems((prev) => {
+    const current = prev[type];
+    if (!current) return prev;
+
+    // 🔥 RAM은 최대 2개
+    if (type === "ram" && current.quantity >= 2) {
+      return prev;
+    }
+    if (type === "ssd" && current.quantity >= 2) {
+  return prev;
+}
+
+    return {
+      ...prev,
+      [type]: {
+        ...current,
+        quantity: current.quantity + 1,
+      },
+    };
+  });
 };
 
 const handleDecrease = (type) => {
@@ -277,6 +293,15 @@ const handleDecrease = (type) => {
   });
 };
 
+const requiredKeys = ["gpu", "cpu", "mainboard", "ram", "psu", "case", "cooler"];
+const emptyCategories = useMemo(() => {
+  return categories
+    .filter(cat => 
+      cat.key !== "ssd" &&   // 🔥 SSD 제외
+      !selectedItems[cat.key]
+    )
+    .map(cat => cat.label);
+}, [selectedItems]); // categories는 컴포넌트 내부 상수라 보통 생략 가능
 
 
 
@@ -298,14 +323,6 @@ const handleDecrease = (type) => {
       flexibleMatch(p.name, keyword)
     );
   }
-
-  // ✅ 선택 안 된 카테고리 목록
-const emptyCategories = useMemo(() => {
-  return categories
-    .filter(cat => !selectedItems[cat.key])   // 선택 안된 것
-    .map(cat => cat.label);
-}, [selectedItems, categories]);
-
   if (activeCategory !== "all") {
     filtered = filtered.filter((p) => p.type === activeCategory);
   }
@@ -338,34 +355,74 @@ const emptyCategories = useMemo(() => {
     return sum + item.product.price * item.quantity;
   }, 0);
 }, [selectedItems]);
-const compatibilityWarning = useMemo(() => {
+
+
+const compatibilityWarnings = useMemo(() => {
   const cpu = selectedItems.cpu?.product;
   const mainboard = selectedItems.mainboard?.product;
+  const ram = selectedItems.ram?.product;
+  const gpu = selectedItems.gpu?.product;
+  const psu = selectedItems.psu?.product;
+  const caseItem = selectedItems.case?.product;
+  const cooler = selectedItems.cooler?.product;
 
-  if (!cpu || !mainboard) return null;
+  const warnings = [];
 
-  if (cpu.socket !== mainboard.socket) {
-    return `⚠ CPU(${cpu.socket})와 메인보드(${mainboard.socket}) 소켓이 맞지 않습니다.`;
+  // 1️⃣ CPU ↔ 메인보드
+  if (cpu && mainboard && cpu.socket !== mainboard.socket) {
+    warnings.push("CPU와 메인보드 소켓이 맞지 않습니다.");
   }
 
-  return null;
+  // 2️⃣ RAM ↔ 메인보드
+  if (ram && mainboard && ram.memoryType !== mainboard.memoryType) {
+    warnings.push("RAM 타입과 메인보드 메모리 타입이 맞지 않습니다.");
+  }
+
+  // 3️⃣ CPU ↔ 쿨러
+  if (cpu && cooler && cpu.tdp > cooler.maxTdp) {
+    warnings.push("CPU 발열을 쿨러가 감당하지 못합니다.");
+  }
+
+  // 4️⃣ 쿨러 ↔ 케이스
+  if (cooler && caseItem && cooler.height > caseItem.maxCoolerHeight) {
+    warnings.push("쿨러 높이가 케이스에 맞지 않습니다.");
+  }
+
+  // 5️⃣ GPU ↔ 케이스
+  if (gpu && caseItem && gpu.length && gpu.length > caseItem.maxGpuLength) {
+    warnings.push("그래픽카드 길이가 케이스에 맞지 않습니다.");
+  }
+
+  // 6️⃣ 파워 체크
+  const totalWatt = (cpu?.tdp || 0) + (gpu?.tdp || 0);
+  if (psu && totalWatt > psu.watt * 0.7) {
+    warnings.push("파워 용량이 부족할 수 있습니다.");
+  }
+
+  return warnings;
 }, [selectedItems]);
 
 
 
 
 const handleViewResult = () => {
-  if (Object.keys(selectedItems).length === 0) {
-    alert("제품을 선택해주세요.");
-    return;
-  }
+  if (compatibilityWarnings.length > 0) {
+  const message =
+    "⚠ 호환 문제 발견:\n\n" +
+    compatibilityWarnings.map(w => "- " + w).join("\n") +
+    "\n\n그래도 진행하시겠습니까?";
+
+  const confirmMove = window.confirm(message);
+  if (!confirmMove) return;
+}
 
   // ✅ 비어있는 카테고리 안내
-  if (emptyCategories.length > 0) {
-    const confirmMove = window.confirm(
+    if (emptyCategories.length > 0) {
+    setConfirmMessage(
       `아직 선택되지 않은 항목이 있습니다:\n- ${emptyCategories.join("\n- ")}\n\n그래도 구매처 보기를 진행하시겠습니까?`
     );
-    if (!confirmMove) return;
+    setConfirmOpen(true);
+    return;
   }
 
   // ✅ 호환성 경고가 있을 경우 (기존 로직 유지)
@@ -394,14 +451,6 @@ const handleViewResult = () => {
   useEffect(() => {
   setCurrentPage(1);
 }, [searchKeyword, activeCategory, subFilter]);
-const handleSearch = () => {
-  if (!searchInput.trim()) {
-    localStorage.removeItem("pc-builder");
-    setSelectedItems({});
-  }
-
-  setSearchKeyword(searchInput);
-};
 
 
 useEffect(() => {
@@ -572,9 +621,12 @@ useEffect(() => {
           <span className="estimate-total">
             {totalPrice.toLocaleString()}원
           </span>
-        </div>{compatibilityWarning && (
+          
+        </div>{compatibilityWarnings.length > 0 && (
   <div className="compatibility-warning">
-    {compatibilityWarning}
+    {compatibilityWarnings.map((msg, idx) => (
+      <div key={idx}>⚠ {msg}</div>
+    ))}
   </div>
 )}
 
@@ -639,59 +691,12 @@ useEffect(() => {
         </button>
       </div>
     </div>
+
+    
   );
 })}
 
-          {Object.entries(selectedItems).length === 0 ? (
-  <div className="empty-estimate">
-    선택된 제품이 없습니다.
-  </div>
-) : (
-  Object.entries(selectedItems).map(([type, item]) => (
-    <div key={type} className="estimate-slot">
 
-      <div className="slot-left">
-        <span className="slot-label">
-          {categories.find(c => c.key === type)?.label}
-        </span>
-      </div>
-
-      <div className="slot-right">
-
-        <div className="slot-info">
-  <img 
-    src={item.product.image} 
-    alt={item.product.name} 
-    className="slot-image"
-  />
-  <span className="slot-name">
-    {item.product.name}
-  </span>
-</div>
-
-        {multiQuantityTypes.includes(type) && (
-          <div className="quantity-box">
-            <button onClick={() => handleDecrease(type)}>-</button>
-            <span>{item.quantity}</span>
-            <button onClick={() => handleIncrease(type)}>+</button>
-          </div>
-        )}
-
-        <span className="slot-price">
-          {(item.product.price * item.quantity).toLocaleString()}원
-        </span>
-
-        <button
-          className="remove-btn"
-          onClick={() => handleRemove(type)}
-        >
-          ✕
-        </button>
-
-      </div>
-    </div>
-  ))
-)}
 
           {Object.entries(selectedItems).length > 0 && (
             <>
@@ -711,8 +716,18 @@ useEffect(() => {
         </div>
       </div>
     </div>
-
+<ConfirmModal
+  open={confirmOpen}
+  title="안내"
+  message={confirmMessage}
+  onCancel={() => setConfirmOpen(false)}
+  onConfirm={() => {
+    setConfirmOpen(false);
+    navigate("/result", { state: { items: selectedItems, total: totalPrice } });
+  }}
+/>
   </div>
+  
 );
 }
 

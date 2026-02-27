@@ -709,4 +709,59 @@ total-price{
 .go-select-btn:hover{
   border-color: #c7cbe6;
   background: #f6f7ff;
+}/* ==============================
+   ✅ 견적창: 가로 스크롤바 제거 + 이름 … + 가격 고정
+============================== */
+
+/* 가로 스크롤바(ㅡㅡㅡ) 원천 차단 */
+.estimate-box,
+.estimate-content{
+  overflow-x: hidden !important;
+}
+
+/* flex 안에서 말줄임이 동작하려면 "min-width:0"가 필수 */
+.estimate-slot,
+.slot-right,
+.slot-info,
+.slot-name{
+  min-width: 0 !important;
+}
+
+/* 한 줄 유지 (줄바꿈으로 레이아웃 깨지는거 방지) */
+.slot-right{
+  width: 100%;
+  flex-wrap: nowrap !important;
+}
+
+/* 이미지+이름 묶음이 공간을 먹고 줄어들게 */
+.slot-info{
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+/* ✅ 이름: 일정 길이 넘어가면 무조건 ... */
+.slot-name{
+  flex: 1 1 auto !important;
+  max-width: 100% !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* ✅ 가격/수량/삭제는 절대 줄어들지 않게 + 오른쪽 고정 */
+.slot-price,
+.quantity-box,
+.remove-btn{
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
+}
+
+.slot-price{
+  margin-left: auto !important; /* 가격을 항상 오른쪽으로 */
+}
+
+/* 혹시 버튼(선택하러가기)이 밀어서 가로바 생기면 이것도 */
+.go-select-btn{
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
 }

@@ -560,3 +560,44 @@
 .summary-box .buy-buttons{
   display:none !important;
 }
+/* ===============================
+   BUY BOX 완전 독립 구조 강제
+================================ */
+
+.buy-box .summary-item{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+/* 이름 영역 */
+.buy-box .summary-left{
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+/* 가격 줄 고정 */
+.buy-box .item-price{
+  width: 100%;
+  text-align: left;
+}
+
+/* 🔥 버튼은 무조건 한 줄 전체 */
+.buy-box .buy-buttons{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 정확히 반반 */
+  gap: 12px;
+}
+
+/* 🔥 버튼은 무조건 100% */
+.buy-box .buy-buttons a{
+  width: 100%;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}

@@ -3,6 +3,7 @@ import { useMemo, useState, useRef } from "react";
 import html2canvas from "html2canvas";
 import "../css/result.css";
 
+
 function Result() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -84,7 +85,6 @@ const ItemRow = ({ item, showButtons = false }) => (
   <div className="summary-item">
 
     <div className="summary-left">
-
       <img
         src={item.image}
         alt={item.name}
@@ -94,34 +94,34 @@ const ItemRow = ({ item, showButtons = false }) => (
       <div className="summary-info">
         <p className="item-name">{item.name}</p>
         <span className="item-type">{item.type.toUpperCase()}</span>
-
-        {showButtons && (
-          <div className="buy-buttons">
-            <a
-              href={getAliLink(item.name)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ali-btn"
-            >
-              알리
-            </a>
-
-            <a
-              href={getCoupangLink(item.name)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="coupang-btn"
-            >
-              쿠팡
-            </a>
-          </div>
-        )}
       </div>
     </div>
 
     <div className="item-price">
-  {(item.price * item.qty).toLocaleString()}원
-</div>
+      {(item.price * item.qty).toLocaleString()}원
+    </div>
+
+    {showButtons && (
+      <div className="buy-buttons">
+        <a
+          href={getAliLink(item.name)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ali-btn"
+        >
+          알리
+        </a>
+
+        <a
+          href={getCoupangLink(item.name)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="coupang-btn"
+        >
+          쿠팡
+        </a>
+      </div>
+    )}
   </div>
 );
 

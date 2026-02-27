@@ -12,6 +12,7 @@ import Setup from "./page/Setup";
 import Console from "./page/Console";
 import NoteBook from "./page/NoteBook";
 import Builder from "./page/Builder";
+import ConfirmModal from "./component/ConfirmModal";
 
 
 
@@ -31,6 +32,8 @@ function App() {
 <Route path="/recommend/notebook" element={<NoteBook />} />
 <Route path="/recommend/setup" element={<Setup />} />
 <Route path="/recommend/console" element={<Console />} />
+<Route path="/recommend/console" element={<Console />} />
+<Route path="/recommend/confirm" element={<ConfirmModal />} />
       </Route>
     </Routes>
   );
