@@ -599,14 +599,15 @@ total-price{
   }
 
   .product-card img{
-    height: 140px;
+    width: 100%;
+    height: auto;          /* 🔥 핵심 */
+    max-height: 130px;     /* 🔥 적당한 제한 */
+    object-fit: contain;
   }
-
-    .product-card{
-    width: 100%;      /* 🔥 핵심 */
-    max-width: 100%;  /* 🔥 max-width 제거 */
-    box-sizing: border-box;
+  .product-card{
+    padding: 16px;
   }
+  
 
   /* ===============================
      📦 하단 견적 슬라이드
