@@ -587,16 +587,25 @@ total-price{
   =============================== */
   .product-container{
     padding: 20px 16px !important;
+    overflow: hidden;
   }
 
   .product-area{
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 14px !important;
+    width: 100%;
+
   }
 
   .product-card img{
     height: 140px;
+  }
+
+    .product-card{
+    width: 100%;      /* 🔥 핵심 */
+    max-width: 100%;  /* 🔥 max-width 제거 */
+    box-sizing: border-box;
   }
 
   /* ===============================
