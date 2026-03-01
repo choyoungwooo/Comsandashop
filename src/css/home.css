@@ -507,26 +507,23 @@ total-price{
 /* =========================================
    📱 MOBILE (768px 이하)
 ========================================= */
-/* =========================================
-   📱 MOBILE (768px 이하)
-========================================= */
 @media (max-width: 768px){
 
   /* ===============================
-     1️⃣ LAYOUT RESET
+     🔥 기본 레이아웃 초기화
   =============================== */
   .main-container{
-    width: 100%;
-    max-width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
   }
 
   .builder-page{
-    padding: 20px 0 170px;
+    padding: 20px 0 170px !important;
   }
 
-
   /* ===============================
-     2️⃣ NAV & FILTER
+     📂 카테고리 가로 스크롤
   =============================== */
   .category-nav{
     padding: 0 16px;
@@ -534,68 +531,113 @@ total-price{
 
   .category-nav-inner{
     display: flex;
-    gap: 8px;
+    justify-content: flex-start !important;
     padding-left: 16px;
+    gap: 8px;
     overflow-x: auto;
+    scroll-behavior: smooth;
   }
 
-  .category-nav-inner button,
-  .brand-filter button{
+  .category-nav-inner button{
     flex: 0 0 auto;
     white-space: nowrap;
+    font-size: 13px;
+    padding: 8px 14px;
   }
 
+  .category-nav-inner::-webkit-scrollbar{
+    display: none;
+  }
+
+  /* ===============================
+     🔎 필터 영역
+  =============================== */
   .filter-row{
-    display: flex;
-    flex-direction: column;
+    display: flex !important;
+    flex-direction: column !important;
     gap: 12px;
     padding: 0 16px 14px;
   }
 
   .brand-filter{
-    display: flex;
+    display: flex !important;
+    overflow-x: auto !important;
     gap: 8px;
-    overflow-x: auto;
   }
 
+  .brand-filter button{
+    flex: 0 0 auto;
+    white-space: nowrap;
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+
+  .brand-filter::-webkit-scrollbar{
+    display: none;
+  }
+
+  .sort-toggle{
+    align-self: flex-end;
+    font-size: 12px;
+    padding: 8px 14px;
+  }
 
   /* ===============================
-     3️⃣ PRODUCT GRID
+     🛍 상품 2열
   =============================== */
   .product-container{
-    padding: 20px 16px;
+    padding: 20px 16px !important;
   }
 
   .product-area{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px !important;
   }
 
   .product-card img{
     height: 140px;
   }
 
-
   /* ===============================
-     4️⃣ ESTIMATE SLIDE
+     📦 하단 견적 슬라이드
   =============================== */
-  .estimate-wrapper{
-    position: fixed;
-    inset: auto 0 0 0; /* left/right/bottom 한번에 */
-    width: 100%;
-    z-index: 9999;
-  }
+
+ .estimate-wrapper{
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  top: auto !important;
+
+  margin-left: 0 !important;   /* 🔥 이게 핵심 */
+  width: 100% !important;
+  transform: none !important;
+
+  z-index: 9999 !important;
+}
 
   .estimate-box{
+    width: 100%;
+    background: #fff;
     border-radius: 20px 20px 0 0;
-    height: 70px;
+    box-shadow: 0 -8px 30px rgba(0,0,0,0.15);
+    height: 70px;               /* 닫힘 상태 */
     overflow: hidden;
     transition: height 0.3s ease;
   }
 
   .estimate-box.open{
-    height: 65vh;
+    height: 65vh;               /* 열림 상태 */
+  }
+
+  .estimate-toggle{
+    height: 70px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 800;
   }
 
   .estimate-content{
@@ -604,14 +646,26 @@ total-price{
     padding: 15px 20px 30px;
   }
 
-
   /* ===============================
-     5️⃣ SLOT LAYOUT FIX
+     🔥 슬롯 정렬 깨짐 방지
   =============================== */
+
   .estimate-slot{
-    display: flex;
-    flex-direction: column;
+    display: flex !important;
+    flex-direction: column !important;
     gap: 6px;
+  }
+
+  .slot-left{
+    display: block !important;
+    min-width: auto !important;
+  }
+
+  .slot-label{
+    display: block !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: #9ca3af !important;
   }
 
   .slot-right{
