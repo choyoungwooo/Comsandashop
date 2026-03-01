@@ -443,10 +443,16 @@
   gap: 6px;
 }
 
-.item-name {
-  font-weight: 600;
-  font-size: 15px;
-}
+  .item-name{
+    grid-area: name;
+    font-size: 14px;
+    font-weight: 600;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;   /* 🔥 두 줄 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 
 .item-type {
   font-size: 12px;

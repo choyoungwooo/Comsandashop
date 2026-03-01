@@ -3,13 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import { products } from "../data/Products";
 import ConfirmModal from "../component/ConfirmModal";
-
-
 import "../css/home.css";
 
 function Builder() {
-  const navigate = useNavigate();
-
+const navigate = useNavigate();
 
 const categories = [
   { label: "그래픽카드", key: "gpu" },
@@ -22,8 +19,7 @@ const categories = [
   { label: "쿨러", key: "cooler"}
 ];
 
-
- const brandOptions = {
+  const brandOptions = {
   gpu: [
     { value: "nvidia", label: "NVIDIA" },
     { value: "amd", label: "AMD Radeon" }
@@ -73,7 +69,7 @@ const categories = [
 
   const [activeBrand, setActiveBrand] = useState("all");
   const outlet = useOutletContext?.() || {};
-const searchKeyword = outlet.searchKeyword || ""; // 안전하게
+  const searchKeyword = outlet.searchKeyword || ""; // 안전하게
   const [sortOrder, setSortOrder] = useState("low"); // low / high
   const [selectedGame, setSelectedGame] = useState("lol");
   const [activeCategory, setActiveCategory] = useState("gpu");
@@ -83,9 +79,8 @@ const searchKeyword = outlet.searchKeyword || ""; // 안전하게
   const itemsPerPage = 20;
   const multiQuantityTypes = ["ram", "ssd", "cooler"];
   const [confirmOpen, setConfirmOpen] = useState(false);
-const [confirmMessage, setConfirmMessage] = useState("");
+  const [confirmMessage, setConfirmMessage] = useState("");
   const [isEstimateOpen, setIsEstimateOpen] = useState(false);
-
   const [isOpen, setIsOpen] = useState(false);
   const games = [
   { label: "롤", key: "lol" },
@@ -97,7 +92,6 @@ const [confirmMessage, setConfirmMessage] = useState("");
   { label: "GTA/스팀 고사양", key: "highend" },
   { label: "저사양 RPG", key: "light" }
 ];
-
  const gameBudgetMap = {
   lol: 1200000,
   valorant: 1500000,
@@ -108,8 +102,6 @@ const [confirmMessage, setConfirmMessage] = useState("");
   highend: 3000000,
   light: 1000000,
 };
-
-
 const gameTierMap = {
   lol: "low",
   valorant: "low",
@@ -120,14 +112,12 @@ const gameTierMap = {
   highend: "ultra",
   light: "low",
 };
-
 const tierBudgetMap = {
   low: 1200000,
   mid: 2000000,
   high: 3000000,
   ultra: 10000000000,
 };
-
 const ramTierPriceMap = {
   low: { min: 0, max: 190000 },
   mid: { min: 190000, max: 300000 },
@@ -137,13 +127,10 @@ const ramTierPriceMap = {
 const autoBuild = (game) => {
   const tier = gameTierMap[game] || "mid";
   const budget = tierBudgetMap[tier];
-
   /* =========================
      1️⃣ RAM 등급별 보장
   ========================== */
-
   const ramRange = ramTierPriceMap[tier] || { min: 0, max: Infinity };
-
   const ramMin = products
     .filter(p =>
       p.type === "ram" &&
@@ -151,33 +138,25 @@ const autoBuild = (game) => {
       p.price < ramRange.max
     )
     .sort((a, b) => b.price - a.price)[0] || null;
-
   const ramQuantity = 1;
   const ramCost = ramMin ? ramMin.price * ramQuantity : 0;
-
   /* =========================
      2️⃣ 남은 예산 계산
   ========================== */
-
   const remain = Math.max(budget - ramCost, 0);
-
   /* =========================
      3️⃣ CPU 선택
   ========================== */
-
   const selectedCPU = products
     .filter(p =>
       p.type === "cpu" &&
       p.price <= remain * 0.25
     )
     .sort((a, b) => b.price - a.price)[0] || null;
-
   /* =========================
      4️⃣ 메인보드 (CPU 소켓 매칭)
   ========================== */
-
   let selectedMainboard = null;
-
   if (selectedCPU) {
     selectedMainboard = products
       .filter(p =>
@@ -187,7 +166,6 @@ const autoBuild = (game) => {
       )
       .sort((a, b) => b.price - a.price)[0] || null;
   }
-
   /* =========================
      5️⃣ 나머지 부품
   ========================== */
@@ -199,11 +177,9 @@ const autoBuild = (game) => {
   const selectedPSU = products
     .filter(p => p.type === "psu" && p.price <= remain * 0.10)
     .sort((a, b) => b.price - a.price)[0] || null;
-
   const selectedCase = products
     .filter(p => p.type === "case" && p.price <= remain * 0.08)
     .sort((a, b) => b.price - a.price)[0] || null;
-
   const selectedCooler = products
     .filter(p => p.type === "cooler" && p.price <= remain * 0.07)
     .sort((a, b) => b.price - a.price)[0] || null;
@@ -211,7 +187,6 @@ const autoBuild = (game) => {
   /* =========================
      6️⃣ 최종 객체 생성
   ========================== */
-
   const autoSelected = {
     cpu: selectedCPU && { product: selectedCPU, quantity: 1 },
     mainboard: selectedMainboard && { product: selectedMainboard, quantity: 1 },
@@ -221,28 +196,20 @@ const autoBuild = (game) => {
     case: selectedCase && { product: selectedCase, quantity: 1 },
     cooler: selectedCooler && { product: selectedCooler, quantity: 1 },
   };
-
   Object.keys(autoSelected).forEach(key => {
     if (!autoSelected[key]) delete autoSelected[key];
   });
-
   setSelectedItems(autoSelected);
   setIsOpen(true);
 };
-
-
   const toggleSort = () => {
   setSortType((prev) => (prev === "low" ? "high" : "low"));
 };
-
   const normalize = (text) =>
   text.toLowerCase().replace(/\s+/g, "");
-  
-
   const flexibleMatch = (name, keyword) => {
   const nName = normalize(name);
   const nKeyword = normalize(keyword);
-
   // 1️⃣ 완전 포함
   if (nName.includes(nKeyword)) return true;
 
@@ -254,18 +221,13 @@ const autoBuild = (game) => {
     }
     if (i === nKeyword.length) return true;
   }
-
   return false;
 };
-
-
-
   // 🔥 객체 구조로 변경
   const [selectedItems, setSelectedItems] = useState(() => {
     const saved = localStorage.getItem("pc-builder");
     return saved ? JSON.parse(saved) : {};
   });
-
   // 🔥 선택 (카테고리별 1개만)
   const handleSelect = (product) => {
   setSelectedItems((prev) => {
@@ -306,7 +268,6 @@ const handleIncrease = (type) => {
   setSelectedItems((prev) => {
     const current = prev[type];
     if (!current) return prev;
-
     // 🔥 RAM은 최대 2개
     if (type === "ram" && current.quantity >= 2) {
       return prev;
@@ -314,7 +275,6 @@ const handleIncrease = (type) => {
     if (type === "ssd" && current.quantity >= 2) {
   return prev;
 }
-
     return {
       ...prev,
       [type]: {
@@ -324,18 +284,14 @@ const handleIncrease = (type) => {
     };
   });
 };
-
 const handleDecrease = (type) => {
   setSelectedItems((prev) => {
     const current = prev[type];
-
     if (!current) return prev;
-
     // 🔒 1 이하로 안 내려가게
     if (current.quantity <= 1) {
       return prev;
     }
-
     return {
       ...prev,
       [type]: {
@@ -356,8 +312,6 @@ const emptyCategories = useMemo(() => {
     .map(cat => cat.label);
 }, [selectedItems]); // categories는 컴포넌트 내부 상수라 보통 생략 가능
 
-
-
   const handleRemove = (type) => {
     setSelectedItems((prev) => {
       const updated = { ...prev };
@@ -368,9 +322,7 @@ const emptyCategories = useMemo(() => {
 
   const filteredProducts = useMemo(() => {
   let filtered = products;
-
   const keyword = searchKeyword?.trim() || "";
-
   if (keyword !== "") {
     filtered = filtered.filter((p) =>
       flexibleMatch(p.name, keyword)
@@ -379,36 +331,27 @@ const emptyCategories = useMemo(() => {
   if (activeCategory !== "all") {
     filtered = filtered.filter((p) => p.type === activeCategory);
   }
-
   if (subFilter !== "all") {
     filtered = filtered.filter((p) => p.brand === subFilter);
   }
-
   if (sortType === "low") {
     filtered = [...filtered].sort((a, b) => a.price - b.price);
   } else {
     filtered = [...filtered].sort((a, b) => b.price - a.price);
   }
-
   return filtered;
 }, [activeCategory, subFilter, sortType, searchKeyword]);
-
-
 
   const paginatedProducts = useMemo(() => {
   const start = (currentPage - 1) * itemsPerPage;
   return filteredProducts.slice(start, start + itemsPerPage);
 }, [filteredProducts, currentPage]);
-
-
   const totalPrice = useMemo(() => {
   return Object.values(selectedItems).reduce((sum, item) => {
     if (!item.product) return sum; // 예전 데이터 방어
-
     return sum + item.product.price * item.quantity;
   }, 0);
 }, [selectedItems]);
-
 
 const compatibilityWarnings = useMemo(() => {
   const cpu = selectedItems.cpu?.product;
@@ -418,7 +361,6 @@ const compatibilityWarnings = useMemo(() => {
   const psu = selectedItems.psu?.product;
   const caseItem = selectedItems.case?.product;
   const cooler = selectedItems.cooler?.product;
-
   const warnings = [];
 
   // 1️⃣ CPU ↔ 메인보드
@@ -455,9 +397,6 @@ const compatibilityWarnings = useMemo(() => {
   return warnings;
 }, [selectedItems]);
 
-
-
-
 const handleViewResult = () => {
   if (compatibilityWarnings.length > 0) {
   const message =
@@ -477,34 +416,26 @@ const handleViewResult = () => {
     setConfirmOpen(true);
     return;
   }
-
   navigate("/result", {
     state: { items: selectedItems, total: totalPrice },
   });
 };
 
-
   const handleCategoryChange = (key) => {
     setActiveCategory(key);
     setSubFilter("all");
   };
-
   useEffect(() => {
     localStorage.setItem("pc-builder", JSON.stringify(selectedItems));
   }, [selectedItems]);
-
   useEffect(() => {
   setCurrentPage(1);
 }, [searchKeyword, activeCategory, subFilter]);
-
-
 useEffect(() => {
   console.log("검색어 변경됨:", searchKeyword);
 }, [searchKeyword]);
-
 useEffect(() => {
   const keyword = searchKeyword?.trim();
-
   if (!keyword) {
     // 🔥 검색어 없으면 초기화
     setActiveCategory("gpu");   // 기본 카테고리
@@ -517,26 +448,17 @@ useEffect(() => {
     setCurrentPage(1);
   }
 }, [searchKeyword]);
-
-
-
-  
   return (
   <div className="builder-page">
-
     <div className="main-container">
-
       {/* =======================
           📦 왼쪽 메인 영역
       ======================== */}
       <div className="main-content">
-
         {/* 카테고리 */}
         <div className="category-nav">
           <div className="category-nav-inner">
             {categories.map((cat) => (
-
-              
               <button
                 key={cat.key}
                 className={activeCategory === cat.key ? "active" : ""}
@@ -547,7 +469,6 @@ useEffect(() => {
             ))}
           </div>
         </div>
-
         {/* 자동 설계 */}
         <div className="auto-build-box">
           <h3>🎮 게이밍 자동 설계</h3>
@@ -564,22 +485,18 @@ useEffect(() => {
     </option>
   ))}
 </select>
-
-            <button onClick={() => autoBuild(selectedGame)}>
+        <button onClick={() => autoBuild(selectedGame)}>
               ⚡ 자동완성
             </button>
           </div>
         </div>
-
         {/* 필터 영역 */}
         {activeCategory !== "all" && brandOptions[activeCategory] && (
           <div className="filter-row">
-
             <div className="brand-filter">
               <button onClick={() => setSubFilter("all")}>
                 전체
               </button>
-
               {brandOptions[activeCategory].map((option) => (
   <button
     key={option.value}
@@ -590,23 +507,17 @@ useEffect(() => {
   </button>
 ))}
             </div>
-
             <button className="sort-toggle" onClick={toggleSort}>
               {sortType === "low"
                 ? "⬇ 낮은 가격순"
                 : "⬆ 높은 가격순"}
             </button>
-
           </div>
         )}
-
         {/* 상품 */}
         <div className="product-container">
-
           <div className="product-area">
             {(searchKeyword?.trim() || "") !== "" && filteredProducts.length === 0 ? (
-
-
               <div className="empty-state">
                 <div className="empty-icon">🔍</div>
                 <h3>검색 결과가 없습니다</h3>
@@ -736,19 +647,13 @@ useEffect(() => {
         </button>
       </div>
     </div>
-
-    
   );
 })}
-
-
-
-          {Object.entries(selectedItems).length > 0 && (
+   {Object.entries(selectedItems).length > 0 && (
             <>
               <div className="total-price">
                 총 금액: {totalPrice.toLocaleString()}원
               </div>
-
               <button
                 className="estimate-btn"
                 onClick={handleViewResult}
@@ -757,7 +662,6 @@ useEffect(() => {
               </button>
             </>
           )}
-
         </div>
       </div>
     </div>
@@ -772,11 +676,6 @@ useEffect(() => {
   }}
 />
   </div>
-  
 );
 }
-
-            
-
-
 export default Builder;
